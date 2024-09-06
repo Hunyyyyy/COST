@@ -1,0 +1,197 @@
+﻿@* @model COTS1.Models.EmailSummary *@
+@model ShowEmailDetail_And_Task
+@{
+    ViewData["Title"] = "ShowEmailDetails";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@if (@TempData["Message"] != null)
+{
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông báo!!</h4>
+                    @* <button type="button" class="btn-close" data-bs-dismiss="modal"></button> *@
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    @TempData["Message"]
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+<div style="margin-left: 230px; margin-top: 60px;">
+    <main>
+        <div class="container" style="border: 1px solid black; padding: 10px; border-radius:20px">
+            <h5><strong>Subject:</strong>  @Model.Email.Subject</h5>
+            <div style="display: flex width:100%; align-items: center;">
+                <img src="./dist/assets/img/gmailimages.png" class="rounded-circle" style="width: 50px;" alt="Avatar" />
+                <h6 style="margin-left: 10px;"><strong>From:</strong> @Model.Email.Sender</h6>
+                <h6 style="float: right;"> @Model.Email.SentDate</h6>
+            </div>
+            <h7>@Model.Email.Snippet </h7>
+            <div class="btn_respone_next" style="margin:50px 20px 10px 20px">
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#replyModal" style="margin-right:20px">Trả lời</button>
+                <button type="button" class="btn btn-info">Chuyển tiếp</button>
+                @if (@ViewBag.CheckTask == "Task")
+                {
+
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#taskModal" style="margin-right:20px">Nhận nhiệm vụ</button>
+                }
+                
+            </div>
+        </div>
+        <!-- Reply mail -->
+        <div class="container mt-4">
+            <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="replyModalLabel">Trả lời thư</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="recipient" class="form-label">Từ:</label>
+                                    <input type="email" class="form-control" id="from" name="from" value="@ViewBag.UserEmail" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient" class="form-label">Đến:</label>
+                                    <input type="email" class="form-control" id="recipients" name="recipients" value="@Model.Email.Sender" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Tiêu đề:</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Nhập tiêu đề" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Nội dung:</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Nhập nội dung thư" required></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button asp-action="EmailNotification" asp-controller="GmailAPI"  type="submit" class="btn btn-primary" name="response">Gửi</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS -->
+        
+    </main>
+   @*  checkTask *@
+    <div class="container mt-4">
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Xác Nhận Nhiệm Vụ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="taskForm">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Tiêu Đề</label>
+                            <input type="text" class="form-control" id="title" value="@Model.Task.Title" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Mô Tả</label>
+                            <ul id="description">
+                                @foreach (var task in @Model.Task.Description)
+                                {
+                                    <li>@task</li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dueDate" class="form-label">Ngày Hết Hạn</label>
+                            <input type="text" class="form-control" id="dueDate" value="@Model.Task.DueDate.ToString("dd/MM/yyyy")" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="priority" class="form-label">Mức Độ Ưu Tiên</label>
+                            <input type="text" class="form-control" id="priority" value="@Model.Task.Priority" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipients" class="form-label">Người Nhận</label>
+                            <input type="text" class="form-control" id="recipients" value="@Model.Task.Recipients" readonly>
+                        </div>
+                       @*  <input type="hidden" id="taskId" value="@Model.Id" /> *@
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="confirmTask">Xác Nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+ </footer>
+
+
+@*   <h3>Attachments</h3>
+        @foreach (var attachment in Model.Attachments)
+        {
+            if (attachment.MimeType.StartsWith("image/"))
+            {
+                <img src="data:@attachment.MimeType;base64,@attachment.Data" alt="@attachment.FileName" style="max-width: 300px;" />
+            }
+            else
+            {
+                <a href="data:@attachment.MimeType;base64,@attachment.Data" download="@attachment.FileName">@attachment.FileName</a>
+            }
+        } *@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+@* <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Xác định modal và nút
+        var taskModal = new bootstrap.Modal(document.getElementById('taskModal'));
+        var confirmButton = document.getElementById('confirmTask');
+
+        // Khi nút Nhận nhiệm vụ được nhấn
+        document.querySelector('.btn-info').addEventListener('click', () => {
+            // Cập nhật nội dung modal (ví dụ: có thể lấy từ dữ liệu động)
+            document.getElementById('taskTitle').textContent = 'Phát triển tính năng đăng nhập';
+            document.getElementById('taskDescription').textContent = 'Xây dựng và triển khai tính năng đăng nhập cho hệ thống.';
+            document.getElementById('taskDueDate').textContent = '2024-09-10';
+            document.getElementById('taskPriority').textContent = 'Cao';
+
+            // Hiển thị modal
+            taskModal.show();
+        });
+
+        // Xử lý khi nút xác nhận được nhấn
+        confirmButton.addEventListener('click', () => {
+            // Thực hiện hành động xác nhận (ví dụ: lưu nhiệm vụ vào cơ sở dữ liệu)
+            alert('Nhiệm vụ đã được xác nhận!');
+            taskModal.hide(); // Ẩn modal sau khi xác nhận
+        });
+    });
+</script> *@
+

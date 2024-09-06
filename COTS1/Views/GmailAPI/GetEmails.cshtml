@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "Email List";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+    var emailData = ViewBag.EmailData as string;
+}
+
+@model COTS1.Models.MailViewModel
+
+<style>
+    .table-container {
+        margin-left: 230px;
+        margin-top: 10px;
+        margin-right:20px;
+        max-width: 100vw; /* Giới hạn chiều rộng tối đa bằng với kích thước view */
+        overflow-x: hidden; /* Ẩn thanh cuộn ngang */
+    }
+
+    .table {
+        width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng của container */
+    }
+
+        .table th, .table td {
+            white-space: nowrap; /* Ngăn chặn việc xuống dòng nội dung */
+            overflow: hidden; /* Ẩn nội dung tràn ra ngoài */
+            text-overflow: ellipsis; /* Hiển thị dấu ba chấm cho nội dung dài */
+        }
+        td:hover{
+            cursor:pointer;
+        }
+</style>
+<div class="container" style="margin-left: 230px; margin-top: 60px;">
+    <main>
+        <div class="dropdown">
+            <button type="button" class="btn btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
+                Xem Mail
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" id="showReceived">Mail đã nhận</a></li>
+                <li><a class="dropdown-item" href="#" id="showSent">Mail đã gửi</a></li>
+                <li><a class="dropdown-item" href="#" id="showTask">Mail công việc</a></li>
+                
+            </ul>
+        </div>
+        <div id="taskEmails" class="email-section">
+            <h2>Mail công việc</h2>
+
+            @if (Model.TaskEmails != null && Model.TaskEmails.Any())
+            {
+                <div class="table-container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ngày Gửi</th>
+                                <th>Người gửi</th>
+                                <th>Loại</th>
+                                <th>Tiêu đề</th>
+                                <th>Nội dung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var email in Model.TaskEmails)
+                            {
+                                <tr data-id="@email.Id" class="clickable-row">
+
+                                    <td>
+                                        @{
+                                            DateTime sentDate;
+                                            string formattedSentDate = null;
+                                            if (DateTime.TryParse(email.SentDate, out sentDate))
+                                            {
+                                                formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
+                                            }
+                                        }
+                                        @formattedSentDate
+                                    </td>
+                                    <td>@email.Sender</td>
+                                    <td class="check-task">@ViewBag.CheckTask</td>
+                                    <td>
+                                        @email.Subject
+                                    </td>
+                                    
+                                    <td>@email.Snippet</td>
+                                    
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p>No emails found.</p>
+            }
+        </div>
+        <div id="receivedEmails" class="email-section">
+        <h2 >Mail đã nhận</h2>
+
+        @if (Model.ReceivedEmails != null && Model.ReceivedEmails.Any())
+        {
+            <div class="table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ngày Gửi</th>
+                            <th>Người gửi</th>
+                            <th>Tiêu đề</th>
+                            <th>Nội dung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var email in Model.ReceivedEmails)
+                        {
+                            <tr data-id="@email.Id" class="clickable-row">
+
+                                <td>
+                                    @{
+                                        DateTime sentDate;
+                                        string formattedSentDate = null;
+                                        if (DateTime.TryParse(email.SentDate, out sentDate))
+                                        {
+                                            formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
+                                        }
+                                    }
+                                    @formattedSentDate
+                                </td>
+                                <td>@email.Sender</td>
+                                <td>
+                                    @email.Subject
+                                </td>
+                                <td>@email.Snippet</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p >No emails found.</p>
+        }
+        </div>
+        <div id="sentEmails" class="email-section" style="display: none;">
+        <h2 >Mail đã gửi</h2>
+
+        @if (Model.SentEmails != null && Model.SentEmails.Any())
+        {
+            <div class="table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ngày Gửi</th>
+                            <th>Người gửi</th>
+                            <th>Tiêu đề</th>
+                            <th>Nội dung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var email in Model.SentEmails)
+                        {
+                            <tr data-id="@email.Id" class="clickable-row">
+
+                                <td>
+                                    @{
+                                        DateTime sentDate;
+                                        string formattedSentDate = null;
+                                        if (DateTime.TryParse(email.SentDate, out sentDate))
+                                        {
+                                            formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
+                                        }
+                                    }
+                                    @formattedSentDate
+                                </td>
+                                <td>@email.Sender</td>
+                                <td>
+                                    @email.Subject
+                                </td>
+                                <td>@email.Snippet</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p >No emails found.</p>
+        }
+        </div>
+    </main>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Lấy tất cả các hàng có class "clickable-row"
+        const rows = document.querySelectorAll('.clickable-row');
+
+        rows.forEach(row => {
+            row.addEventListener('click', () => {
+                // Lấy ID từ thuộc tính data-id
+                const emailId = row.getAttribute('data-id');
+                if (emailId) {
+                    // Kiểm tra và lấy giá trị từ cột có class "check-task"
+                    let checkTaskValue = row.querySelector('td.check-task')?.innerText || "null";
+
+                    // Chuyển hướng đến view chi tiết với ID email và giá trị checkTask
+                    window.location.href = `@Url.Action("ShowEmailDetails", "GmailAPI")?messageId=${emailId}&checkTask=${encodeURIComponent(checkTaskValue)}`;
+                }
+            });
+        });
+    });
+
+    document.getElementById('receivedEmails').style.display = 'block';
+    document.getElementById('sentEmails').style.display = 'none';
+    document.getElementById('taskEmails').style.display = 'none';
+
+    document.getElementById('showReceived').addEventListener('click', function () {
+        document.getElementById('receivedEmails').style.display = 'block';
+        document.getElementById('sentEmails').style.display = 'none';
+        document.getElementById('taskEmails').style.display = 'none';
+    });
+    document.getElementById('showTask').addEventListener('click', function () {
+        document.getElementById('receivedEmails').style.display = 'none';
+        document.getElementById('sentEmails').style.display = 'none';
+        document.getElementById('taskEmails').style.display = 'block';
+    });
+    document.getElementById('showSent').addEventListener('click', function () {
+        document.getElementById('receivedEmails').style.display = 'none';
+        document.getElementById('sentEmails').style.display = 'block';
+        document.getElementById('taskEmails').style.display = 'none';
+    });
+
+</script>
+
+@* <h2>Email List</h2>
+    <a asp-action="GetEmailDetails" asp-controller="GmailAPI" asp-route-messageId="@email.Id">  @email.Subject</a>
+@if (!string.IsNullOrEmpty(emailData))
+{
+    try
+    {
+        var emailList = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(emailData);
+
+        if (emailList.messages != null)
+        {
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Email ID</th>
+                        <th>Thread ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var email in emailList.messages)
+                    {
+                        <tr>
+                            <td>@email.id</td>
+                            <td>@email.threadId</td>
+                            <td><a asp-action="GetEmailDetails" asp-controller="GmailAPI" asp-route-messageId="@email.id">View Details @email.id</a></td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No emails found or failed to retrieve emails.</p>
+        }
+    }
+    catch (Exception ex)
+    {
+        <p>Error parsing email content: @ex.Message</p>
+    }
+}
+else
+{
+    <p>No emails found or failed to retrieve emails.</p>
+}
+ *@

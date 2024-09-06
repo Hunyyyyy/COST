@@ -1,0 +1,49 @@
+﻿@* @model EmailNotificationModel
+@{
+    ViewData["Title"] = "EmailNotification";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<style>
+    /* Hide emails beyond the top 5 */
+    #Recipients label.hidden {
+        display: none;
+    }
+</style>
+
+
+
+
+<div class="main" style="margin-left: 230px; margin-top: 60px;">
+    <h2 >Send Email Notification</h2>
+    <div class="container mt-5" >
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.Message
+            </div>
+        }
+        <form>
+            <div class="mb-3">
+                <label for="to" class="form-label">To</label>
+                <input type="text" class="form-control" id="recipients" name="recipients" placeholder="Enter recipient email addresses separated by commas" required>
+            </div>
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Send Email</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+ *@

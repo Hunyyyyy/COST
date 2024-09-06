@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "ReceiveTask";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@model COTS1.Models.MailViewModel
+<h2>Mail đã nhận</h2>
+
+@if (Model.ReceivedEmails != null && Model.ReceivedEmails.Any())
+{
+    <div class="table-container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ngày Gửi</th>
+                    <th>Người gửi</th>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var email in Model.ReceivedEmails)
+                {
+                    <tr data-id="@email.Id" class="clickable-row">
+
+                        <td>
+                            @{
+                                DateTime sentDate;
+                                string formattedSentDate = null;
+                                if (DateTime.TryParse(email.SentDate, out sentDate))
+                                {
+                                    formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
+                                }
+                            }
+                            @formattedSentDate
+                        </td>
+                        <td>@email.Sender</td>
+                        <td>
+                            @email.Subject
+                        </td>
+                        <td>@email.Snippet</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>No emails found.</p>
+}
+        </div>
+

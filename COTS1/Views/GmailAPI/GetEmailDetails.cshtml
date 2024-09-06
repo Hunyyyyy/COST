@@ -1,0 +1,60 @@
+﻿@*  @model List<EmailSummary>
+
+<h2>Email Details</h2>
+
+@foreach (var email in Model)
+{
+    <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
+        <h4>@email.Subject</h4>
+        <p><strong>From:</strong> @email.Sender</p>
+        <p><strong>Snippet:</strong> @email.Snippet</p>
+
+        @if (email.BodyContents != null && email.BodyContents.Count > 0)
+        {
+            <h5>Body:</h5>
+            <ul>
+                @foreach (var content in email.BodyContents)
+                {
+                    <li>@Html.Raw(content)</li>  <!-- Giải mã và hiển thị nội dung -->
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No body content available.</p>
+        }
+    </div>
+}
+
+@* 
+<h2>Email Details</h2>
+
+<p><strong>From:</strong> @Model.Payload.Headers.FirstOrDefault(h => h.Name == "From")?.Value</p>
+<p><strong>Subject:</strong> @Model.Payload.Headers.FirstOrDefault(h => h.Name == "Subject")?.Value</p>
+
+<div>
+    @Html.Raw(Model.Snippet)
+</div>
+ *@
+@* <h2>Email Details</h2>
+
+@if (ViewBag.EmailData != null)
+{
+    <div>
+        <h3>Message Details</h3>
+        <p><strong>Sender:</strong> @ViewBag.Sender</p>
+        <p><strong>Message ID:</strong> @ViewBag.MessageId</p>
+        <p><strong>Snippet:</strong> @ViewBag.Snippet</p>
+
+        <h4>Email Content:</h4>
+        <div style="border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9;">
+            @Html.Raw(ViewBag.EmailData)
+        </div>
+       
+    </div>
+}
+else
+{
+    <p>@ViewBag.EmailData</p>
+}  *@
+ 

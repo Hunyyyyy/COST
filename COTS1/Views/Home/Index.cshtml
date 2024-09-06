@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Quản Lý Công Việc";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<div class="container mt-4">
+    <!-- Reply Button -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal">
+        Trả lời
+    </button>
+
+    <!-- Reply Modal -->
+    <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="replyModalLabel">Trả lời thư</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient" class="form-label">Đến:</label>
+                            <input type="email" class="form-control" id="recipient" placeholder="recipient@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Tiêu đề:</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Nhập tiêu đề" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Nội dung:</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Nhập nội dung thư" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Gửi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
