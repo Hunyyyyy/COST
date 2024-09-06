@@ -1,6 +1,7 @@
 ﻿using COTS1.Class;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Org.BouncyCastle.Cms;
 
 namespace COTS1.Controllers
@@ -50,8 +51,16 @@ namespace COTS1.Controllers
             TempData["Message"] = "Gửi Email thành công!";
             return RedirectToAction("CreateTasks");
         }
-        public IActionResult ReceiveTask()
+        public IActionResult ReceiveTask(string Title, string Description, string DueDate, string Priority, string status)
         {
+            var taskViewModel = new TaskViewModel
+            {
+                Title = Title,
+                Description = Description.Split(',').ToList(), // Convert the comma-separated string back to a list
+                DueDate = DateTime.ParseExact(DueDate, "dd/MM/yyyy", null),
+                Priority = Priority,
+                Status = status
+            };
 
             return View();
         }

@@ -39,7 +39,33 @@
                 <h6 style="margin-left: 10px;"><strong>From:</strong> @Model.Email.Sender</h6>
                 <h6 style="float: right;"> @Model.Email.SentDate</h6>
             </div>
-            <h7>@Model.Email.Snippet </h7>
+            @* <h7>@Model.Email.Snippet </h7> *@
+            <h7>
+                @foreach (var item in Model.Email.BodyContents)
+                {
+                    @* <p>@item</p> *@
+                    @* <div>@Html.Raw(item)</div> *@
+                    <div>
+                       @*  <h7>@item</h7> <!-- Sử dụng <pre> để hiển thị nội dung chưa được xử lý --> *@
+                        <h7>@Html.Raw(item.Replace("\n", "<br />"))</h7>
+
+                    </div>
+
+                }
+            </h7>
+            @if (Model.Email.Attachments != null && Model.Email.Attachments.Count > 0)
+            {
+                <div>
+                    <h3>Attachments:</h3>
+                    @foreach (var attachment in Model.Email.Attachments)
+                    {
+                        <div>
+                            <strong>@attachment.FileName</strong> - @attachment.MimeType
+                            <a href="data:@attachment.MimeType;base64,@attachment.Data" download="@attachment.FileName">Download</a>
+                        </div>
+                    }
+                </div>
+            }
             <div class="btn_respone_next" style="margin:50px 20px 10px 20px">
                 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#replyModal" style="margin-right:20px">Trả lời</button>
                 <button type="button" class="btn btn-info">Chuyển tiếp</button>
@@ -103,39 +129,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="taskForm">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Tiêu Đề</label>
-                            <input type="text" class="form-control" id="title" value="@Model.Task.Title" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Mô Tả</label>
-                            <ul id="description">
-                                @foreach (var task in @Model.Task.Description)
-                                {
-                                    <li>@task</li>
-                                }
-                            </ul>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dueDate" class="form-label">Ngày Hết Hạn</label>
-                            <input type="text" class="form-control" id="dueDate" value="@Model.Task.DueDate.ToString("dd/MM/yyyy")" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="priority" class="form-label">Mức Độ Ưu Tiên</label>
-                            <input type="text" class="form-control" id="priority" value="@Model.Task.Priority" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipients" class="form-label">Người Nhận</label>
-                            <input type="text" class="form-control" id="recipients" value="@Model.Task.Recipients" readonly>
-                        </div>
-                       @*  <input type="hidden" id="taskId" value="@Model.Id" /> *@
-                    </form>
+                        <form id="taskForm" method="post" asp-action="ReceiveTask" asp-controller="Tasks">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Tiêu Đề</label>
+                                <input type="text" class="form-control" id="title" name="Title" value="@Model.Task.Title" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Mô Tả</label>
+                                <ul id="description" name="Description" typr="1">
+                                    @foreach (var task in @Model.Task.Description)
+                                    {
+                                        <li>@task</li>
+                                    }
+                                </ul>
+                                <input type="hidden" name="Description" value="@string.Join(",", Model.Task.Description)" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="dueDate" class="form-label">Ngày Hết Hạn</label>
+                                <input type="text" class="form-control" id="dueDate" name="DueDate" value="@Model.Task.DueDate.ToString("dd/MM/yyyy")" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="priority" class="form-label">Mức Độ Ưu Tiên</label>
+                                <input type="text" class="form-control" id="priority" name="Priority" value="@Model.Task.Priority" readonly>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <button type="submit" class="btn btn-primary" id="confirmTask" name="status" value="Thực hiện">Xác Nhận</button>
+                            </div>
+                        </form>
+
+                        @*    <div class="mb-3">
+                        <label for="recipients" class="form-label">Người Nhận</label>
+                        <input type="text" class="form-control" id="recipients" value="@Model.Task.Recipients" readonly>
+                        </div> *@
+                        @*  <input type="hidden" id="taskId" value="@Model.Id" /> *@
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary" id="confirmTask">Xác Nhận</button>
-                </div>
+               
             </div>
         </div>
     </div>

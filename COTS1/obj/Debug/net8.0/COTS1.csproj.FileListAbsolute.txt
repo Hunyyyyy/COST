@@ -237,3 +237,4 @@ E:\LT_Web\WebASP\COTS1\COTS1\bin\Debug\net8.0\MimeKit.dll
 E:\LT_Web\WebASP\COTS1\COTS1\bin\Debug\net8.0\System.Formats.Asn1.dll
 E:\LT_Web\WebASP\COTS1\COTS1\bin\Debug\net8.0\Json\credentials.json
 E:\LT_Web\WebASP\COTS1\COTS1\bin\Debug\net8.0\Google.Apis.PeopleService.v1.dll
+E:\LT_Web\WebASP\COTS1\COTS1\obj\Debug\net8.0\COTS1.sourcelink.json

@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using COTS1.Class;
 using System.Text.RegularExpressions;
+using COTS1.Models.EmailModel;
 
 
 
@@ -128,7 +129,6 @@ namespace COTS1.Controllers
 
         public async Task<ActionResult> GetEmails()
         {
-
             const int MaxResults = 10;
             var accessToken = HttpContext.Session.GetString("AccessToken");
             var refreshToken = HttpContext.Session.GetString("RefreshToken");
@@ -159,63 +159,70 @@ namespace COTS1.Controllers
             {
                 ReceivedEmails = new List<EmailSummary>(),
                 SentEmails = new List<EmailSummary>(),
-                 TaskEmails = new List<EmailSummary>()
+                TaskEmails = new List<EmailSummary>()
             };
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-                // Lấy email đã nhận
-                var inboxResponse = await client.GetAsync(inboxApiUrl);
-                if (inboxResponse.IsSuccessStatusCode)
+                // Xử lý lấy email (nhận hoặc gửi)
+                async Task GetEmailsByUrl(string apiUrl, List<EmailSummary> emailList, Func<EmailSummary, bool> filter = null)
                 {
-                    var responseString = await inboxResponse.Content.ReadAsStringAsync();
-                    var emailsResponse = JsonConvert.DeserializeObject<EmailListResponse>(responseString);
-                    var emails = emailsResponse.Messages.Take(MaxResults).ToList();
-                    foreach (var email in emails)
+                    var response = await client.GetAsync(apiUrl);
+                    if (response.IsSuccessStatusCode)
                     {
-                        var detail = await GetEmailDetails(email.Id);
-                        if (detail.Subject != null && !detail.Subject.StartsWith("Công Việc:"))
+                        var responseString = await response.Content.ReadAsStringAsync();
+                        var emailsResponse = JsonConvert.DeserializeObject<EmailListResponse>(responseString);
+
+                        if (emailsResponse?.Messages != null && emailsResponse.Messages.Any())
                         {
-                            emailDetails.ReceivedEmails.Add(detail);
-                            ViewBag.CheckTask="Task";
+                            var emails = emailsResponse.Messages.Take(MaxResults).ToList();
+                            foreach (var email in emails)
+                            {
+                                var detail = await GetEmailDetails(email.Id);
+                                if (filter == null || filter(detail))
+                                {
+                                    emailList.Add(detail);
+                                }
+                            }
                         }
                     }
                 }
-                //lay mail cong viec
-                var taskResponse = await client.GetAsync(inboxApiUrl);
-                if (inboxResponse.IsSuccessStatusCode)
+
+                // Lấy email đã nhận và kiểm tra nếu không phải là công việc
+                await GetEmailsByUrl(inboxApiUrl, emailDetails.ReceivedEmails, detail => !detail.Subject.StartsWith("Công Việc:"));
+
+                // Lấy email công việc và cập nhật ViewBag.CheckTask nếu có
+                await GetEmailsByUrl(inboxApiUrl, emailDetails.TaskEmails, detail =>
                 {
-                    var responseString = await inboxResponse.Content.ReadAsStringAsync();
-                    var emailsResponse = JsonConvert.DeserializeObject<EmailListResponse>(responseString);
-                    var emails = emailsResponse.Messages.Take(MaxResults).ToList();
-                    foreach (var email in emails)
+                    if (detail.Subject.StartsWith("Công Việc:"))
                     {
-                        var detail = await GetEmailDetails(email.Id);
-                        if (detail.Subject != null && detail.Subject.StartsWith("Công Việc:"))
-                        {
-                            emailDetails.TaskEmails.Add(detail);
-                        }
+                        ViewBag.CheckTask = "Task";  // Cập nhật ViewBag nếu tìm thấy email công việc
+                        return true;
                     }
-                }
+                    return false;
+                });
+
                 // Lấy email đã gửi
-                var sentResponse = await client.GetAsync(sentApiUrl);
-                if (sentResponse.IsSuccessStatusCode)
-                {
-                    var responseString = await sentResponse.Content.ReadAsStringAsync();
-                    var emailsResponse = JsonConvert.DeserializeObject<EmailListResponse>(responseString);
-                    var emails = emailsResponse.Messages.Take(MaxResults).ToList();
-                    foreach (var email in emails)
-                    {
-                        var detail = await GetEmailDetails(email.Id);
-                        emailDetails.SentEmails.Add(detail);
-                    }
-                }
+                await GetEmailsByUrl(sentApiUrl, emailDetails.SentEmails);
+            }
+
+            // Trường hợp không có email nhận hoặc gửi
+            if (!emailDetails.ReceivedEmails.Any())
+            {
+                ViewBag.NoReceivedEmails = "No received emails found.";
+            }
+
+            if (!emailDetails.SentEmails.Any())
+            {
+                ViewBag.NoSentEmails = "No sent emails found.";
             }
 
             return View(emailDetails);
         }
+
+
 
         public async Task<EmailSummary> GetEmailDetails(string messageId)
         {
@@ -230,15 +237,53 @@ namespace COTS1.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var email = JsonConvert.DeserializeObject<EmailModels>(responseString);
+                    var email = JsonConvert.DeserializeObject<EmailMessageJson>(responseString);
 
+                    // Lấy thông tin tiêu đề, người gửi và ngày gửi
                     var sender = email.Payload?.Headers?.FirstOrDefault(h => h.Name == "From")?.Value;
                     var subject = email.Payload?.Headers?.FirstOrDefault(h => h.Name == "Subject")?.Value;
-
-                    var bodyText = email.Snippet;
                     var sentDateStr = email.Payload?.Headers?.FirstOrDefault(h => h.Name == "Date")?.Value;
 
-                    // Format the sent date
+                    var bodyContents = new List<string>();
+                    var attachments = new List<AttachmentInfo>();
+
+                    // Xử lý nội dung email trong các phần Body và Parts
+                    if (email.Payload?.Body?.Data != null)
+                    {
+                        // Giải mã phần body nếu không có Parts
+                        var decodedBody = DecodeBase64Url(email.Payload.Body.Data);
+                        bodyContents.Add(decodedBody);
+                    }
+
+                    if (email.Payload?.Parts != null)
+                    {
+                        // Duyệt qua các phần Parts của email
+                        foreach (var part in email.Payload.Parts)
+                        {
+                            if (part.MimeType == "text/plain" || part.MimeType == "text/html")
+                            {
+                                // Giải mã và thêm phần nội dung
+                                if (part.Body?.Data != null)
+                                {
+                                    var decodedPart = DecodeBase64Url(part.Body.Data);
+                                    bodyContents.Add(decodedPart);
+                                }
+                            }
+
+                            // Nếu có tệp đính kèm
+                            if (!string.IsNullOrEmpty(part.Filename) && part.Body?.Data != null)
+                            {
+                                attachments.Add(new AttachmentInfo
+                                {
+                                    FileName = part.Filename,
+                                    MimeType = part.MimeType,
+                                    Data = part.Body.Data
+                                });
+                            }
+                        }
+                    }
+
+                    // Định dạng ngày gửi
                     DateTime sentDate;
                     string formattedSentDate = null;
                     if (DateTime.TryParse(sentDateStr, out sentDate))
@@ -246,61 +291,16 @@ namespace COTS1.Controllers
                         formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
                     }
 
-                    var bodyContents = new List<string>();
-                    var attachments = new List<AttachmentInfo>();
-
-                    if (email.Payload?.Parts != null)
-                    {
-                        foreach (var part in email.Payload.Parts)
-                        {
-                            if (part.Body != null && !string.IsNullOrEmpty(part.Body.Data))
-                            {
-                                if (part.MimeType == "text/plain" || part.MimeType == "text/html")
-                                {
-                                    var decodedBody = DecodeBase64(part.Body.Data);
-                                    bodyContents.Add(decodedBody);
-                                }
-                                else if (part.MimeType.StartsWith("image/") || part.MimeType.StartsWith("application/"))
-                                {
-                                    // Handle attachments
-                                    var attachment = new AttachmentInfo
-                                    {
-                                        FileName = part.Filename,
-                                        MimeType = part.MimeType,
-                                        Data = DecodeBase64(part.Body.Data)
-                                    };
-                                    attachments.Add(attachment);
-                                }
-                            }
-
-                            // Check for nested parts
-                            if (part.Parts != null)
-                            {
-                                foreach (var nestedPart in part.Parts)
-                                {
-                                    if (nestedPart.Body != null && !string.IsNullOrEmpty(nestedPart.Body.Data))
-                                    {
-                                        var decodedBody = DecodeBase64(nestedPart.Body.Data);
-                                        bodyContents.Add(decodedBody);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-
+                    // Trả về đối tượng EmailSummary
                     return new EmailSummary
                     {
                         Id = email.Id,
                         Sender = sender,
                         Subject = subject,
-                        Snippet = bodyText,
                         SentDate = formattedSentDate,
                         BodyContents = bodyContents,
                         Attachments = attachments
                     };
-
-
                 }
                 else
                 {
@@ -309,16 +309,42 @@ namespace COTS1.Controllers
             }
         }
 
-    
+        string DecodeBase64(string base64Data)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64Data);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+        public string DecodeBase64Url(string base64Url)
+        {
+            // Base64 URL-safe thường thay thế '+' bằng '-', '/' bằng '_', và không có padding '='
+            string base64 = base64Url.Replace('-', '+').Replace('_', '/');
+
+            // Thêm padding nếu cần thiết
+            switch (base64.Length % 4)
+            {
+                case 2: base64 += "=="; break;
+                case 3: base64 += "="; break;
+            }
+
+            var data = Convert.FromBase64String(base64);
+            return Encoding.UTF8.GetString(data);
+        }
+
+
+
         public async Task<ActionResult> ShowEmailDetails(string messageId,string CheckTask)
         {
             var emailSummary = await GetEmailDetails(messageId);
-            var emailTitle = "Tiêu đề:"+emailSummary.Subject;
-            var emailSender = "Sender:"+emailSummary.Sender;
-            var emailSentDate = emailSummary.SentDate;
-            var emailSnippet = emailSummary.Snippet;
-            var emailContent = emailTitle+ emailSender+ emailSentDate+ emailSnippet;
-            var taskViewModel = AnalyzeEmail(emailContent);
+            var emailTitle = $"{emailSummary.Subject}";
+            var emailSender = $"Người gửi: {emailSummary.Sender}";
+            var emailSentDate = $"Ngày gửi: {emailSummary.SentDate}";
+
+            // Kết hợp nội dung email
+            var emailBody = string.Join("\n", emailSummary.BodyContents);
+            var emailContent = $"{emailSender}\n{emailSentDate}\n{emailBody}";
+
+            // Phân tích email
+            var taskViewModel = AnalyzeEmail(emailContent, emailTitle);
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var googleUserInfo = new GoogleUserInfo(accessToken);
             var email = await googleUserInfo.GetUserEmailAsync();
@@ -333,24 +359,7 @@ namespace COTS1.Controllers
         }
 
 
-        string DecodeBase64(string base64Data)
-        {
-            try
-            {
-               base64Data = base64Data.Replace(" ", "").Replace("\r", "").Replace("\n", "");
-                int mod4 = base64Data.Length % 4;
-                if (mod4 > 0)
-                {
-                    base64Data = base64Data.PadRight(base64Data.Length + 4 - mod4, '=');
-                }
-                var bytes = Convert.FromBase64String(base64Data);
-                return Encoding.UTF8.GetString(bytes);
-            }
-            catch (FormatException ex)
-            {
-                return $"Error decoding base64 data: {ex.Message}";
-            }
-        }
+     
        /* private Email ParseEmailJson(string jsonString)
         {
             return JsonConvert.DeserializeObject<Email>(jsonString);
@@ -394,13 +403,18 @@ namespace COTS1.Controllers
             return RedirectToAction("ViewEmailNotification");
         }
         //nhận nhiệm vụ
-        public TaskViewModel AnalyzeEmail(string emailContent)
+        public TaskViewModel AnalyzeEmail(string emailContent,string title)
         {
-            var details = new TaskViewModel();
+            var details = new TaskViewModel
+            {
+                 Title = title ?? "Không có tiêu đề"
+            };
 
             // Phân tích tiêu đề
-            var titleMatch = Regex.Match(emailContent, @"Tiêu đề:\s*(.+)\s*Sender:");
-            details.Title = titleMatch.Success ? titleMatch.Groups[1].Value.Trim() : "Không có tiêu đề";
+           
+            /*var titleMatch = Regex.Match(emailContent, @"Công Việc:\s*(.+?)\s*(?:From:|$)");
+
+            details.Title = titleMatch.Success ? titleMatch.Groups[1].Value.Trim() : "Không có tiêu đề";*/
 
             // Phân tích mô tả
             var descriptionMatch = Regex.Match(emailContent, @"Mô tả:\s*([\s\S]+?)\s*Ngày hết hạn:");
@@ -413,7 +427,7 @@ namespace COTS1.Controllers
 
             // Phân tích mức độ ưu tiên
             var priorityMatch = Regex.Match(emailContent, @"Mức độ ưu tiên:\s*(.+)");
-            details.Priority = priorityMatch.Success ? priorityMatch.Groups[1].Value.Trim() : "Thấp";
+            details.Priority = priorityMatch.Success ? priorityMatch.Groups[1].Value.Trim() : "Không có";
 
             // Phân tích người nhận
             var recipientsMatch = Regex.Match(emailContent, @"Người nhận:\s*(.+)");
@@ -429,7 +443,7 @@ namespace COTS1.Controllers
             var descriptions = new List<string>();
 
             // Tách các công việc theo định dạng "Công việc N:"
-            var matches = Regex.Matches(descriptionText, @"Công việc \d+:\s*([^\d]+)");
+            var matches = Regex.Matches(descriptionText, @"Công việc \d+:\s*([^\d]+)(?=\s*Công việc \d+:|$)");
 
             foreach (Match match in matches)
             {
@@ -441,7 +455,8 @@ namespace COTS1.Controllers
 
             return descriptions;
         }
-       
+
+
 
 
 
