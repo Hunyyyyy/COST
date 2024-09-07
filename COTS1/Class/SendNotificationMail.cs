@@ -53,8 +53,9 @@ namespace COTS1.Class
                 await service.Users.Messages.Send(message, "me").ExecuteAsync();
             }
         }
+		
 
-        private static string Base64UrlEncode(byte[] input)
+		private static string Base64UrlEncode(byte[] input)
         {
             var output = Convert.ToBase64String(input)
                 .Replace('+', '-')

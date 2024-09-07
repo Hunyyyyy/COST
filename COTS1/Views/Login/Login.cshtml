@@ -12,6 +12,7 @@
     <link href="~/css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
+  
     <div class="wrapper">
         <div class="logo">
             <img src="~/dist/assets/img/moutain.png" />
@@ -22,18 +23,40 @@
         <form class="p-3 mt-3">
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="gmail" id="gmail" placeholder="example@gmail.com" style="padding:15px 10px">
+                <input type="text" name="gmail" id="gmail" placeholder="example@gmail.com" style="padding:15px 10px" maxlength="40" required>
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password" style="padding:15px 10px">
+                <input type="password" name="password" id="pwd" placeholder="Password" style="padding:15px 10px" maxlength="20" required>
             </div>
             <button asp-action="LoginFunction" asp-controller="Login" class="btn mt-3" type="submit">Login</button>
         </form>
         <div class="text-center fs-6 " style="margin-top:20px">
             <a href="#">Forget password?</a> or <a asp-action="Register" asp-controller="Login">Sign up</a>
         </div>
+        @if (@ViewBag.message != null && @ViewBag.message == "Sai Email hoặc mật khẩu")
+        {
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> Sai Email hoặc mật khẩu
+
+            </div>
+        }
+        else if (@ViewBag.message != null && @ViewBag.message == "Bạn đã đăng kí thành công")
+        {
+            <div class="alert alert-success">
+                <strong>Success</strong> Bạn đã đăng kí thành công
+
+            </div>
+        }
     </div>
+   
+    <script>
+        // Ensure that the modal is shown when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+            myModal.show();
+        });
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

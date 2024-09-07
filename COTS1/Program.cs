@@ -1,9 +1,15 @@
 ﻿using COTS1.Class;
+using COTS1.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<TestNhiemVuContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-R74JRM89\\HUY;Initial Catalog=TestNhiemVu;Integrated Security=True;Trust Server Certificate=True"));
+});
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30); // Thời gian timeout của session

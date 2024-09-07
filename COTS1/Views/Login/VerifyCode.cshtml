@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "VerifyCode";
+	
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +34,12 @@
 	</style>
 </head>
 <body>
+	@if (@ViewBag.message != null)
+	{
+		<div class="alert alert-danger">
+			<strong>Thông báo!</strong> @ViewBag.message
+		</div>
+	}
 	<div class="container p-5">
 		<div class="row">
 			<div class="col-md-3"></div>
@@ -41,30 +48,33 @@
 					<div>
 						<p class="text-center text-success" style="font-size: 5.5rem;"><i class="fa-solid fa-envelope-circle-check"></i></p>
 						<p class="text-center text-center h5 ">Please check your email</p>
-						<p class="text-muted text-center">We've sent a code to contact@curfcode.com</p>
-						<div class="row pt-4 pb-2">
-							<div class="col-3">
-								<input class="otp-letter-input" type="text" maxlength="1" required>
+						<p class="text-muted text-center">Chúng tôi đã gửi một mã xác thực qua Email mà bạn đăng ký!</p>
+						<form>
+							<div class="row pt-4 pb-2">
+								<div class="col-3">
+									<input class="otp-letter-input" type="text" maxlength="1" name="code1" required>
+								</div>
+								<div class="col-3">
+									<input class="otp-letter-input" type="text" maxlength="1" name="code2" required>
+								</div>
+								<div class="col-3">
+									<input class="otp-letter-input" type="text" maxlength="1" name="code3" required>
+								</div>
+								<div class="col-3">
+									<input class="otp-letter-input" type="text" maxlength="1" name="code4" required>
+								</div>
 							</div>
-							<div class="col-3">
-								<input class="otp-letter-input" type="text" maxlength="1" required>
-							</div>
-							<div class="col-3">
-								<input class="otp-letter-input" type="text" maxlength="1" required>
-							</div>
-							<div class="col-3">
-								<input class="otp-letter-input" type="text" maxlength="1" required>
-							</div>
-						</div>
-						<p class="text-muted text-center">Didn't get the code? <a href="#" class="text-success">Click to resend.</a></p>
+							<p class="text-muted text-center">Didn't get the code? <a href="#" class="text-success">Click to resend.</a></p>
 
-						<div class="row pt-5">
-							<div class="col-6">
-								<button class="btn btn-outline-secondary w-100">Cancel</button>
-							</div>
-							<div class="col-6">
-								<button class="btn btn-success w-100">Verify</button>
-							</div>
+							<div class="row pt-5">
+								<div class="col-6">
+									<button asp-action="Login" asp-controller="Login" class="btn btn-outline-secondary w-100">Cancel</button>
+								</div>
+								<div class="col-6">
+									<button asp-action="CheckVerifyCode" asp-controller="Login" type="submit" class="btn btn-success w-100">Verify</button>
+								</div>
+						</form>
+						
 
 
 						</div>
