@@ -15,85 +15,90 @@ namespace COTS1.Controllers
     public class GmailAPIController : Controller
     {
         private readonly IHttpContextAccessor _contextAccessor;
-       /* private readonly GetMails _getMails;*/
+        /* private readonly GetMails _getMails;*/
         public GmailAPIController(IHttpContextAccessor contextAccessor  /*GetMails getMails*/)
         {
             _contextAccessor = contextAccessor;
-           /* _getMails = getMails;*/
+            /* _getMails = getMails;*/
         }
         public IActionResult Index()
         {
             return View();
         }
-       
-        public async Task<ActionResult> Code(string code, string state)
+
+        public async Task<IActionResult> Code(string code, string state)
         {
             if (string.IsNullOrEmpty(code))
             {
                 // Xử lý lỗi nếu không có mã
-                //return new HttpStatusCodeResult(400, "No authorization code provided.");
+                return BadRequest("No authorization code provided.");
             }
-           
+
             var clientId = "425757132188-sf8k8r5bo25f9dsg0sla9so95ljbp8ki.apps.googleusercontent.com";
             var clientSecret = "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";
-            var redirectUri = "https://localhost:7242/GmailAPI/Code";
+            var redirectUri = "https://localhost:7242/GmailAPI/Code"; // Thay đổi theo URL redirect của bạn
 
-            
-            var tokenResponse = await ExchangeCodeForTokenAsync(code, clientId, clientSecret, redirectUri);                   
-            if (tokenResponse != null)
+            try
             {
-                dynamic json = JsonConvert.DeserializeObject(tokenResponse);
+                var tokenResponse = await ExchangeCodeForTokenAsync(code, clientId, clientSecret, redirectUri);
 
-                string accessToken = json.access_token;
-                string refreshToken = json.refresh_token;                
-                HttpContext.Session.SetString("AccessToken", accessToken);
-                HttpContext.Session.SetString("RefreshToken", refreshToken);                
-                ViewBag.Message = "Authorization successful! Access token obtained.";
+                if (tokenResponse != null)
+                {
+                    dynamic json = JsonConvert.DeserializeObject(tokenResponse);
+
+                    string accessToken = json.access_token;
+                    string refreshToken = json.refresh_token;
+
+                    // Lưu token vào Session
+                    HttpContext.Session.SetString("AccessToken", accessToken);
+                    HttpContext.Session.SetString("RefreshToken", refreshToken);
+
+                    // Thông báo thành công
+                    ViewBag.Message = "Authorization successful! Access token obtained.";
+                }
+                else
+                {
+                    // Thông báo lỗi
+                    ViewBag.Message = "Failed to obtain access token.";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.Message = "Failed to obtain access token.";
+                // Xử lý lỗi khi có sự cố trong quá trình lấy token
+                ViewBag.Message = $"An error occurred: {ex.Message}";
             }
 
             return RedirectToAction("Index", "Home");
         }
 
-        // Phương thức để trao đổi mã lấy mã thông báo
-        //Đoạn mã này thực hiện việc trao đổi mã xác thực (authorization code)
-        //lấy mã thông báo truy cập (access token) từ Google OAuth 2.0 server.
-        //Đây là một phần quan trọng của quy trình OAuth 2.0, cho phép ứng dụng
-        //của bạn nhận được mã thông báo truy cập sau khi người dùng cấp quyền.
-        private async Task<dynamic> ExchangeCodeForTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
+        private async Task<string> ExchangeCodeForTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
         {
-            var values = new Dictionary<string, string>
-        {
-                //code: Mã xác thực (authorization code) nhận được từ bước trước đó
-                //khi người dùng đăng nhập và cấp quyền.
-            { "code", code },
-            //client_id: ID của ứng dụng đã đăng ký với Google.
-            { "client_id", clientId },
-            //client_secret: Khóa bí mật của ứng dụng, cũng được cung cấp khi đăng ký
-            //với Google.
-            { "client_secret", clientSecret },
-            //redirect_uri: URL mà bạn đã chỉ định để nhận phản hồi từ Google.
-            { "redirect_uri", redirectUri },
-            //grant_type: Được thiết lập là "authorization_code", cho biết rằng bạn
-            //đang yêu cầu mã thông báo dựa trên mã xác thực.
-            { "grant_type", "authorization_code" }
-        };
-            //FormUrlEncodedContent(values): Tạo nội dung cho yêu cầu HTTP POST,
-            //với các tham số được mã hóa theo định dạng URL-encoded.
-            var content = new FormUrlEncodedContent(values);
+            var tokenRequestUrl = "https://oauth2.googleapis.com/token";
 
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsync("https://oauth2.googleapis.com/token", content);
-                var responseString = await response.Content.ReadAsStringAsync();
+                var tokenRequestBody = new FormUrlEncodedContent(new[]
+                {
+            new KeyValuePair<string, string>("code", code),
+            new KeyValuePair<string, string>("client_id", clientId),
+            new KeyValuePair<string, string>("client_secret", clientSecret),
+            new KeyValuePair<string, string>("redirect_uri", redirectUri),
+            new KeyValuePair<string, string>("grant_type", "authorization_code"),
+        });
 
-                // Xử lý responseString để lấy thông tin mã thông báo
-                return response.IsSuccessStatusCode ? responseString : null;
+                var tokenResponse = await client.PostAsync(tokenRequestUrl, tokenRequestBody);
+                var responseString = await tokenResponse.Content.ReadAsStringAsync();
+
+                if (tokenResponse.IsSuccessStatusCode)
+                {
+                    return responseString;
+                }
+                else
+                {
+                    // Xử lý lỗi nếu có
+                    throw new HttpRequestException($"Failed to exchange code for token: {responseString}");
+                }
             }
-
         }
 
         //làm mới token

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "umkCxRkkEkT9lTSomdGYvRM225x5/A1OGwMXlYCYoOE=",
+  "Hash": "WNqJ1Z34KsTtC4Oi5yfg19J0nL7LSv6oZDfvHY5kkaI=",
   "Source": "COTS1",
   "BasePath": "_content/COTS1",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\css\\StyleSheet.css",
+      "SourceId": "COTS1",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\",
+      "BasePath": "_content/COTS1",
+      "RelativePath": "css/StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StyleSheet.css"
     },
     {
       "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\401.html",
@@ -300,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\gmailimages.png"
+    },
+    {
+      "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
+      "SourceId": "COTS1",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\",
+      "BasePath": "_content/COTS1",
+      "RelativePath": "dist/assets/img/moutain.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\moutain.png"
     },
     {
       "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\charts.html",

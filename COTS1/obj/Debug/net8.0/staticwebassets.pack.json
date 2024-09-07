@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\README.md"
     },
     {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\css\\StyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\StyleSheet.css"
+    },
+    {
       "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -63,6 +67,10 @@
     {
       "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\gmailimages.png",
       "PackagePath": "staticwebassets\\dist\\assets\\img\\gmailimages.png"
+    },
+    {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
+      "PackagePath": "staticwebassets\\dist\\assets\\img\\moutain.png"
     },
     {
       "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\charts.html",

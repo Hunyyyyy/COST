@@ -53,6 +53,14 @@ namespace COTS1.Controllers
         }
         public IActionResult ReceiveTask(string Title, string Description, string DueDate, string Priority, string status)
         {
+            var descriptionList = Description.Split(',').Select(d => d.Trim()).ToList();
+
+            // Tạo danh sách mới với "Công việc N:" thêm vào mỗi mô tả
+            var detailedDescriptions = new List<string>();
+            for (int i = 0; i < descriptionList.Count; i++)
+            {
+                detailedDescriptions.Add($"Công việc {i + 1}: {descriptionList[i]}");
+            }
             var taskViewModel = new TaskViewModel
             {
                 Title = Title,
