@@ -19,9 +19,9 @@ public partial class User
 
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 
-    public virtual ICollection<Task> TaskAssignedToNavigations { get; set; } = new List<Task>();
+    public virtual ICollection<SaveTasks> TaskAssignedToNavigations { get; set; } = new List<SaveTasks>();
 
-    public virtual ICollection<Task> TaskCreatedByNavigations { get; set; } = new List<Task>();
+    public virtual ICollection<SaveTasks> TaskCreatedByNavigations { get; set; } = new List<SaveTasks>();
 
     public virtual ICollection<TaskNotification> TaskNotifications { get; set; } = new List<TaskNotification>();
 

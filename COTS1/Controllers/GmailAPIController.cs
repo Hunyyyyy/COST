@@ -6,6 +6,8 @@ using System.Text;
 using COTS1.Class;
 using System.Text.RegularExpressions;
 using COTS1.Models.EmailModel;
+using Microsoft.EntityFrameworkCore;
+using COTS1.Data;
 
 
 
@@ -15,10 +17,12 @@ namespace COTS1.Controllers
     public class GmailAPIController : Controller
     {
         private readonly IHttpContextAccessor _contextAccessor;
+        private readonly TestNhiemVuContext _dbContext;
         /* private readonly GetMails _getMails;*/
-        public GmailAPIController(IHttpContextAccessor contextAccessor  /*GetMails getMails*/)
+        public GmailAPIController(IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext  /*GetMails getMails*/)
         {
             _contextAccessor = contextAccessor;
+            _dbContext = dbContext;
             /* _getMails = getMails;*/
         }
         public IActionResult Index()
@@ -443,6 +447,67 @@ namespace COTS1.Controllers
 
             return details;
         }
+        //save task
+        [HttpPost]
+        public async Task<IActionResult> SaveTask(string Title,string Description,DateTime DueDate,string Priority)
+        {
+            if (ModelState.IsValid)
+            {
+                // Tạo đối tượng nhiệm vụ mới
+                var task = new SaveTasks
+                {
+                    Title =Title,
+                    Description = string.Join(", ", Description),
+                    DueDate = DueDate,
+                    Priority =Priority,
+                    Status = "Đang thực hiện",
+                    CreatedAt = DateTime.Now,
+                    AssignedTo = 3/* Id của người nhận (bạn có thể cần lấy từ model hoặc người dùng hiện tại) */,
+                    CreatedBy = 2/* Id của người tạo (quản lý) */
+        };
+
+                // Thêm nhiệm vụ vào cơ sở dữ liệu
+                _dbContext.Tasks.Add(task);
+                await _dbContext.SaveChangesAsync();
+                // Tách các công việc con từ mô tả và lưu vào bảng Subtasks
+                var subtasks = SplitTasks(task.Description);
+                foreach (var subtaskViewModel in subtasks)
+                {
+                    var subtask = new Subtask
+                    {
+                        TaskId = task.TaskId, // Sử dụng TaskId của nhiệm vụ vừa tạo
+                        Title = subtaskViewModel.Title,
+                        Description = subtaskViewModel.Description,
+                        Status = subtaskViewModel.Status
+                    };
+
+                    _dbContext.Subtasks.Add(subtask); // Lưu từng subtask vào CSDL
+                }
+
+                await _dbContext.SaveChangesAsync(); // Lưu các subtasks
+                // Thông báo thành công
+                TempData["SuccessMessage"] = "Nhiệm vụ đã được lưu thành công!";
+                return RedirectToAction("Index", "ListTask"); // Chuyển hướng tới danh sách nhiệm vụ hoặc một trang khác
+            }
+
+            // Nếu có lỗi, trả về form
+            return View("ShowEmailDetails");
+        }
+        public List<SubtaskViewModel> SplitTasks(string taskDescription)
+        {
+            // Giả sử các subtasks được phân tách bằng dấu xuống dòng hoặc dấu chấm phẩy
+            var subtasks = taskDescription
+                .Split(new[] { '\n', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(subtask => new SubtaskViewModel
+                {
+                    Title = subtask.Trim(),
+                    Description = subtask.Trim(),
+                    Status = "Chưa nhận"
+                }).ToList();
+
+            return subtasks;
+        }
+
         private List<string> ParseDescriptions(string descriptionText)
         {
             var descriptions = new List<string>();
@@ -461,6 +526,7 @@ namespace COTS1.Controllers
             return descriptions;
         }
 
+       
 
 
 

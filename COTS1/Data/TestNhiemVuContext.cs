@@ -17,7 +17,7 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<Subtask> Subtasks { get; set; }
 
-    public virtual DbSet<Task> Tasks { get; set; }
+    public virtual DbSet<SaveTasks> Tasks { get; set; }
 
     public virtual DbSet<TaskNotification> TaskNotifications { get; set; }
 
@@ -55,7 +55,7 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK__Subtasks__TaskId__30F848ED");
         });
 
-        modelBuilder.Entity<Task>(entity =>
+        modelBuilder.Entity<SaveTasks>(entity =>
         {
             entity.HasKey(e => e.TaskId).HasName("PK__Tasks__7C6949B14588A461");
 

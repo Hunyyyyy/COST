@@ -17,7 +17,7 @@ public partial class TaskNotification
 
     public DateTime? CreatedAt { get; set; }
 
-    public virtual Task? Task { get; set; }
+    public virtual SaveTasks? Task { get; set; }
 
     public virtual User? User { get; set; }
 }

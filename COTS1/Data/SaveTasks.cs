@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace COTS1.Data;
 
-public partial class Task
+public partial class SaveTasks
 {
     public int TaskId { get; set; }
 

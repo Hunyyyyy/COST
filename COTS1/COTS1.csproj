@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="img\" />
-    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
