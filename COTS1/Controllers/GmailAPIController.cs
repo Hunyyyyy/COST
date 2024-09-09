@@ -346,14 +346,14 @@ namespace COTS1.Controllers
             var emailSummary = await GetEmailDetails(messageId);
             var emailTitle = $"{emailSummary.Subject}";
             var emailSender = $"Người gửi: {emailSummary.Sender}";
-            var emailSentDate = $"Ngày gửi: {emailSummary.SentDate}";
+            
 
             // Kết hợp nội dung email
             var emailBody = string.Join("\n", emailSummary.BodyContents);
-            var emailContent = $"{emailSender}\n{emailSentDate}\n{emailBody}";
+            var emailContent = $"{emailBody}";
 
             // Phân tích email
-            var taskViewModel = AnalyzeEmail(emailContent, emailTitle);
+            var taskViewModel = AnalyzeEmail(emailContent, emailTitle, emailSender, emailSummary.SentDate);
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var googleUserInfo = new GoogleUserInfo(accessToken);
             var email = await googleUserInfo.GetUserEmailAsync();
@@ -412,65 +412,108 @@ namespace COTS1.Controllers
             return RedirectToAction("ViewEmailNotification");
         }
         //nhận nhiệm vụ
-        public TaskViewModel AnalyzeEmail(string emailContent,string title)
+        public TaskViewModel AnalyzeEmail(string emailContent, string title, string sender, string sentDay)
         {
             var details = new TaskViewModel
             {
-                 Title = title ?? "Không có tiêu đề"
+                Title = title ?? "Không có tiêu đề",
+                Sender = sender.ToString(),
+                SentDay = sentDay
             };
 
-            // Phân tích tiêu đề
-           
-            /*var titleMatch = Regex.Match(emailContent, @"Công Việc:\s*(.+?)\s*(?:From:|$)");
+            // Xử lý mô tả
+            var cleanedDescriptionText = Regex.Replace(emailContent, @"Ngày hết hạn:.*?Mức độ ưu tiên:.*", "").Trim();
+            details.Description = ParseDescriptions(cleanedDescriptionText);
 
-            details.Title = titleMatch.Success ? titleMatch.Groups[1].Value.Trim() : "Không có tiêu đề";*/
+            // Xử lý ghi chú
 
-            // Phân tích mô tả
-            var descriptionMatch = Regex.Match(emailContent, @"Mô tả:\s*([\s\S]+?)\s*Ngày hết hạn:");
-            var descriptionText = descriptionMatch.Success ? descriptionMatch.Groups[1].Value.Trim() : "Không có mô tả";
-            details.Description = ParseDescriptions(descriptionText);
+            var notesMatch = Regex.Match(emailContent, @"Ghi chú:\s*(.+)");
+            details.Notes = notesMatch.Success ? notesMatch.Groups[1].Value.Trim() : "Không có ghi chú";
 
-            // Phân tích ngày hết hạn
+            // Xử lý ngày hết hạn và mức độ ưu tiên
             var dueDateMatch = Regex.Match(emailContent, @"Ngày hết hạn:\s*(\d{2}/\d{2}/\d{4})");
             details.DueDate = dueDateMatch.Success ? DateTime.ParseExact(dueDateMatch.Groups[1].Value.Trim(), "dd/MM/yyyy", null) : DateTime.Now.AddDays(7);
 
-            // Phân tích mức độ ưu tiên
             var priorityMatch = Regex.Match(emailContent, @"Mức độ ưu tiên:\s*(.+)");
             details.Priority = priorityMatch.Success ? priorityMatch.Groups[1].Value.Trim() : "Không có";
 
-            // Phân tích người nhận
+            // Xử lý người nhận
             var recipientsMatch = Regex.Match(emailContent, @"Người nhận:\s*(.+)");
             details.Recipients = recipientsMatch.Success ? recipientsMatch.Groups[1].Value.Trim() : "Không có người nhận";
 
-            // Phân tích trạng thái
+            // Xử lý trạng thái mặc định
             details.Status = "Chưa bắt đầu";
 
             return details;
         }
+
+        private List<string> ParseDescriptions(string descriptionText)
+        {
+            var descriptions = new List<string>();
+
+            // Loại bỏ các phần không mong muốn
+            var cleanedDescriptionText = Regex.Replace(descriptionText, @"Ngày hết hạn:.*|Mức độ ưu tiên:.*|Ghi chú:.*", "").Trim();
+
+            // Tách các công việc chính và phụ
+            var mainTasks = Regex.Split(cleanedDescriptionText, @"(?=\s+Công việc \d+:)").Where(task => !string.IsNullOrWhiteSpace(task)).ToList();
+
+            foreach (var task in mainTasks)
+            {
+                var trimmedTask = task.Trim();
+                var lines = trimmedTask.Split('\n').Select(line => line.Trim()).Where(line => !string.IsNullOrEmpty(line)).ToList();
+
+                // Thêm công việc chính vào danh sách
+                var mainTaskTitle = lines.FirstOrDefault();
+                if (mainTaskTitle != null)
+                {
+                    descriptions.Add(mainTaskTitle);
+                }
+
+                // Thêm công việc phụ vào danh sách với dấu cộng
+                for (int i = 1; i < lines.Count; i++)
+                {
+                    descriptions.Add( lines[i]);
+                }
+            }
+
+            // Thêm ghi chú
+           
+
+            return descriptions;
+        }
+
+
+
+
+
+
         //save task
+      
         [HttpPost]
-        public async Task<IActionResult> SaveTask(string Title,string Description,DateTime DueDate,string Priority)
+        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority,string Note)
         {
             if (ModelState.IsValid)
             {
                 // Tạo đối tượng nhiệm vụ mới
                 var task = new SaveTasks
                 {
-                    Title =Title,
-                    Description = string.Join(", ", Description),
+                    Title = Title,
+                    Note = Note,
+                    Description = Description, // Lưu mô tả nguyên gốc
                     DueDate = DueDate,
-                    Priority =Priority,
+                    Priority = Priority,
                     Status = "Đang thực hiện",
                     CreatedAt = DateTime.Now,
-                    AssignedTo = 3/* Id của người nhận (bạn có thể cần lấy từ model hoặc người dùng hiện tại) */,
-                    CreatedBy = 2/* Id của người tạo (quản lý) */
-        };
+                    AssignedTo = 3, // Id của người nhận (bạn có thể cần lấy từ model hoặc người dùng hiện tại)
+                    CreatedBy = 2 // Id của người tạo (quản lý)
+                };
 
                 // Thêm nhiệm vụ vào cơ sở dữ liệu
                 _dbContext.Tasks.Add(task);
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(); // Lưu nhiệm vụ
+
                 // Tách các công việc con từ mô tả và lưu vào bảng Subtasks
-                var subtasks = SplitTasks(task.Description);
+                var subtasks = SplitTasks(Description);
                 foreach (var subtaskViewModel in subtasks)
                 {
                     var subtask = new Subtask
@@ -485,6 +528,7 @@ namespace COTS1.Controllers
                 }
 
                 await _dbContext.SaveChangesAsync(); // Lưu các subtasks
+
                 // Thông báo thành công
                 TempData["SuccessMessage"] = "Nhiệm vụ đã được lưu thành công!";
                 return RedirectToAction("Index", "ListTask"); // Chuyển hướng tới danh sách nhiệm vụ hoặc một trang khác
@@ -493,40 +537,46 @@ namespace COTS1.Controllers
             // Nếu có lỗi, trả về form
             return View("ShowEmailDetails");
         }
+
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {
-            // Giả sử các subtasks được phân tách bằng dấu xuống dòng hoặc dấu chấm phẩy
-            var subtasks = taskDescription
-                .Split(new[] { '\n', ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(subtask => new SubtaskViewModel
+            var subtasks = new List<SubtaskViewModel>();
+
+            // Tách các công việc chính và công việc phụ
+            var taskSections = taskDescription.Split(new[] { "Công việc ", "Ghi chú:" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var section in taskSections)
+            {
+                // Tách phần tiêu đề và các công việc phụ
+                var parts = section.Split(new[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
+                var mainTaskTitle = parts.First().Trim(); // Tiêu đề công việc chính
+
+                for (int i = 1; i < parts.Length; i++)
                 {
-                    Title = subtask.Trim(),
-                    Description = subtask.Trim(),
-                    Status = "Chưa nhận"
-                }).ToList();
+                    var subtask = parts[i].Trim();
+                    if (!string.IsNullOrEmpty(subtask))
+                    {
+                        subtasks.Add(new SubtaskViewModel
+                        {
+                            Title = mainTaskTitle,
+                            Description = subtask,
+                            Status = "Chưa nhận" // Hoặc có thể thay đổi trạng thái mặc định nếu cần
+                        });
+                    }
+                }
+            }
 
             return subtasks;
         }
 
-        private List<string> ParseDescriptions(string descriptionText)
-        {
-            var descriptions = new List<string>();
 
-            // Tách các công việc theo định dạng "Công việc N:"
-            var matches = Regex.Matches(descriptionText, @"Công việc \d+:\s*([^\d]+)(?=\s*Công việc \d+:|$)");
 
-            foreach (Match match in matches)
-            {
-                if (match.Success)
-                {
-                    descriptions.Add(match.Groups[1].Value.Trim());
-                }
-            }
 
-            return descriptions;
-        }
 
-       
+
+
+
+
 
 
 

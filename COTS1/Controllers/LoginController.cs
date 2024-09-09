@@ -8,6 +8,7 @@ using COTS1.Data;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Generators;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using Microsoft.AspNetCore.Http;
 
 namespace COTS1.Controllers
 {
@@ -36,10 +37,22 @@ namespace COTS1.Controllers
                 return BadRequest("Gmail address is required.");
             }
             var user = await db.Users.FirstOrDefaultAsync(u => u.Email == gmail);
-
+            //get User from databse
+        
             if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
+               var DataUser=db.Users.Where(u=>u.Email== gmail).Select(u=> new
+			   {
+                   u.UserId,
+                   u.FullName,
+                   u.Email,      
+                   u.Role
+               }).FirstOrDefault();
+
                 HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetString("UserIDEmail", user.UserId.ToString());
+                HttpContext.Session.SetString("UserRole", user.Role);
+                HttpContext.Session.SetString("UserFullName", user.FullName);
                 // Xác thực thành công
                 // Lưu thông tin người dùng vào session hoặc thực hiện các bước xác thực khác
                 var clientId = "425757132188-sf8k8r5bo25f9dsg0sla9so95ljbp8ki.apps.googleusercontent.com";

@@ -31,7 +31,7 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password" style="padding:15px 10px" maxlength="20" required>
+                <input type="password" name="password" id="pwd" placeholder="Password" style="padding:15px 10px" maxlength="20" pattern=".{7,}" required>
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
@@ -41,10 +41,10 @@
 
         </form>       
     </div>
-    @if (@ViewBag.Message = TempData["Error"] !=null)
+    @if (@TempData["Error"] == "Mật khẩu xác nhận không khớp.")
     {
         <div class="alert alert-warning">
-            <strong>Warning!</strong> @{ViewBag.Message = TempData["Error"];
+            <strong>Warning!</strong> Mật khẩu xác nhận không khớp.;
 }
         </div>
     }

@@ -49,8 +49,9 @@ CREATE TABLE TaskNotifications (
     IsRead BIT DEFAULT 0, -- 0: chưa đọc, 1: đã đọc
     CreatedAt DATETIME DEFAULT GETDATE()
 );
-ALTER TABLE Users
-ADD PasswordHash NVARCHAR(256) NOT NULL,
-    PasswordSalt NVARCHAR(256); -- Tuỳ chọn, nếu bạn sử dụng salt
-	DELETE FROM Users WHERE UserId = 1;
-	select * from Users
+ALTER TABLE Tasks
+ADD Note NVARCHAR(256);
+    -- Tuỳ chọn, nếu bạn sử dụng salt
+	DELETE FROM Subtasks ;
+	select * from Subtasks
+		select * from Tasks

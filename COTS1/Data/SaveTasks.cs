@@ -8,6 +8,7 @@ public partial class SaveTasks
     public int TaskId { get; set; }
 
     public string Title { get; set; } = null!;
+    public string? Note { get; set; } = null!;
 
     public string? Description { get; set; }
 

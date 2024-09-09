@@ -55,10 +55,20 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Tạo Và Quản Lý Nhiệm Vụ</div>
-                        <a asp-action="CreateTasks" asp-controller="Tasks" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Tạo Nhiệm Vụ
-                        </a>
+                        @{
+                            var UserRole = Context.Session.GetString("UserRole");
+                            if (UserRole != null && UserRole.Equals("Manager"))
+                            {
+                                <a asp-action="CreateTasks" asp-controller="Tasks" class="nav-link">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    Tạo Nhiệm Vụ
+                                </a>
+                            }
+                        }
+
+
+                           
+                       
                         <a asp-action="Index" asp-controller="ListTask" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Danh Sách Nhiệm Vụ

@@ -120,7 +120,7 @@
         
     </main>
    @*  checkTask *@
-    <div class="container mt-4">
+    <div class="container mt-5">
     <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
@@ -135,6 +135,14 @@
                                 <input type="text" class="form-control" id="title" name="Title" value="@Model.Task.Title" readonly>
                             </div>
                             <div class="mb-3">
+                                <label for="title" class="form-label">Người gửi</label>
+                                <input type="text" class="form-control" id="title" name="Title" value="@Model.Task.Sender" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Ngày gửi</label>
+                                <input type="text" class="form-control" id="title" name="Title" value="@Model.Task.SentDay" readonly>
+                            </div>
+                            <div class="mb-3">
                                 <label for="description" class="form-label">Mô Tả</label>
                                 <ul id="description" name="Description" typr="1">
                                     @foreach (var task in @Model.Task.Description)
@@ -143,6 +151,10 @@
                                     }
                                 </ul>
                                 <input type="hidden" name="Description" value="@string.Join(",", Model.Task.Description)" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="dueDate" class="form-label">Ngày Hết Hạn</label>
+                                <textarea type="text" class="form-control" id="note" name="note" value="" readonly>@Model.Task.Notes</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="dueDate" class="form-label">Ngày Hết Hạn</label>
