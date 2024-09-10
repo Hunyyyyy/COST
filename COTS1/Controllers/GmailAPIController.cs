@@ -294,10 +294,10 @@ namespace COTS1.Controllers
 
                     // Định dạng ngày gửi
                     DateTime sentDate;
-                    string formattedSentDate = null;
-                    if (DateTime.TryParse(sentDateStr, out sentDate))
+                    if (!DateTime.TryParse(sentDateStr, out sentDate))
                     {
-                        formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
+                        // Nếu không chuyển đổi được, gán giá trị mặc định hoặc xử lý lỗi
+                        sentDate = DateTime.Now; // Hoặc sử dụng giá trị mặc định khác
                     }
 
                     // Trả về đối tượng EmailSummary
@@ -306,7 +306,7 @@ namespace COTS1.Controllers
                         Id = email.Id,
                         Sender = sender,
                         Subject = subject,
-                        SentDate = formattedSentDate,
+                        SentDate = sentDate,
                         BodyContents = bodyContents,
                         Attachments = attachments
                     };
@@ -345,7 +345,7 @@ namespace COTS1.Controllers
         {
             var emailSummary = await GetEmailDetails(messageId);
             var emailTitle = $"{emailSummary.Subject}";
-            var emailSender = $"Người gửi: {emailSummary.Sender}";
+            var emailSender = $"{emailSummary.Sender}";
             
 
             // Kết hợp nội dung email
@@ -412,7 +412,7 @@ namespace COTS1.Controllers
             return RedirectToAction("ViewEmailNotification");
         }
         //nhận nhiệm vụ
-        public TaskViewModel AnalyzeEmail(string emailContent, string title, string sender, string sentDay)
+        public TaskViewModel AnalyzeEmail(string emailContent, string title, string sender, DateTime sentDay)
         {
             var details = new TaskViewModel
             {
@@ -490,8 +490,13 @@ namespace COTS1.Controllers
         //save task
       
         [HttpPost]
-        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority,string Note)
+        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority,string Note,string Sender)
         {
+            var AssignedTo = HttpContext.Session.GetString("UserEmail");
+            var manager = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == Sender);
+            var Assigned = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == AssignedTo);
+            
+        
             if (ModelState.IsValid)
             {
                 // Tạo đối tượng nhiệm vụ mới
@@ -504,8 +509,8 @@ namespace COTS1.Controllers
                     Priority = Priority,
                     Status = "Đang thực hiện",
                     CreatedAt = DateTime.Now,
-                    AssignedTo = 3, // Id của người nhận (bạn có thể cần lấy từ model hoặc người dùng hiện tại)
-                    CreatedBy = 2 // Id của người tạo (quản lý)
+                    AssignedTo = Assigned?.UserId, // Id của người nhận (bạn có thể cần lấy từ model hoặc người dùng hiện tại)
+                    CreatedBy = manager?.UserId // Id của người tạo (quản lý)
                 };
 
                 // Thêm nhiệm vụ vào cơ sở dữ liệu
@@ -537,6 +542,7 @@ namespace COTS1.Controllers
             // Nếu có lỗi, trả về form
             return View("ShowEmailDetails");
         }
+
 
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {

@@ -3,32 +3,72 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
-@model List<SubtaskViewModel>
-<div style="margin-left: 230px; margin-top: 60px;">
 
+@model List<COTS1.Models.TaskViewModel>
+<style>
+    .truncate {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px; /* Hoặc bất kỳ giá trị nào bạn muốn để hiển thị cột */
+    }
+</style>
 
-    <table class="table table-hover">
+<div class="container mt-5" style="margin-left: 230px; margin-top: 60px;">
+    <h2>Danh sách nhiệm vụ</h2>
+    <table class="table table-dark table-hover">
         <thead>
             <tr>
-                <th>Tiêu đề</th>
-                <th>Mô tả</th>
+                <th>ID</th>
+                <th>Tên dự án</th>
+                <th>Người gửi</th>
+                <th>Ngày gửi</th>
+                <th>Ngày hết hạn</th>
+                <th>Ưu tiên</th>
+                <th>Người nhận</th>
+                <th>Ghi chú</th>
                 <th>Trạng thái</th>
             </tr>
         </thead>
         <tbody>
-            @{
-                int i = 0; // Khởi tạo biến đếm
-            }
-            @foreach (var subtask in Model)
+             @foreach (var task in Model)
             {
-                <tr style="cursor:pointer">
-                    <td>Công việc số: @(++i)</td> 
-                    <td>@subtask.Description</td>
-                    <td>@subtask.Status</td>
+                <tr data-id="@task.TaskId" class="clickable-row" style="cursor:pointer">
+                    <td class="taskid">@task.TaskId</td>
+                    <td class="truncate">@task.Title</td>
+                    <td class="truncate">@task.Sender</td>
+                    <td>@task.SentDay</td>
+                    <td>@task.DueDate.ToShortDateString()</td>
+                    <td>@task.Priority</td>
+                    <td>@task.Recipients</td>
+                    <td class="truncate">@task.Notes</td>
+                    <td>@task.Status</td>
                 </tr>
             }
         </tbody>
-</table>
+    </table>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Lấy tất cả các hàng có class "clickable-row"
+        const rows = document.querySelectorAll('.clickable-row');
+
+        rows.forEach(row => {
+            row.addEventListener('click', () => {
+                // Lấy ID từ thuộc tính data-id
+                const taskId = row.getAttribute('data-id');
+                if (taskId) { // Kiểm tra xem taskId có tồn tại
+                    window.location.href = `@Url.Action("Subtasks", "ListTask")?taskId=${taskId}`;
+                }
+            });
+        });
+    });
+
+</script>
+
+<!-- Dialog HTML -->
+
+
+
 
 

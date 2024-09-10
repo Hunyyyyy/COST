@@ -49,9 +49,24 @@ CREATE TABLE TaskNotifications (
     IsRead BIT DEFAULT 0, -- 0: chưa đọc, 1: đã đọc
     CreatedAt DATETIME DEFAULT GETDATE()
 );
+CREATE TABLE Groups (
+    GroupId INT PRIMARY KEY IDENTITY(1,1),
+    GroupName NVARCHAR(100) NOT NULL,
+    CreatedBy INT FOREIGN KEY REFERENCES Users(UserId),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE GroupMembers (
+    GroupMemberId INT PRIMARY KEY IDENTITY(1,1),
+    GroupId INT FOREIGN KEY REFERENCES Groups(GroupId) ON DELETE CASCADE,
+    UserId INT FOREIGN KEY REFERENCES Users(UserId)
+);
+
 ALTER TABLE Tasks
 ADD Note NVARCHAR(256);
     -- Tuỳ chọn, nếu bạn sử dụng salt
 	DELETE FROM Subtasks ;
+	DELETE FROM Tasks ;
 	select * from Subtasks
 		select * from Tasks
+		select * from Users

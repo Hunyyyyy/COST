@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Subtasks";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<style>
+    .card-footer {
+        text-align: right; /* Căn chỉnh nút "Nhận việc" sang bên phải */
+    }
+</style>
+@model IEnumerable<COTS1.Models.SubtaskViewModel>
+
+<div class="row row-cols-1 row-cols-md-3 g-4" style="margin-left: 230px; margin-top: 60px;">
+    @foreach (var task in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@task.Title</h5>
+                    <p class="card-text">@task.Description</p>
+                    <p class="card-text"><small class="text-muted">Trạng thái: @task.Status</small></p>
+                </div>
+                <div class="card-footer text-end">
+                    <button class="btn btn-primary" data-taskid="@task.SubtaskId">Nhận việc</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

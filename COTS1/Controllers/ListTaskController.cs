@@ -17,24 +17,41 @@ namespace COTS1.Controllers
 
         public async Task<IActionResult> Index()
         {
-            
-            // Truy vấn lấy tất cả các tasks từ database, bao gồm cả subtasks
+            var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
             var tasks = await db.Tasks
-                .Include(t => t.Subtasks) // Bao gồm cả subtasks
+                .Where(t => t.AssignedTo == currentUserId) // Lọc theo trưởng nhóm đã nhận nhiệm vụ
+                .Select(t=>new TaskViewModel {
+                    Title = t.Title,
+                    TaskId = t.TaskId,
+                    DueDate = t.DueDate,
+                    SentDay = t.CreatedAt ?? DateTime.Now,
+                    Priority = t.Priority,
+                    Status = t.Status,
+                    Notes = t.Note,
+                    Recipients = t.AssignedToNavigation.Email, // Nếu bạn có Include trên AssignedTo
+                    Sender = t.CreatedByNavigation.FullName
+                })
                 .ToListAsync();
 
-            // Tạo danh sách các TaskViewModel
-            var subtasks = tasks.SelectMany(task => task.Subtasks)
-          .Select(subtask => new SubtaskViewModel
-          {
-              SubtaskId = subtask.SubtaskId,
-              Title = "",
-              Description = subtask.Description,
-              Status = subtask.Status
-          }).ToList();
+           
 
-            // Trả về view và truyền danh sách nhiệm vụ vào
-            return View(subtasks);
+            return View(tasks);
+        }
+        public async Task<IActionResult> Subtasks(int taskID)
+        {
+            var subtasks = await db.Subtasks
+                .Where(st => st.TaskId == taskID)
+                .ToListAsync();
+            var subtaskViewModels = subtasks.Select(st => new SubtaskViewModel
+            {
+                SubtaskId = st.SubtaskId,
+                Title = st.Title,
+                Description = st.Description,
+                Status = st.Status
+            }).ToList();
+
+            // Trả về view và truyền danh sách công việc con
+            return View(subtaskViewModels);
         }
     }
-    }
+}

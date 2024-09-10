@@ -50,9 +50,10 @@ namespace COTS1.Controllers
                }).FirstOrDefault();
 
                 HttpContext.Session.SetString("UserEmail", user.Email);
-                HttpContext.Session.SetString("UserIDEmail", user.UserId.ToString());
+                HttpContext.Session.SetInt32("UserIDEmail", user.UserId);
                 HttpContext.Session.SetString("UserRole", user.Role);
                 HttpContext.Session.SetString("UserFullName", user.FullName);
+				
                 // Xác thực thành công
                 // Lưu thông tin người dùng vào session hoặc thực hiện các bước xác thực khác
                 var clientId = "425757132188-sf8k8r5bo25f9dsg0sla9so95ljbp8ki.apps.googleusercontent.com";

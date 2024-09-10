@@ -128,10 +128,10 @@
 
                 // Format the sent date
                 DateTime sentDate;
-                string formattedSentDate = null;
-                if (DateTime.TryParse(sentDateStr, out sentDate))
+                if (!DateTime.TryParse(sentDateStr, out sentDate))
                 {
-                    formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
+                    // Nếu không chuyển đổi được, gán giá trị mặc định hoặc xử lý lỗi
+                    sentDate = DateTime.Now; // Hoặc sử dụng giá trị mặc định khác
                 }
 
                 var bodyContents = new List<string>();
@@ -182,7 +182,7 @@
                     Sender = sender,
                     Subject = subject,
                     Snippet = snippet,
-                    SentDate = formattedSentDate,
+                    SentDate = sentDate,
 
                     BodyContents = bodyContents,
                     Attachments = attachments

@@ -26,12 +26,7 @@
 
                         <td>
                             @{
-                                DateTime sentDate;
-                                string formattedSentDate = null;
-                                if (DateTime.TryParse(email.SentDate, out sentDate))
-                                {
-                                    formattedSentDate = sentDate.ToString("dd/MM/yyyy HH:mm");
-                                }
+                                string formattedSentDate = email.SentDate.ToString("dd/MM/yyyy HH:mm");
                             }
                             @formattedSentDate
                         </td>
