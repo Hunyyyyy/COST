@@ -490,32 +490,35 @@ namespace COTS1.Controllers
         //save task
       
         [HttpPost]
-        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority,string Note,string Sender)
+        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string Note, string Sender)
         {
+            // Lấy thông tin người dùng
             var AssignedTo = HttpContext.Session.GetString("UserEmail");
             var manager = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == Sender);
             var Assigned = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == AssignedTo);
-            
-        
+
             if (ModelState.IsValid)
             {
                 // Tạo đối tượng nhiệm vụ mới
-                var task = new SaveTasks
+                var task = new SaveTask
                 {
                     Title = Title,
                     Note = Note,
-                    Description = Description, // Lưu mô tả nguyên gốc
+                    Description = Description,
                     DueDate = DueDate,
                     Priority = Priority,
                     Status = "Đang thực hiện",
                     CreatedAt = DateTime.Now,
-                    AssignedTo = Assigned?.UserId, // Id của người nhận (bạn có thể cần lấy từ model hoặc người dùng hiện tại)
-                    CreatedBy = manager?.UserId // Id của người tạo (quản lý)
+                    AssignedTo = Assigned?.UserId, // Id của người nhận nhiệm vụ
+                    CreatedBy = manager?.UserId // Id của người tạo nhiệm vụ
                 };
 
                 // Thêm nhiệm vụ vào cơ sở dữ liệu
-                _dbContext.Tasks.Add(task);
-                await _dbContext.SaveChangesAsync(); // Lưu nhiệm vụ
+                _dbContext.SaveTasks.Add(task);
+                await _dbContext.SaveChangesAsync(); // Lưu nhiệm vụ và lấy TaskId
+
+                // Lấy TaskId của nhiệm vụ vừa tạo
+                var taskId = task.TaskId;
 
                 // Tách các công việc con từ mô tả và lưu vào bảng Subtasks
                 var subtasks = SplitTasks(Description);
@@ -523,7 +526,7 @@ namespace COTS1.Controllers
                 {
                     var subtask = new Subtask
                     {
-                        TaskId = task.TaskId, // Sử dụng TaskId của nhiệm vụ vừa tạo
+                        TaskId = taskId, // Sử dụng TaskId của nhiệm vụ vừa tạo
                         Title = subtaskViewModel.Title,
                         Description = subtaskViewModel.Description,
                         Status = subtaskViewModel.Status
@@ -542,6 +545,7 @@ namespace COTS1.Controllers
             // Nếu có lỗi, trả về form
             return View("ShowEmailDetails");
         }
+
 
 
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
@@ -574,18 +578,6 @@ namespace COTS1.Controllers
 
             return subtasks;
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

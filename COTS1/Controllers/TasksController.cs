@@ -1,6 +1,8 @@
 ﻿using COTS1.Class;
+using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Cms;
 
@@ -9,13 +11,15 @@ namespace COTS1.Controllers
     public class TasksController : Controller
     {
         private readonly IHttpContextAccessor _contextAccessor;
+        private readonly TestNhiemVuContext _dbContext;
 
-        public TasksController(IHttpContextAccessor contextAccessor)
+        public TasksController(IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext)
         {
             _contextAccessor = contextAccessor;
+            _dbContext = dbContext;
         }
 
-        public async Task<IActionResult> CreateTasks()
+        public async Task<IActionResult> CreateTasks(int projectId)
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
 
@@ -25,53 +29,106 @@ namespace COTS1.Controllers
             }
             var googleUserInfo = new GoogleUserInfo(accessToken);
             var email = await googleUserInfo.GetUserEmailAsync();
-            ViewBag.UserEmail = email;
-            return View();
+            var project = await _dbContext.Projects.Where(p => p.ProjectId == projectId)
+                .Select(p => new Project
+                {
+                    ProjectName = p.ProjectName,
+                    ProjectId = p.ProjectId,
+                }).ToListAsync();
+
+
+            if (project != null)
+            {
+                ViewBag.UserEmail = email;
+                ViewBag.ProjectId = projectId;
+                return View(project);
+            }
+            else
+            {
+                return View();
+            }
         }
+       
         [HttpPost]
-        public async Task<IActionResult> SendEmailTasks(string recipients, string Title, string Description, DateTime DueDate, string Priority, string from, string type)
+        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId)
         {
-            var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
+            var manager = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == from);
 
-            if (string.IsNullOrEmpty(accessToken))
+            // Nếu Note là null, gán giá trị mặc định
+            string CheckNote = string.IsNullOrEmpty(Note) ? "Không có ghi chú" : Note;
+
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Mail", "Home"); // Redirect to login/authentication page
+                var task = new SentTasksList
+                {
+                    ProjectId = ProjectId,
+                    Title = Title,
+                    Note = CheckNote,
+                    Description = Description,
+                    DueDate = DueDate,
+                    Priority = Priority,
+                    Status = "Đang chờ",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = manager?.UserId
+                };
+
+                _dbContext.SentTasksLists.Add(task);
+                await _dbContext.SaveChangesAsync();
+
+                var saveTask = new SaveTask
+                {
+                    ProjectId = ProjectId,
+                    Title = Title,
+                    Description = Description,
+                    DueDate = DueDate,
+                    Priority = Priority,
+                    Status = "Đang chờ",
+                    AssignedTo = null,
+                    CreatedBy = manager?.UserId,
+                    CreatedAt = DateTime.Now
+                };
+
+                _dbContext.SaveTasks.Add(saveTask);
+                await _dbContext.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Nhiệm vụ đã được lưu thành công!";
+                return RedirectToAction("CreateTaskProject", "ProjectManager", new { projectId = ProjectId });
             }
 
-            var sendNotificationMail = new SendNotificationMail(accessToken);
-
-            // Tách các địa chỉ email bằng dấu phẩy
-            var emailAddresses = recipients.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            var message = "Mô tả:\n" + Description +"\n"+ "Ngày hết hạn:" + DueDate + "\n" + "Mức độ ưu tiên:" + Priority+"\n";
-            var NameTask = "Công Việc:" + Title;
-            foreach (var email in emailAddresses)
-            {
-                await SendNotificationMail.SendEmailAsync(sendNotificationMail._gmailService, from.Trim(), email.Trim(), NameTask, message);
-            }
-            TempData["Message"] = "Gửi Email thành công!";
-            return RedirectToAction("CreateTasks");
+            return View("CreateTasks", "Tasks");
         }
-        public IActionResult ReceiveTask(string Title, string Description, string DueDate, string Priority, string status)
+
+        public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {
-            var descriptionList = Description.Split(',').Select(d => d.Trim()).ToList();
+            var subtasks = new List<SubtaskViewModel>();
 
-            // Tạo danh sách mới với "Công việc N:" thêm vào mỗi mô tả
-            var detailedDescriptions = new List<string>();
-            for (int i = 0; i < descriptionList.Count; i++)
+            // Tách các công việc chính và công việc phụ
+            var taskSections = taskDescription.Split(new[] { "Công việc ", "Ghi chú:" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var section in taskSections)
             {
-                detailedDescriptions.Add($"Công việc {i + 1}: {descriptionList[i]}");
+                // Tách phần tiêu đề và các công việc phụ
+                var parts = section.Split(new[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
+                var mainTaskTitle = parts.First().Trim(); // Tiêu đề công việc chính
+
+                for (int i = 1; i < parts.Length; i++)
+                {
+                    var subtask = parts[i].Trim();
+                    if (!string.IsNullOrEmpty(subtask))
+                    {
+                        subtasks.Add(new SubtaskViewModel
+                        {
+                            Title = mainTaskTitle,
+                            Description = subtask,
+                            Status = "Chưa nhận" // Hoặc có thể thay đổi trạng thái mặc định nếu cần
+                        });
+                    }
+                }
             }
-            var taskViewModel = new TaskViewModel
-            {
-                Title = Title,
-                Description = Description.Split(',').ToList(), // Convert the comma-separated string back to a list
-                DueDate = DateTime.ParseExact(DueDate, "dd/MM/yyyy", null),
-                Priority = Priority,
-                Status = status
-            };
 
-            return View();
+            return subtasks;
         }
+
 
 
     }

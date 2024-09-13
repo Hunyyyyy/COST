@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
-@model List<COTS1.Models.TaskViewModel>
+@model IEnumerable<COTS1.Models.SaveTasksModel>
+
+
 <style>
     .truncate {
         white-space: nowrap;
@@ -14,14 +16,15 @@
     }
 </style>
 
-<div class="container mt-5" style="margin-left: 230px; margin-top: 60px;">
+<div class="container" style="margin-left: 230px; margin-top: 60px;">
+    <!-- Kiểm tra thông báo lỗi -->
+ 
     <h2>Danh sách nhiệm vụ</h2>
     <table class="table table-dark table-hover">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Tên dự án</th>
-                <th>Người gửi</th>
                 <th>Ngày gửi</th>
                 <th>Ngày hết hạn</th>
                 <th>Ưu tiên</th>
@@ -35,13 +38,12 @@
             {
                 <tr data-id="@task.TaskId" class="clickable-row" style="cursor:pointer">
                     <td class="taskid">@task.TaskId</td>
-                    <td class="truncate">@task.Title</td>
-                    <td class="truncate">@task.Sender</td>
-                    <td>@task.SentDay</td>
+                    <td class="truncate">@task.Title</td>                 
+                    <td>@task.CreatedAt</td>
                     <td>@task.DueDate.ToShortDateString()</td>
                     <td>@task.Priority</td>
-                    <td>@task.Recipients</td>
-                    <td class="truncate">@task.Notes</td>
+                    <td>@task.AssignedTo</td>
+                    <td class="truncate">@task.Note</td>
                     <td>@task.Status</td>
                 </tr>
             }

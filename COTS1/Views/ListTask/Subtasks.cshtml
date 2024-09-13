@@ -9,21 +9,52 @@
     }
 </style>
 @model IEnumerable<COTS1.Models.SubtaskViewModel>
+<div class="container" style="margin-left: 230px; margin-top: 70px;">
+    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-bottom:15px;">Thêm thành viên</button>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
-<div class="row row-cols-1 row-cols-md-3 g-4" style="margin-left: 230px; margin-top: 60px;">
-    @foreach (var task in Model)
-    {
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@task.Title</h5>
-                    <p class="card-text">@task.Description</p>
-                    <p class="card-text"><small class="text-muted">Trạng thái: @task.Status</small></p>
-                </div>
-                <div class="card-footer text-end">
-                    <button class="btn btn-primary" data-taskid="@task.SubtaskId">Nhận việc</button>
+        @foreach (var task in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.Title</h5>
+                        <p class="card-text">@task.Description</p>
+                        <p class="card-text"><small class="text-muted">Trạng thái: @task.Status</small></p>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary" data-taskid="@task.SubtaskId">Nhận việc</button>
+                    </div>
                 </div>
             </div>
+        }
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm...</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form>
+            <!-- Modal body -->
+            <div class="modal-body">               
+                <div class="mb-3">
+                    <label for="title" class="form-label">Nhập Gmail của người bạn muốn thêm</label>
+                        <input type="text" class="form-control" id="GmailGroup" name="gmail" required>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                <button asp-action="AddMember" asp-controller="ListTask" type="submit" class="btn btn-primary" id="addGroup">Thêm</button>
+            </div>
+            </form>
         </div>
-    }
+    </div>
 </div>

@@ -21,7 +21,7 @@ public partial class Subtask
 
     public virtual User? AssignedToNavigation { get; set; }
 
-    public virtual SaveTasks? Task { get; set; }
+    public virtual SaveTask? Task { get; set; }
 
     public virtual ICollection<TaskProgress> TaskProgresses { get; set; } = new List<TaskProgress>();
 }

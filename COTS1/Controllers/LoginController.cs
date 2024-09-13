@@ -99,7 +99,7 @@ namespace COTS1.Controllers
 			}
 
 			// Băm mật khẩu
-			string salt;
+	
 			string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
             // Tạo đối tượng người dùng

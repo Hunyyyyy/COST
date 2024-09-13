@@ -3,6 +3,7 @@
     ViewData["Title"] = "Tạo Nhiệm Vụ";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
+@model List<COTS1.Data.Project>
 <style>
     textarea {
         width: 100%;
@@ -43,9 +44,15 @@
 }
 
 <div class="container mt-5" style="margin-left: 230px; margin-top: 70px; padding:50px 40px">
-    <h2 class="mb-4">Tạo Nhiệm Vụ Mới</h2>
+    @foreach(var item in Model)
+    {
+        <h2 class="mb-4">Tạo Nhiệm Vụ Mới cho @item.ProjectName </h2>
+         
+    }
+   
 
     <form method="post">
+        <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
         <div class="mb-3">
             <label for="from" class="form-label">From</label>
             <input type="text" class="form-control" id="from" name="from" value="@ViewBag.UserEmail" readonly required />
@@ -71,8 +78,8 @@
             <input type="text" class="form-control" id="SuptaskInput" placeholder="Nhập công việc phụ (Nếu có)">
             <button type="button" class="btn btn-info" style="margin-top:20px;" id="addSubTaskBtn">Add Công Việc Phụ</button>
 
-            <textarea id="Note" class="editable-textarea"  placeholder="Ghi chú"></textarea>
-            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addNoteBtn">Add Ghi Chú</button>
+            <textarea id="Note" name="Note" class="editable-textarea"  placeholder="Ghi chú"></textarea>
+            
         </div>
 
         <div class="mb-3">
@@ -95,13 +102,13 @@
             </select>
         </div>
 
-        <div class="mb-3">
+       @*  <div class="mb-3">
             <label for="Recipients" class="form-label">Người nhận</label>
             <input type="email" class="form-control" id="Recipients" name="Recipients" placeholder="Nhập email người nhận, ngăn cách bằng dấu phẩy" required>
-        </div>
-
+        </div> *@
+       
         <!-- Nút Create tasks để lưu tất cả -->
-        <button asp-action="SendEmailTasks" asp-controller="Tasks" type="submit" class="btn btn-primary">Tạo Nhiệm Vụ</button>
+        <button asp-action="SaveTask" asp-controller="Tasks" type="submit" class="btn btn-primary" >Tạo Nhiệm Vụ</button>
     </form>
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
