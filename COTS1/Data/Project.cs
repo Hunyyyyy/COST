@@ -23,6 +23,8 @@ public partial class Project
 
     public int? CreatedBy { get; set; }
 
+    public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
+
     public virtual User? CreatedByNavigation { get; set; }
 
     public virtual User? Manager { get; set; }
@@ -38,4 +40,6 @@ public partial class Project
     public virtual ICollection<SaveTask> SaveTasks { get; set; } = new List<SaveTask>();
 
     public virtual ICollection<SentTasksList> SentTasksLists { get; set; } = new List<SentTasksList>();
+
+    public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 }

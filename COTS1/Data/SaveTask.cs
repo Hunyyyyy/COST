@@ -27,6 +27,8 @@ public partial class SaveTask
 
     public int ProjectId { get; set; }
 
+    public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
+
     public virtual User? AssignedToNavigation { get; set; }
 
     public virtual User? CreatedByNavigation { get; set; }

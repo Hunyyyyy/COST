@@ -19,6 +19,10 @@ public partial class User
 
     public string? PasswordSalt { get; set; }
 
+    public virtual ICollection<AssignedSubtask> AssignedSubtaskAssignedToNavigations { get; set; } = new List<AssignedSubtask>();
+
+    public virtual ICollection<AssignedSubtask> AssignedSubtaskMembers { get; set; } = new List<AssignedSubtask>();
+
     public virtual ICollection<GroupMember> GroupMembers { get; set; } = new List<GroupMember>();
 
     public virtual ICollection<Group> Groups { get; set; } = new List<Group>();

@@ -15,6 +15,8 @@ public partial class TestNhiemVuContext : DbContext
     {
     }
 
+    public virtual DbSet<AssignedSubtask> AssignedSubtasks { get; set; }
+
     public virtual DbSet<Group> Groups { get; set; }
 
     public virtual DbSet<GroupMember> GroupMembers { get; set; }
@@ -49,6 +51,42 @@ public partial class TestNhiemVuContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AssignedSubtask>(entity =>
+        {
+            entity.HasKey(e => e.AssignedSubtaskId).HasName("PK__Assigned__FEE319FFB3D0CBAE");
+
+            entity.Property(e => e.AssignedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValue("Chua nh?n");
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+
+            entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.AssignedSubtaskAssignedToNavigations)
+                .HasForeignKey(d => d.AssignedTo)
+                .HasConstraintName("FK__AssignedS__Assig__08B54D69");
+
+            entity.HasOne(d => d.Member).WithMany(p => p.AssignedSubtaskMembers)
+                .HasForeignKey(d => d.MemberId)
+                .HasConstraintName("FK__AssignedS__Membe__0D7A0286");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.AssignedSubtasks)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("FK__AssignedS__Proje__0C85DE4D");
+
+            entity.HasOne(d => d.Subtask).WithMany(p => p.AssignedSubtasks)
+                .HasForeignKey(d => d.SubtaskId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__AssignedS__Subta__07C12930");
+
+            entity.HasOne(d => d.Task).WithMany(p => p.AssignedSubtasks)
+                .HasForeignKey(d => d.TaskId)
+                .HasConstraintName("FK__AssignedS__TaskI__0F624AF8");
+        });
+
         modelBuilder.Entity<Group>(entity =>
         {
             entity.HasKey(e => e.GroupId).HasName("PK__Groups__149AF36A82CC9CBB");
@@ -227,6 +265,7 @@ public partial class TestNhiemVuContext : DbContext
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.ProjectId).HasColumnName("ProjectID");
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasDefaultValue("Chua nh?n");
@@ -235,6 +274,10 @@ public partial class TestNhiemVuContext : DbContext
             entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.Subtasks)
                 .HasForeignKey(d => d.AssignedTo)
                 .HasConstraintName("FK__Subtasks__Assign__32E0915F");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.Subtasks)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("FK__Subtasks__Projec__0E6E26BF");
 
             entity.HasOne(d => d.Task).WithMany(p => p.Subtasks)
                 .HasForeignKey(d => d.TaskId)

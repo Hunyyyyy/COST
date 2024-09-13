@@ -19,7 +19,13 @@ public partial class Subtask
 
     public DateTime? CreatedAt { get; set; }
 
+    public int? ProjectId { get; set; }
+
+    public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
+
     public virtual User? AssignedToNavigation { get; set; }
+
+    public virtual Project? Project { get; set; }
 
     public virtual SaveTask? Task { get; set; }
 

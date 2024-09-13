@@ -59,6 +59,7 @@ namespace COTS1.Controllers
 
             if (ModelState.IsValid)
             {
+                // Thêm nhiệm vụ chính vào bảng SentTasksLists
                 var task = new SentTasksList
                 {
                     ProjectId = ProjectId,
@@ -75,6 +76,7 @@ namespace COTS1.Controllers
                 _dbContext.SentTasksLists.Add(task);
                 await _dbContext.SaveChangesAsync();
 
+                // Thêm nhiệm vụ chính vào bảng SaveTasks
                 var saveTask = new SaveTask
                 {
                     ProjectId = ProjectId,
@@ -91,12 +93,36 @@ namespace COTS1.Controllers
                 _dbContext.SaveTasks.Add(saveTask);
                 await _dbContext.SaveChangesAsync();
 
+                // Lấy TaskId của nhiệm vụ vừa thêm vào bảng SaveTasks
+                var taskId = saveTask.TaskId;
+
+                // Tách các công việc phụ từ mô tả nhiệm vụ chính
+                var subtasks = SplitTasks(saveTask.Description);
+
+                // Lưu các công việc phụ vào cơ sở dữ liệu
+                foreach (var subtask in subtasks)
+                {
+                    _dbContext.Subtasks.Add(new Subtask
+                    {
+                        TaskId = taskId, // Sử dụng TaskId vừa lấy
+                        ProjectId=ProjectId,
+                        Title = subtask.Title,
+                        Description = subtask.Description,
+                        Status = subtask.Status,
+                        AssignedTo = null, // Cập nhật nếu cần thiết
+                        CreatedAt = DateTime.Now
+                    });
+                }
+
+                await _dbContext.SaveChangesAsync();
+
                 TempData["SuccessMessage"] = "Nhiệm vụ đã được lưu thành công!";
                 return RedirectToAction("CreateTaskProject", "ProjectManager", new { projectId = ProjectId });
             }
 
             return View("CreateTasks", "Tasks");
         }
+
 
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {

@@ -60,9 +60,12 @@ namespace COTS1.Controllers
 
         public async Task<IActionResult> Subtasks(int taskID)
         {
+            // Lấy danh sách công việc phụ
             var subtasks = await db.Subtasks
                 .Where(st => st.TaskId == taskID)
                 .ToListAsync();
+
+            // Chuyển đổi công việc phụ thành ViewModel
             var subtaskViewModels = subtasks.Select(st => new SubtaskViewModel
             {
                 SubtaskId = st.SubtaskId,
@@ -71,41 +74,72 @@ namespace COTS1.Controllers
                 Status = st.Status
             }).ToList();
 
-            // Trả về view và truyền danh sách công việc con
-            return View(subtaskViewModels);
-        }
-        public async Task<IActionResult> AddMember(string gmail)
-        {
-            // Tìm thành viên theo email
-            var addMember = await db.Users
-                .Where(users => users.Email == gmail)
-                .Select(user => new
-                {
-                    user.UserId,
-                    user.FullName,
-                    user.Email
-                }).FirstOrDefaultAsync();
+            // Lấy danh sách công việc phụ đã được nhận
+            var assignedSubtasks = await db.AssignedSubtasks
+                .Where(s => s.TaskId == taskID && s.Status == "Đang thực hiện")
+                .Select(s => s.SubtaskId)
+                .Where(id => id.HasValue) // Loại bỏ giá trị null
+                .Select(id => id.Value) // Lấy giá trị không null
+                .ToListAsync();
 
-            if (addMember == null)
+            // Tạo ViewModel cho view
+            var viewModel = new Assigned_And_Suptask_Model
             {
-               
-                TempData["ErrorMessage"] = "Không tìm thấy thành viên với email này.";
-                return RedirectToAction("ErrorPage"); // Redirect về trang lỗi hoặc thông báo không tìm thấy
-            }
-            /*var memberToAdd = new GroupMember
-            {
-                UserId = addMember.UserId,
-                FullName = addMember.FullName,
-                Email = addMember.Email,
-                // Thêm các thuộc tính khác nếu cần
+                TaskId = taskID,
+                Subtasks = subtaskViewModels,
+                AssignedSubtaskIds = assignedSubtasks
             };
 
-            // Thêm thành viên vào cơ sở dữ liệu
-            db.GroupMembers.Add(memberToAdd);
-            await db.SaveChangesAsync();*/
+            // Truyền ViewModel vào view
+            ViewBag.taskId = taskID;
+            return View(viewModel);
+        }
 
-            // Chuyển dữ liệu đến hành động "Subtasks"
-            return RedirectToAction("Subtasks", new { memberId = addMember.UserId });
+
+
+
+
+        public async Task<IActionResult> AcceptSubtask(int subtaskId, int taskID)
+        {
+            // Lấy ID người dùng hiện tại từ Session
+            var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+       
+            if (currentUserId == null)
+            {
+                TempData["ErrorMessage"] = "Bạn cần đăng nhập để nhận công việc.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Tìm công việc phụ theo subtaskId
+            var subtask = await db.Subtasks.FindAsync(subtaskId);
+
+            if (subtask == null)
+            {
+                TempData["ErrorMessage"] = "Công việc phụ không tồn tại.";
+                return RedirectToAction("Index", "Home");
+            }
+
+          
+            var assignedSubtask = new AssignedSubtask
+            {
+                SubtaskId = subtaskId,
+                TaskId = taskID,
+                ProjectId = subtask.ProjectId, 
+                MemberId = currentUserId,
+                Status = "Đang thực hiện",
+                AssignedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            db.AssignedSubtasks.Add(assignedSubtask);       
+            subtask.Status = "Đang thực hiện";
+            subtask.AssignedTo = currentUserId; 
+            db.Subtasks.Update(subtask);
+            await db.SaveChangesAsync();
+          
+
+            TempData["SuccessMessageFromAcceptSubtask"] = "Công việc phụ đã được nhận thành công!";
+            return RedirectToAction("Subtasks", "ListTask", new { taskID = taskID }); 
         }
 
 

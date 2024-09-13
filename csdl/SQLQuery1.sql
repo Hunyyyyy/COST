@@ -5,6 +5,7 @@
     Role NVARCHAR(50) NOT NULL, -- Ví dụ: 'Manager', 'TeamLeader', 'Member'
     CreatedAt DATETIME DEFAULT GETDATE()
 );
+--bo UserLogin
 CREATE TABLE UserLogin (
     UserId INT PRIMARY KEY FOREIGN KEY REFERENCES Users(UserId),
     PasswordHash NVARCHAR(256) NOT NULL,
@@ -12,7 +13,7 @@ CREATE TABLE UserLogin (
     LastLoginDate DATETIME,
     FailedLoginAttempts INT DEFAULT 0
 );
-
+--danh cho các thành viên xem nhiệm vụ trong (Chức năng danh sách nhiệm vụ)
 CREATE TABLE SaveTasks (
     TaskId INT PRIMARY KEY IDENTITY(1,1),
     Title NVARCHAR(200) NOT NULL,
@@ -24,6 +25,7 @@ CREATE TABLE SaveTasks (
     CreatedBy INT FOREIGN KEY REFERENCES Users(UserId), -- Người tạo nhiệm vụ (quản lý)
     CreatedAt DATETIME DEFAULT GETDATE()
 );
+--danh cho người tạo dự án xem nhiệm vụ trong (Chức năng Tọa và quản lý nhiệm vụ)
 CREATE TABLE SentTasksList (
     TaskId INT PRIMARY KEY IDENTITY(1,1),
     Title NVARCHAR(200) NOT NULL,
@@ -34,6 +36,7 @@ CREATE TABLE SentTasksList (
     CreatedBy INT FOREIGN KEY REFERENCES Users(UserId), -- Người tạo nhiệm vụ (quản lý)
     CreatedAt DATETIME DEFAULT GETDATE()
 );
+--các công việc con trong Chức năng danh sách nhiệm vụ ->bấm vào từng nhiệm vụ
 CREATE TABLE Subtasks (
     SubtaskId INT PRIMARY KEY IDENTITY(1,1),
     TaskId INT FOREIGN KEY REFERENCES Tasks(TaskId) ON DELETE CASCADE,
@@ -52,7 +55,7 @@ WHERE TaskId NOT IN (SELECT TaskId FROM SaveTasks);
 ALTER TABLE SaveTasks
 ADD ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId);
 
-
+--chưa sửa dụng
 CREATE TABLE TaskProgress (
     ProgressId INT PRIMARY KEY IDENTITY(1,1),
     SubtaskId INT FOREIGN KEY REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE,
@@ -61,6 +64,7 @@ CREATE TABLE TaskProgress (
     ProgressDate DATETIME DEFAULT GETDATE(),
     Notes NVARCHAR(MAX) -- Ghi chú, nếu có
 );
+--chưa sửa dụng
 CREATE TABLE TaskNotifications (
     NotificationId INT PRIMARY KEY IDENTITY(1,1),
     UserId INT FOREIGN KEY REFERENCES Users(UserId), -- Người nhận thông báo
@@ -69,18 +73,20 @@ CREATE TABLE TaskNotifications (
     IsRead BIT DEFAULT 0, -- 0: chưa đọc, 1: đã đọc
     CreatedAt DATETIME DEFAULT GETDATE()
 );
+--chưa sửa dụng
 CREATE TABLE Groups (
     GroupId INT PRIMARY KEY IDENTITY(1,1),
     GroupName NVARCHAR(100) NOT NULL,
     CreatedBy INT FOREIGN KEY REFERENCES Users(UserId),
     CreatedAt DATETIME DEFAULT GETDATE()
 );
-
+--chưa sửa dụng
 CREATE TABLE GroupMembers (
     GroupMemberId INT PRIMARY KEY IDENTITY(1,1),
     GroupId INT FOREIGN KEY REFERENCES Groups(GroupId) ON DELETE CASCADE,
     UserId INT FOREIGN KEY REFERENCES Users(UserId)
 );
+--danh sách dự án trong tạo và quản lý dự án
 CREATE TABLE Projects (
     ProjectId INT PRIMARY KEY IDENTITY(1,1),
     ProjectName NVARCHAR(200) NOT NULL,
@@ -90,17 +96,20 @@ CREATE TABLE Projects (
     Status NVARCHAR(50) DEFAULT 'Chưa bắt đầu', -- Ví dụ: 'Chưa bắt đầu', 'Đang thực hiện', 'Hoàn thành'
     ManagerId INT FOREIGN KEY REFERENCES Users(UserId), -- Người quản lý dự án
     CreatedAt DATETIME DEFAULT GETDATE()
-);
+); 
+--danh sách thành viên trong dự án trong tạo và quản lý dự án ->chọn dự án->cài đặt dự án
 CREATE TABLE ProjectMembers (
     ProjectMemberId INT PRIMARY KEY IDENTITY(1,1),
     ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId) ON DELETE CASCADE,
     UserId INT FOREIGN KEY REFERENCES Users(UserId)
 );
+--tạo nhiệm vụ trong dự án trong tạo và quản lý dự án ->chọn dự án->tạo nhiệm vụ
 CREATE TABLE ProjectTasks (
     ProjectTaskId INT PRIMARY KEY IDENTITY(1,1),
     ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId) ON DELETE CASCADE,
     TaskId INT FOREIGN KEY REFERENCES SaveTasks(TaskId) ON DELETE CASCADE
 );
+--chưa
 CREATE TABLE ProjectNotifications (
     NotificationId INT PRIMARY KEY IDENTITY(1,1),
     ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId) ON DELETE CASCADE,
@@ -109,6 +118,7 @@ CREATE TABLE ProjectNotifications (
     IsRead BIT DEFAULT 0, -- 0: chưa đọc, 1: đã đọc
     CreatedAt DATETIME DEFAULT GETDATE()
 );
+--bang nối giữa bảng Users và bảng project để xét role
 CREATE TABLE ProjectUsers (
     ProjectUserId INT IDENTITY(1,1) PRIMARY KEY,
     ProjectId INT NOT NULL,
@@ -117,11 +127,26 @@ CREATE TABLE ProjectUsers (
     FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId),
     FOREIGN KEY (UserId) REFERENCES Users(UserId)
 );
+--bảng các thành viên nhận nhiệm vụ trong danh sách nhiệm vụ->bấm vào nhiệm vụ->nhận nhiệm vụ
+CREATE TABLE AssignedSubtasks (
+    AssignedSubtaskId INT PRIMARY KEY IDENTITY(1,1),
+    SubtaskId INT FOREIGN KEY REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE, -- Liên kết với bảng Subtasks
+    AssignedTo INT FOREIGN KEY REFERENCES Users(UserId), -- Người nhận công việc phụ
+    Status NVARCHAR(50) DEFAULT 'Chưa nhận', -- Trạng thái công việc phụ (ví dụ: 'Chưa nhận', 'Đang thực hiện', 'Hoàn thành')
+    AssignedAt DATETIME DEFAULT GETDATE(), -- Thời điểm giao công việc
+    UpdatedAt DATETIME DEFAULT GETDATE() -- Thời điểm cập nhật công việc
+);
 
-ALTER TABLE SentTasksList
+ALTER TABLE Subtasks
 ADD ProjectID INT FOREIGN KEY REFERENCES Projects(ProjectID);
 ADD ProjectID INT;
+ALTER TABLE Subtasks
+DROP CONSTRAINT IF EXISTS FK_Subtasks_Tasks; -- Xóa ràng buộc khóa ngoại cũ nếu tồn tại
 
+
+ALTER TABLE AssignedSubtasks
+ADD  TaskId INT FOREIGN KEY REFERENCES SaveTasks(TaskId),
+FOREIGN KEY (TaskId) REFERENCES SaveTasks(TaskId) ON DELETE CASCADE;
 
 ALTER TABLE SentTasksList
 ADD Note NVARCHAR(256);
@@ -130,14 +155,16 @@ DROP TABLE Projects;
 
     -- Tuỳ chọn, nếu bạn sử dụng salt
 	DELETE FROM SaveTasks ;
-	DELETE FROM Projects ;
+	DELETE FROM Subtasks ;
 		DELETE FROM ProjectUsers ;
 			DELETE FROM SentTasksList ;
 	select * from Projects
 
-	select * from SaveTasks
-		select * from Projects
+	select * from Users
+	select * from AssignedSubtasks
 		select * from ProjectUsers
-		select * from SentTasksList
+		select * from Subtasks
+		select * from SaveTasks
+				select * from Subtasks
 EXEC sp_rename 'Tasks', 'SaveTasks';
 
