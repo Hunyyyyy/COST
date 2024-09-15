@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Subtasks";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model IEnumerable<ProjectModel>
+
+<div class="container mt-4" style="margin-left: 230px; margin-top: 70px;">
+    <h2>Danh sách dự án</h2>
+    <div class="row">
+        @foreach (var project in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.ProjectName</h5>
+                        <p class="card-text"><strong>Ngày Bắt Đầu:</strong> @project.StartDate.ToShortDateString()</p>
+                        <p class="card-text"><strong>Ngày Kết Thúc:</strong> @project.EndDate?.ToShortDateString()</p>
+                        <p class="card-text">
+                            <strong>Tiến Trình:</strong>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width:@project.ProjectProgress%;"></div>
+                            </div>
+                        </p>
+                        <form asp-action="ProjectDetails" asp-controller="ListTask" method="get">
+                            <input type="hidden" name="projectId" value="@project.ProjectId" />
+                            <button type="submit" class="btn btn-info">Xem Chi Tiết</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -27,6 +27,8 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<ProjectNotification> ProjectNotifications { get; set; }
 
+    public virtual DbSet<ProjectProgress> ProjectProgresses { get; set; }
+
     public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
 
     public virtual DbSet<ProjectUser> ProjectUsers { get; set; }
@@ -35,7 +37,11 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<SentTasksList> SentTasksLists { get; set; }
 
+    public virtual DbSet<SubmittedSubtask> SubmittedSubtasks { get; set; }
+
     public virtual DbSet<Subtask> Subtasks { get; set; }
+
+    public virtual DbSet<SubtaskProgress> SubtaskProgresses { get; set; }
 
     public virtual DbSet<TaskNotification> TaskNotifications { get; set; }
 
@@ -123,6 +129,7 @@ public partial class TestNhiemVuContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.EndDate).HasColumnType("datetime");
+            entity.Property(e => e.Progress).HasDefaultValue(0);
             entity.Property(e => e.ProjectName).HasMaxLength(200);
             entity.Property(e => e.StartDate).HasColumnType("datetime");
             entity.Property(e => e.Status)
@@ -171,6 +178,23 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK__ProjectNo__UserI__68487DD7");
         });
 
+        modelBuilder.Entity<ProjectProgress>(entity =>
+        {
+            entity.HasKey(e => e.ProjectProgressId).HasName("PK__ProjectP__9766AC67EEAB6190");
+
+            entity.ToTable("ProjectProgress");
+
+            entity.Property(e => e.LastUpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.ProjectProgresses)
+                .HasForeignKey(d => d.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__ProjectPr__Proje__25518C17");
+        });
+
         modelBuilder.Entity<ProjectTask>(entity =>
         {
             entity.HasKey(e => e.ProjectTaskId).HasName("PK__ProjectT__71C01D04BB1FAB7A");
@@ -213,6 +237,7 @@ public partial class TestNhiemVuContext : DbContext
             entity.Property(e => e.DueDate).HasColumnType("datetime");
             entity.Property(e => e.Note).HasMaxLength(256);
             entity.Property(e => e.Priority).HasMaxLength(50);
+            entity.Property(e => e.Progress).HasDefaultValue(0);
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasDefaultValue("Ðang ch?");
@@ -258,6 +283,35 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK__SentTasks__Proje__73BA3083");
         });
 
+        modelBuilder.Entity<SubmittedSubtask>(entity =>
+        {
+            entity.HasKey(e => e.SubmissionId).HasName("PK__Submitte__449EE125BAE02058");
+
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValue("Ðang xem xét");
+            entity.Property(e => e.SubmittedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.SubmittedSubtasks)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("FK__Submitted__Proje__2DE6D218");
+
+            entity.HasOne(d => d.Subtask).WithMany(p => p.SubmittedSubtasks)
+                .HasForeignKey(d => d.SubtaskId)
+                .HasConstraintName("FK__Submitted__Subta__2BFE89A6");
+
+            entity.HasOne(d => d.Task).WithMany(p => p.SubmittedSubtasks)
+                .HasForeignKey(d => d.TaskId)
+                .HasConstraintName("FK__Submitted__TaskI__2CF2ADDF");
+
+            entity.HasOne(d => d.User).WithMany(p => p.SubmittedSubtasks)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Submitted__UserI__2EDAF651");
+        });
+
         modelBuilder.Entity<Subtask>(entity =>
         {
             entity.HasKey(e => e.SubtaskId).HasName("PK__Subtasks__E0871796E0EC8E71");
@@ -284,6 +338,27 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK_Subtasks_SaveTasks");
         });
 
+        modelBuilder.Entity<SubtaskProgress>(entity =>
+        {
+            entity.HasKey(e => e.SubtaskProgressId).HasName("PK__SubtaskP__F29F4FF86A7EACF0");
+
+            entity.ToTable("SubtaskProgress");
+
+            entity.Property(e => e.LastUpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
+
+            entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.SubtaskProgresses)
+                .HasForeignKey(d => d.AssignedTo)
+                .HasConstraintName("FK__SubtaskPr__Assig__19DFD96B");
+
+            entity.HasOne(d => d.Subtask).WithMany(p => p.SubtaskProgresses)
+                .HasForeignKey(d => d.SubtaskId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__SubtaskPr__Subta__18EBB532");
+        });
+
         modelBuilder.Entity<TaskNotification>(entity =>
         {
             entity.HasKey(e => e.NotificationId).HasName("PK__TaskNoti__20CF2E12E7663FC3");
@@ -304,23 +379,19 @@ public partial class TestNhiemVuContext : DbContext
 
         modelBuilder.Entity<TaskProgress>(entity =>
         {
-            entity.HasKey(e => e.ProgressId).HasName("PK__TaskProg__BAE29CA539F67C71");
+            entity.HasKey(e => e.TaskProgressId).HasName("PK__TaskProg__C944EC69EA1A9565");
 
             entity.ToTable("TaskProgress");
 
-            entity.Property(e => e.ProgressDate)
+            entity.Property(e => e.LastUpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
 
-            entity.HasOne(d => d.Subtask).WithMany(p => p.TaskProgresses)
-                .HasForeignKey(d => d.SubtaskId)
+            entity.HasOne(d => d.Task).WithMany(p => p.TaskProgresses)
+                .HasForeignKey(d => d.TaskId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__TaskProgr__Subta__36B12243");
-
-            entity.HasOne(d => d.User).WithMany(p => p.TaskProgresses)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__TaskProgr__UserI__37A5467C");
+                .HasConstraintName("FK__TaskProgr__TaskI__208CD6FA");
         });
 
         modelBuilder.Entity<User>(entity =>

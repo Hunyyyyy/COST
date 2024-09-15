@@ -43,11 +43,13 @@ public partial class User
 
     public virtual ICollection<SentTasksList> SentTasksLists { get; set; } = new List<SentTasksList>();
 
+    public virtual ICollection<SubmittedSubtask> SubmittedSubtasks { get; set; } = new List<SubmittedSubtask>();
+
+    public virtual ICollection<SubtaskProgress> SubtaskProgresses { get; set; } = new List<SubtaskProgress>();
+
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 
     public virtual ICollection<TaskNotification> TaskNotifications { get; set; } = new List<TaskNotification>();
-
-    public virtual ICollection<TaskProgress> TaskProgresses { get; set; } = new List<TaskProgress>();
 
     public virtual UserLogin? UserLogin { get; set; }
 }

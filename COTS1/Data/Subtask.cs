@@ -27,7 +27,9 @@ public partial class Subtask
 
     public virtual Project? Project { get; set; }
 
-    public virtual SaveTask? Task { get; set; }
+    public virtual ICollection<SubmittedSubtask> SubmittedSubtasks { get; set; } = new List<SubmittedSubtask>();
 
-    public virtual ICollection<TaskProgress> TaskProgresses { get; set; } = new List<TaskProgress>();
+    public virtual ICollection<SubtaskProgress> SubtaskProgresses { get; set; } = new List<SubtaskProgress>();
+
+    public virtual SaveTask? Task { get; set; }
 }

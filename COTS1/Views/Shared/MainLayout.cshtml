@@ -61,35 +61,32 @@
                         </a> *@
                         <a asp-action="Index" asp-controller="ListTask" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Danh Sách Nhiệm Vụ
+                            Nhận Nhiệm Vụ
                         </a>
                         <div class="sb-sidenav-menu-heading">Gửi và Nhận Thông Báo Qua Email</div>
                         <a asp-action="SendNotification" asp-controller="Home" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Gửi Thông Báo
                         </a>
-                        <a asp-action="TaiKhoan" asp-controller="NhanVien" class="nav-link">
+                        <a asp-action="ListRecivedTask" asp-controller="ListTask" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Nhận nhiệm vụ
+                            Danh sách nhiệm vụ đã nhận
                         </a>
                         <a asp-action="Mail" asp-controller="Home" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Xem Mail
+                            Xem Mail<span style="margin-left:10px;" class="badge bg-danger">@ViewBag.SumEmail</span>
                         </a>
                         <div class="sb-sidenav-menu-heading">Quản Lý Dự Án</div>
                         <a asp-action="Index" asp-controller="ProjectManager" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Tạo và Quản Lý Dự Án
                         </a>
-                        <a asp-action="TaiKhoan" asp-controller="NhanVien" class="nav-link">
+                        <a asp-action="TrackProgress" asp-controller="ListTask" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Theo Dõi Tiến Độ
                         </a>
                         <div class="sb-sidenav-menu-heading">Lịch Trình và Nhắc Nhở</div>
-                        <a asp-action="Index" asp-controller="NhanVien" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Lịch Trình
-                        </a>
+                      
                         <a asp-action="TaiKhoan" asp-controller="NhanVien" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Nhắc Nhở

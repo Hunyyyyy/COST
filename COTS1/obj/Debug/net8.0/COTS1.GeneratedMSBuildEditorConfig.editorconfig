@@ -70,8 +70,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/LT_Web/WebASP/COTS1/COTS1/Views/ListTask/ListRecivedTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcTGlzdFJlY2l2ZWRUYXNrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/LT_Web/WebASP/COTS1/COTS1/Views/ListTask/ProjectDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcUHJvamVjdERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/LT_Web/WebASP/COTS1/COTS1/Views/ListTask/Subtasks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcU3VidGFza3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/LT_Web/WebASP/COTS1/COTS1/Views/ListTask/TrackProgress.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcVHJhY2tQcm9ncmVzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/LT_Web/WebASP/COTS1/COTS1/Views/Login/Login.cshtml]

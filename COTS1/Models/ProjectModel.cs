@@ -22,5 +22,6 @@ namespace COTS1.Models
 
         public virtual User? Manager { get; set; }
         public List<ProjectUserModel> Users { get; set; }
+        public int ProjectProgress { get; set; }
     }
 }

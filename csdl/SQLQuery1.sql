@@ -24,6 +24,7 @@ CREATE TABLE SaveTasks (
     AssignedTo INT FOREIGN KEY REFERENCES Users(UserId), -- Người được giao nhiệm vụ (nhóm trưởng)
     CreatedBy INT FOREIGN KEY REFERENCES Users(UserId), -- Người tạo nhiệm vụ (quản lý)
     CreatedAt DATETIME DEFAULT GETDATE()
+	ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId);
 );
 --danh cho người tạo dự án xem nhiệm vụ trong (Chức năng Tọa và quản lý nhiệm vụ)
 CREATE TABLE SentTasksList (
@@ -55,15 +56,7 @@ WHERE TaskId NOT IN (SELECT TaskId FROM SaveTasks);
 ALTER TABLE SaveTasks
 ADD ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId);
 
---chưa sửa dụng
-CREATE TABLE TaskProgress (
-    ProgressId INT PRIMARY KEY IDENTITY(1,1),
-    SubtaskId INT FOREIGN KEY REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE,
-    UserId INT FOREIGN KEY REFERENCES Users(UserId), -- Người cập nhật tiến trình
-    Status NVARCHAR(50), -- Ví dụ: 'Đang thực hiện', 'Hoàn thành'
-    ProgressDate DATETIME DEFAULT GETDATE(),
-    Notes NVARCHAR(MAX) -- Ghi chú, nếu có
-);
+
 --chưa sửa dụng
 CREATE TABLE TaskNotifications (
     NotificationId INT PRIMARY KEY IDENTITY(1,1),
@@ -136,6 +129,41 @@ CREATE TABLE AssignedSubtasks (
     AssignedAt DATETIME DEFAULT GETDATE(), -- Thời điểm giao công việc
     UpdatedAt DATETIME DEFAULT GETDATE() -- Thời điểm cập nhật công việc
 );
+CREATE TABLE SubtaskProgress (
+    SubtaskProgressId INT PRIMARY KEY IDENTITY(1,1),
+    SubtaskId INT FOREIGN KEY REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE,
+    AssignedTo INT FOREIGN KEY REFERENCES Users(UserId),
+    Progress DECIMAL(5, 2) NOT NULL DEFAULT 0, -- Tiến độ của công việc con (0.00 đến 100.00)
+    LastUpdatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE TaskProgress (
+    TaskProgressId INT PRIMARY KEY IDENTITY(1,1),
+    TaskId INT FOREIGN KEY REFERENCES SaveTasks(TaskId) ON DELETE CASCADE,
+    Progress DECIMAL(5, 2) NOT NULL DEFAULT 0, -- Tiến độ của nhiệm vụ chính
+    LastUpdatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE ProjectProgress (
+    ProjectProgressId INT PRIMARY KEY IDENTITY(1,1),
+    ProjectId INT FOREIGN KEY REFERENCES Projects(ProjectId) ON DELETE CASCADE,
+    Progress DECIMAL(5, 2) NOT NULL DEFAULT 0, -- Tiến độ của dự án
+    LastUpdatedAt DATETIME DEFAULT GETDATE()
+);
+CREATE TABLE SubmittedSubtasks (
+    SubmissionId INT PRIMARY KEY IDENTITY(1,1),
+    SubtaskId INT NOT NULL,
+    TaskId INT NOT NULL, -- ID của nhiệm vụ chứa công việc con
+    ProjectId INT NOT NULL, -- ID của dự án chứa nhiệm vụ
+    UserId INT NOT NULL,
+    SubmittedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    Status NVARCHAR(50) DEFAULT 'Đang xem xét',
+    Notes NVARCHAR(MAX),
+    FOREIGN KEY (SubtaskId) REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE,
+    FOREIGN KEY (TaskId) REFERENCES SaveTasks(TaskId) ON DELETE CASCADE,
+    FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE,
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+);
 
 ALTER TABLE Subtasks
 ADD ProjectID INT FOREIGN KEY REFERENCES Projects(ProjectID);
@@ -147,24 +175,30 @@ DROP CONSTRAINT IF EXISTS FK_Subtasks_Tasks; -- Xóa ràng buộc khóa ngoại 
 ALTER TABLE AssignedSubtasks
 ADD  TaskId INT FOREIGN KEY REFERENCES SaveTasks(TaskId),
 FOREIGN KEY (TaskId) REFERENCES SaveTasks(TaskId) ON DELETE CASCADE;
-
+ALTER TABLE SaveTasks
+ADD Progress INT DEFAULT 0;
+ALTER TABLE Projects
+ADD Progress INT DEFAULT 0;
 ALTER TABLE SentTasksList
 ADD Note NVARCHAR(256);
 Delete Tasks
-DROP TABLE Projects;
+DROP TABLE TaskProgress;
 
     -- Tuỳ chọn, nếu bạn sử dụng salt
 	DELETE FROM SaveTasks ;
 	DELETE FROM Subtasks ;
-		DELETE FROM ProjectUsers ;
+	DELETE FROM Subtasks ;
+	DELETE FROM SubmittedSubtasks ;
+		DELETE FROM AssignedSubtasks ;
 			DELETE FROM SentTasksList ;
-	select * from Projects
+	select * from SubtaskProgress
 
-	select * from Users
-	select * from AssignedSubtasks
-		select * from ProjectUsers
-		select * from Subtasks
+	select * from Projects
+	select * from TaskProgress
+		select * from SubmittedSubtasks
+		select * from ProjectProgress
 		select * from SaveTasks
-				select * from Subtasks
+				select * from SubtaskProgress
 EXEC sp_rename 'Tasks', 'SaveTasks';
+
 

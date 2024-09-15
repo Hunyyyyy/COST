@@ -72,6 +72,7 @@ namespace COTS1.Controllers
                 })
                 .ToListAsync();
             ViewBag.ProjectId = projectId;
+    
             return View(tasks);
         }
         public async Task<IActionResult> SettingProject(int? projectId)
@@ -224,7 +225,7 @@ namespace COTS1.Controllers
             }
         }
     
-        public async Task<IActionResult> SendEmailTasksProject()
+        public async Task<IActionResult> SendEmailTasksProject(int taskId)
         {
             var from = HttpContext.Session.GetString("UserEmail");
             var projectId = HttpContext.Session.GetInt32("projectId");
@@ -245,7 +246,7 @@ namespace COTS1.Controllers
 
             if (to == null || !to.Any()) // Nếu không có người dùng
             {
-                TempData["MessageSendMailFail"] = "Chưa có nhóm!";
+                TempData[$"MessageSendMailFail_{taskId}"] = "Chưa có nhóm!";
                 return RedirectToAction("CreateTaskProject", new { projectId });
             }
 
@@ -279,7 +280,7 @@ namespace COTS1.Controllers
                 );
             }
 
-            TempData["MessageSendMail"] = "Gửi Email thành công!";
+            TempData[$"MessageSendMail_{taskId}"] = "Gửi Email thành công!";
             return RedirectToAction("CreateTaskProject", new { projectId });
         }
 

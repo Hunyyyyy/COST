@@ -25,7 +25,9 @@ public partial class SaveTask
 
     public string? Note { get; set; }
 
-    public int ProjectId { get; set; }
+    public int? ProjectId { get; set; }
+
+    public int? Progress { get; set; }
 
     public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
 
@@ -37,7 +39,11 @@ public partial class SaveTask
 
     public virtual ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();
 
+    public virtual ICollection<SubmittedSubtask> SubmittedSubtasks { get; set; } = new List<SubmittedSubtask>();
+
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 
     public virtual ICollection<TaskNotification> TaskNotifications { get; set; } = new List<TaskNotification>();
+
+    public virtual ICollection<TaskProgress> TaskProgresses { get; set; } = new List<TaskProgress>();
 }

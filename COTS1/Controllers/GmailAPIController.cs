@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using COTS1.Models.EmailModel;
 using Microsoft.EntityFrameworkCore;
 using COTS1.Data;
+using Microsoft.CodeAnalysis;
 
 
 
@@ -138,6 +139,7 @@ namespace COTS1.Controllers
 
         public async Task<ActionResult> GetEmails()
         {
+            var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
             const int MaxResults = 10;
             var accessToken = HttpContext.Session.GetString("AccessToken");
             var refreshToken = HttpContext.Session.GetString("RefreshToken");
@@ -156,10 +158,37 @@ namespace COTS1.Controllers
                     return BadRequest("Access token is missing.");
                 }
             }
+        
 
-            var senders = new[] { "ngonhathuy501@gmail.com", "ngonhat501@gmail.com" };
+            if (currentUserId == null)
+            {
+                TempData["ErrorMessage"] = "Bạn cần đăng nhập để xem danh sách dự án.";
+                return RedirectToAction("Login", "Login");
+            }
+
+            // Lấy danh sách các ProjectId mà người dùng hiện tại đang tham gia
+            var userProjects = await _dbContext.ProjectUsers
+                .Where(pu => pu.UserId == currentUserId)
+                .Select(pu => pu.ProjectId)
+                .ToListAsync();
+
+            // Lấy danh sách email của tất cả người dùng trong các dự án đó
+            var emails = await _dbContext.ProjectUsers
+                .Where(pu => userProjects.Contains(pu.ProjectId)) // Tìm tất cả các ProjectId liên quan
+                .Join(_dbContext.Users,
+                      pu => pu.UserId,
+                      u => u.UserId,
+                      (pu, u) => new { u.Email })
+                .Select(x => x.Email)
+                .ToListAsync();
+
+            // Chuyển danh sách emails thành mảng senders
+            var senders = emails.ToArray();
+
+            // Tạo query để tìm email gửi và nhận dựa trên danh sách senders
             var inboxQuery = $"label:inbox ({string.Join(" OR ", senders.Select(s => $"from:{s}"))})";
             var sentQuery = $"label:sent ({string.Join(" OR ", senders.Select(s => $"to:{s}"))})";
+
 
             var inboxApiUrl = $"https://www.googleapis.com/gmail/v1/users/me/messages?q={Uri.EscapeDataString(inboxQuery)}";
             var sentApiUrl = $"https://www.googleapis.com/gmail/v1/users/me/messages?q={Uri.EscapeDataString(sentQuery)}";

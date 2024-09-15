@@ -30,9 +30,18 @@
                             {
                                 <button type="button" class="btn btn-outline-success " disabled>Đã nhận việc</button>
                             }
+
                             else
                             {
-                                <button asp-action="AcceptSubtask" asp-controller="ListTask" type="submit" class="btn btn-primary">Nhận việc</button>
+                                if (@ViewBag.userRole == "View")
+                                {
+                                    <button type="button" class="btn btn-outline-danger " disabled>bạn chỉ được xem</button>
+                                }
+                                else
+                                {
+                                    <button asp-action="AcceptSubtask" asp-controller="ListTask" type="submit" class="btn btn-primary">Nhận việc</button>
+
+                                }
                             }
                     
                     </div>

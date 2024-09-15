@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "ListRecivedSubtasks";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<style>
+    .card-footer {
+        text-align: right; /* Căn chỉnh nút "Nhận việc" sang bên phải */
+    }
+</style>
+@model RecivedTask_And_SubmittedSubtask_Model
+
+<div class="container" style="margin-left: 230px; margin-top: 70px;">
+
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%">40%</div>
+
+
+
+
+<div class="container" >
+    <h2>Công việc đã nhận</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var task in Model.ReceivedTasks)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.Title</h5>
+                        <p class="card-text">@task.Description</p>
+                        <p class="card-text"><small class="text-muted">Trạng thái: @task.Status</small></p>
+                    </div>
+                    <div class="card-footer text-end">
+                        <form asp-action="SubmitSubtask" asp-controller="ListTask" method="post">
+                            <input type="hidden" value="@task.SubtaskId" name="subtaskId" />
+                            <input type="hidden" value="@task.TaskId" name="taskId" />
+                            @if (task.IsSubmitted)
+                            {
+                                <button asp-action="SubmitSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-success">Cập nhật</button>
+                                <button asp-action="AcceptSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-danger">Hủy việc</button>
+                                <button type="button" class="btn btn-outline-success" disabled>Đã nộp</button>
+                            }
+                            else
+                            {
+                                    <button asp-action="AcceptSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-danger">Hủy việc</button>
+                                    <button asp-action="SubmitSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-success">Nộp việc</button>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+<!-- The Modal -->

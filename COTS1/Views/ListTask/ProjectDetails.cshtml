@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Subtasks";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model ProjectDetailsViewModel
+<div class="container " style="margin-left: 230px; margin-top: 70px;">
+    <h2>@Model.ProjectName</h2>
+    <div id="accordion">
+
+        <!-- Các Nhiệm Vụ -->
+        @if (Model.Tasks != null && Model.Tasks.Any())
+        {
+            @foreach (var task in Model.Tasks)
+            {
+                <div class="card mb-4">
+                    <div class="card-header" id="headingTask_@task.TaskId">
+                        <h5 class="mb-0">
+                            <div class="card-header d-grid">
+                                <button class="btn btn-outline-info btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTask_@task.TaskId" aria-expanded="false" aria-controls="collapseTask_@task.TaskId">
+                                <h4 >@task.Title</h4>
+                            </button>
+                            </div>
+                        </h5>
+                    </div>
+
+                    <div id="collapseTask_@task.TaskId" class="collapse" aria-labelledby="headingTask_@task.TaskId" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p><strong>Ngày Hết Hạn:</strong> @task.DueDate.ToShortDateString()</p>
+                            <p>
+                                <strong>Tiến Trình:</strong>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width:@task.Progress%; background-color: #007bff;">@task.Progress%</div>
+                                </div>
+                            </p>
+
+                            <h6>Công Việc Con</h6>
+                            @if (task.Subtasks != null && task.Subtasks.Any())
+                            {
+                                <ul class="list-group">
+                                    @foreach (var subtask in task.Subtasks)
+                                    {
+                                        <li class="list-group-item">
+                                            <h6>@subtask.Title</h6>
+                                            <p><strong>Người Nhận:</strong> @subtask.AssignedTo</p>
+                                            <p>
+                                                <strong>Tiến Trình:</strong>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width:@subtask.Progress%; background-color: #007bff;">@subtask.Progress%</div>
+                                                </div>
+                                            </p>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p>Không có công việc con cho nhiệm vụ này.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Không có nhiệm vụ nào cho dự án này.</p>
+        }
+    </div>
+</div>
+  

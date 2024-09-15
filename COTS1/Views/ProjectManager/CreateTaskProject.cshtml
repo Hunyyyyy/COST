@@ -66,15 +66,15 @@
                         <td>@task.Priority</td>
                         <td class="truncate">@task.Note</td>
                         <td>@task.Status</td>
-                        @if (TempData["MessageSendMail"] == null && TempData["MessageSendMailFail"] == null)
+                        @if (TempData[$"MessageSendMail_{task.TaskId}"] == null && TempData[$"MessageSendMailFail_{task.TaskId}"] == null)
                         {
                             <td>
-                                <a asp-action="SendEmailTasksProject" asp-controller="ProjectManager">
-                                    <span style="cursor:pointer" class="badge rounded-pill bg-danger">Thông báo</span>
+                                <a asp-action="SendEmailTasksProject" asp-controller="ProjectManager" asp-route-taskId="@task.TaskId">
+                                    <span style="cursor:pointer" class="badge rounded-pill bg-danger" >Thông báo</span>
                                 </a>
                             </td>
                         }
-                        else if (TempData["MessageSendMailFail"] != null)
+                        else if (TempData[$"MessageSendMailFail_{task.TaskId}"] != null)
                         {
                             <td>
                                 <a asp-action="SendEmailTasksProject" asp-controller="ProjectManager">
@@ -82,7 +82,7 @@
                                 </a>
                             </td>
                         }
-                        else if (TempData["MessageSendMail"] != null)
+                        else if (TempData[$"MessageSendMail_{task.TaskId}"] != null)
                         {
                             <td>
                                 <span class="badge rounded-pill bg-success">Đã thông báo</span>
