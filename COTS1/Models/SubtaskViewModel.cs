@@ -8,5 +8,7 @@
         public string Status { get; set; }
         public int AssignedTo { get; set; }
         public int Progress { get; set; }
+        public string Assigneder { get; set; }
+        
     }
 }

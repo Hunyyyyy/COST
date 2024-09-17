@@ -11,6 +11,37 @@
         display: none;
     }
 </style>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["WarningMessage"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @TempData["WarningMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        @TempData["InfoMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <div style="margin-left: 230px; margin-top: 60px;">
     <!-- Nút "Tạo dự án mới" được di chuyển lên trên bảng -->
@@ -58,12 +89,11 @@
     <table class="table table-dark table-hover">
         <thead>
             <tr>
-                <th>   Project ID</th>
-                <th>
-                    Project name
-                </th>
-                <th> Create At</th>
-                <th> Status</th>
+                <th>Project ID</th>
+                <th>Project name</th>
+                <th>Create At</th>
+                <th>Status</th>
+                <th>Actions</th> <!-- Thêm cột cho các hành động -->
             </tr>
         </thead>
         <tbody>
@@ -76,16 +106,69 @@
                         <td>@item.ProjectName</td>
                         <td>@item.CreatedAt</td>
                         <td>@item.Status</td>
-                    </tr>
-               
-                }
+                        @if (ViewBag.IsManager == true)
+                        {
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <!-- Nút đổi tên -->
+                                    <form asp-action="RenameProject" asp-controller="ProjectManager" method="get" class="d-inline">
+                                        <button type="button" class="btn btn-warning btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#renameModal"
+                                                onclick="setRenameModalValues('@item.ProjectId', '@item.ProjectName')">
+                                            Đổi tên
+                                        </button>
+                                    </form>
 
+                                    <!-- Nút xóa -->
+                                    <form asp-action="DeleteProject" asp-controller="ProjectManager" method="post" class="d-inline ms-2" onsubmit="return confirm('Bạn có chắc chắn muốn xóa dự án này không?');">
+                                        <input type="hidden" name="projectId" value="@item.ProjectId" />
+                                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                                    </form>
+                                </div>
+                            </td>
+                        }
+                       
+                    </tr>
+                }
             }
         </tbody>
     </table>
+
 </div>
 
-    
+<!-- Modal Đổi Tên Dự Án -->
+<div class="modal fade" id="renameModal" tabindex="-1" aria-labelledby="renameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="renameModalLabel">Đổi Tên Dự Án</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="renameForm" method="post" action="/Project/RenameProject">
+                    <input type="hidden" id="renameProjectId" name="projectId" />
+                    <div class="mb-3">
+                        <label for="newProjectName" class="form-label">Tên dự án mới</label>
+                        <input type="text" class="form-control" id="newProjectName" name="newProjectName" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setRenameModalValues(projectId, projectName) {
+        // Điền giá trị vào các trường trong modal
+        document.getElementById('renameProjectId').value = projectId;
+        document.getElementById('newProjectName').value = projectName;
+    }
+</script>
 
 
 
@@ -115,15 +198,19 @@
         const rows = document.querySelectorAll('.clickable-row');
 
         rows.forEach(row => {
-            row.addEventListener('click', () => {
-                // Lấy ID từ thuộc tính data-id
-                const projectId = row.getAttribute('data-id');
-                if (projectId) { // Kiểm tra xem taskId có tồn tại
-                    window.location.href = `@Url.Action("CreateTaskProject", "ProjectManager")?projectId=${projectId}`;
+            row.addEventListener('click', (event) => {
+                // Kiểm tra xem phần tử được nhấn không phải là một nút
+                if (!event.target.closest('button') && !event.target.closest('a')) {
+                    // Lấy ID từ thuộc tính data-id
+                    const projectId = row.getAttribute('data-id');
+                    if (projectId) { // Kiểm tra xem projectId có tồn tại
+                        window.location.href = `@Url.Action("CreateTaskProject", "ProjectManager")?projectId=${projectId}`;
+                    }
                 }
             });
         });
     });
+
 </script>
 
 <script src="https://cdn.tailwindcss.com"></script>

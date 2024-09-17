@@ -9,8 +9,9 @@
     <div class="row">
         @foreach (var project in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card">
+            <div class="">
+                <!-- Adjust column size for card width -->
+                <div class="card project-card">
                     <div class="card-body">
                         <h5 class="card-title">@project.ProjectName</h5>
                         <p class="card-text"><strong>Ngày Bắt Đầu:</strong> @project.StartDate.ToShortDateString()</p>
@@ -21,13 +22,24 @@
                                 <div class="progress-bar" role="progressbar" style="width:@project.ProjectProgress%;"></div>
                             </div>
                         </p>
-                        <form asp-action="ProjectDetails" asp-controller="ListTask" method="get">
-                            <input type="hidden" name="projectId" value="@project.ProjectId" />
-                            <button type="submit" class="btn btn-info">Xem Chi Tiết</button>
-                        </form>
+                        <div class="button-container">
+                            <form asp-action="ProjectDetails" asp-controller="ListTask" method="get" class="d-inline">
+                                <input type="hidden" name="projectId" value="@project.ProjectId" />
+                                <button type="submit" class="btn btn-info">Xem Tiến Độ</button>
+                            </form>
+                            @if (ViewBag.IsManager == true)
+                            {
+                                <form asp-action="SubmittedTasksByProject" asp-controller="ListTask" method="get" class="d-inline">
+                                    <input type="hidden" name="projectId" value="@project.ProjectId" />
+                                    <button type="submit" class="btn btn-info">Duyệt công việc</button>
+                                </form>
+                            }
+
+                        </div>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+

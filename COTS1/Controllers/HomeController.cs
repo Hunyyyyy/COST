@@ -2,6 +2,7 @@
 using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Web;
@@ -44,15 +45,55 @@ namespace COTS1.Controllers
                 .Select(x => x.Email)
                 .ToListAsync();
 
+           
+            return View();
+          
+        }
+        public async Task<int> GetSumUnreadEmails(int currentUserId, string accessToken)
+        {
+            // Lấy danh sách các dự án mà người dùng thuộc về
+            var userProjects = await _dbContext.ProjectUsers
+                .Where(pu => pu.UserId == currentUserId)
+                .Select(pu => pu.ProjectId)
+                .ToListAsync();
+
+            // Lấy danh sách email của tất cả người dùng trong các dự án đó
+            var emails = await _dbContext.ProjectUsers
+                .Where(pu => userProjects.Contains(pu.ProjectId))
+                .Join(_dbContext.Users,
+                      pu => pu.UserId,
+                      u => u.UserId,
+                      (pu, u) => new { u.Email })
+                .Select(x => x.Email)
+                .ToListAsync();
+
             // Chuyển danh sách emails thành mảng senders
             var senders = emails.ToArray();
             var unreadEmails = await GoogleUserInfo.GetUnreadEmailCountFromSendersAsync(senders, accessToken);
             int sumEmail = unreadEmails.Values.Sum(); // Tổng số email chưa đọc
 
-            ViewBag.SumEmail = sumEmail;
-            return View();
-          
+            return sumEmail;
         }
+
+
+        public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+        {
+            var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
+            var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+
+            if (currentUserId != null && !string.IsNullOrEmpty(accessToken))
+            {
+                ViewBag.SumEmail = await GetSumUnreadEmails((int)currentUserId, accessToken);
+            }
+            else
+            {
+                ViewBag.SumEmail = 0; // Nếu không có UserId hoặc accessToken thì không có email chưa đọc
+            }
+
+            // Tiếp tục thực hiện action
+            await next();
+        }
+
         public IActionResult Mail()
         {
             // Ki?m tra xem token có t?n t?i trong session không

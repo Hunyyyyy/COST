@@ -39,6 +39,8 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<SubmittedSubtask> SubmittedSubtasks { get; set; }
 
+    public virtual DbSet<SubmittedSubtasksByManager> SubmittedSubtasksByManagers { get; set; }
+
     public virtual DbSet<Subtask> Subtasks { get; set; }
 
     public virtual DbSet<SubtaskProgress> SubtaskProgresses { get; set; }
@@ -310,6 +312,37 @@ public partial class TestNhiemVuContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Submitted__UserI__2EDAF651");
+        });
+
+        modelBuilder.Entity<SubmittedSubtasksByManager>(entity =>
+        {
+            entity.HasKey(e => e.SubmissionId).HasName("PK__Submitte__449EE125A07C3045");
+
+            entity.ToTable("SubmittedSubtasksByManager");
+
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValue("Ðã duy?t");
+            entity.Property(e => e.SubmittedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.SubmittedSubtasksByManagers)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("FK__Submitted__Proje__37703C52");
+
+            entity.HasOne(d => d.Subtask).WithMany(p => p.SubmittedSubtasksByManagers)
+                .HasForeignKey(d => d.SubtaskId)
+                .HasConstraintName("FK__Submitted__Subta__3587F3E0");
+
+            entity.HasOne(d => d.Task).WithMany(p => p.SubmittedSubtasksByManagers)
+                .HasForeignKey(d => d.TaskId)
+                .HasConstraintName("FK__Submitted__TaskI__367C1819");
+
+            entity.HasOne(d => d.User).WithMany(p => p.SubmittedSubtasksByManagers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Submitted__UserI__3864608B");
         });
 
         modelBuilder.Entity<Subtask>(entity =>

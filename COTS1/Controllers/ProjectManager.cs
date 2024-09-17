@@ -25,7 +25,11 @@ namespace COTS1.Controllers
         public async Task<IActionResult> Index(string NameProject)
         {
             var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+            var isManager = await db.ProjectUsers
+              .AnyAsync(pu => pu.UserId == managerID && pu.Role == "Manager");
 
+            // Truyền thông tin vai trò vào ViewBag
+            ViewBag.IsManager = isManager;
             if (NameProject != null && managerID!=null && ModelState.IsValid) {
                 var saveNameProject = new Project
                 {
@@ -52,6 +56,54 @@ namespace COTS1.Controllers
           return View();
             
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteProject(int projectId)
+        {
+            var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+
+            // Kiểm tra xem người dùng hiện tại có phải là Manager của dự án này không
+            var project = await db.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId && p.ManagerId == managerID);
+
+            if (project == null)
+            {
+                TempData["ErrorMessage"] = "Bạn không có quyền xóa dự án này hoặc dự án không tồn tại.";
+                return RedirectToAction("Index");
+            }
+
+            db.Projects.Remove(project);
+            await db.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Dự án đã được xóa thành công!";
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> RenameProject(int projectId, string newProjectName)
+        {
+            var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+
+            // Kiểm tra xem người dùng hiện tại có phải là Manager của dự án này không
+            var project = await db.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId && p.ManagerId == managerID);
+
+            if (project == null)
+            {
+                TempData["ErrorMessage"] = "Bạn không có quyền đổi tên dự án này hoặc dự án không tồn tại.";
+                return RedirectToAction("Index");
+            }
+
+            // Kiểm tra tên mới có hợp lệ không
+            if (string.IsNullOrEmpty(newProjectName))
+            {
+                TempData["ErrorMessage"] = "Tên dự án mới không được để trống.";
+                return RedirectToAction("Index");
+            }
+
+            project.ProjectName = newProjectName;
+            await db.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Tên dự án đã được đổi thành công!";
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> CreateTaskProject(int projectId)
         {
 

@@ -613,6 +613,22 @@
       "PackagePath": "staticwebassets\\src\\scss\\variables\\_spacing.scss"
     },
     {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx",
+      "PackagePath": "staticwebassets\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx"
+    },
+    {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png",
+      "PackagePath": "staticwebassets\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png"
+    },
+    {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png",
+      "PackagePath": "staticwebassets\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png"
+    },
+    {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx",
+      "PackagePath": "staticwebassets\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.COTS1.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

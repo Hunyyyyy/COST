@@ -150,6 +150,7 @@ CREATE TABLE ProjectProgress (
     Progress DECIMAL(5, 2) NOT NULL DEFAULT 0, -- Tiến độ của dự án
     LastUpdatedAt DATETIME DEFAULT GETDATE()
 );
+--chờ quản lý phê duyệt
 CREATE TABLE SubmittedSubtasks (
     SubmissionId INT PRIMARY KEY IDENTITY(1,1),
     SubtaskId INT NOT NULL,
@@ -159,18 +160,34 @@ CREATE TABLE SubmittedSubtasks (
     SubmittedAt DATETIME NOT NULL DEFAULT GETDATE(),
     Status NVARCHAR(50) DEFAULT 'Đang xem xét',
     Notes NVARCHAR(MAX),
+	FilePath NVARCHAR(MAX),
     FOREIGN KEY (SubtaskId) REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE,
     FOREIGN KEY (TaskId) REFERENCES SaveTasks(TaskId) ON DELETE CASCADE,
     FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE,
     FOREIGN KEY (UserId) REFERENCES Users(UserId)
 );
-
+CREATE TABLE SubmittedSubtasksByManager (
+    SubmissionId INT PRIMARY KEY IDENTITY(1,1),
+    SubtaskId INT NOT NULL,
+    TaskId INT NOT NULL, -- ID của nhiệm vụ chứa công việc con
+    ProjectId INT NOT NULL, -- ID của dự án chứa nhiệm vụ
+    UserId INT NOT NULL,
+    SubmittedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    Status NVARCHAR(50) DEFAULT 'Đã duyệt',
+    Notes NVARCHAR(MAX),
+	FilePath NVARCHAR(MAX),
+    FOREIGN KEY (SubtaskId) REFERENCES Subtasks(SubtaskId) ON DELETE CASCADE,
+    FOREIGN KEY (TaskId) REFERENCES SaveTasks(TaskId) ON DELETE CASCADE,
+    FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE,
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+);
 ALTER TABLE Subtasks
 ADD ProjectID INT FOREIGN KEY REFERENCES Projects(ProjectID);
 ADD ProjectID INT;
 ALTER TABLE Subtasks
 DROP CONSTRAINT IF EXISTS FK_Subtasks_Tasks; -- Xóa ràng buộc khóa ngoại cũ nếu tồn tại
-
+ALTER TABLE SubmittedSubtasks
+ADD FilePath NVARCHAR(MAX)
 
 ALTER TABLE AssignedSubtasks
 ADD  TaskId INT FOREIGN KEY REFERENCES SaveTasks(TaskId),
@@ -185,7 +202,7 @@ Delete Tasks
 DROP TABLE TaskProgress;
 
     -- Tuỳ chọn, nếu bạn sử dụng salt
-	DELETE FROM SaveTasks ;
+	DELETE FROM SubmittedSubtasks ;
 	DELETE FROM Subtasks ;
 	DELETE FROM Subtasks ;
 	DELETE FROM SubmittedSubtasks ;
@@ -193,7 +210,7 @@ DROP TABLE TaskProgress;
 			DELETE FROM SentTasksList ;
 	select * from SubtaskProgress
 
-	select * from Projects
+	select * from ProjectUsers
 	select * from TaskProgress
 		select * from SubmittedSubtasks
 		select * from ProjectProgress

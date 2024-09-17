@@ -39,12 +39,12 @@ namespace COTS1.Class
 
             return null; // Không có địa chỉ email
         }
-        static string[] Scopes = { GmailService.Scope.GmailReadonly };
+        static string[] Scopes = { GmailService.Scope.GmailReadonly, GmailService.Scope.GmailModify };  // Thêm GmailModify để đánh dấu email
         static string ApplicationName = "COST1";
 
+        // Lấy số lượng email chưa đọc từ một người gửi cụ thể
         public static async Task<int> GetUnreadEmailCountFromSenderAsync(string senderEmail, string accessToken)
         {
-            // Tạo Gmail API service với accessToken
             var credential = GoogleCredential.FromAccessToken(accessToken);
 
             var service = new GmailService(new BaseClientService.Initializer()
@@ -64,7 +64,7 @@ namespace COTS1.Class
             return response.Messages != null ? response.Messages.Count : 0;
         }
 
-
+        // Lấy số lượng email chưa đọc từ nhiều người gửi
         public static async Task<Dictionary<string, int>> GetUnreadEmailCountFromSendersAsync(string[] senderEmails, string accessToken)
         {
             Dictionary<string, int> unreadEmailsBySender = new Dictionary<string, int>();
@@ -78,6 +78,55 @@ namespace COTS1.Class
             return unreadEmailsBySender;
         }
 
+        // Đánh dấu email đã đọc
+        public static async Task MarkEmailAsReadAsync(string messageId, string accessToken)
+        {
+            var credential = GoogleCredential.FromAccessToken(accessToken);
+
+            var service = new GmailService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            // Tạo yêu cầu để xóa nhãn "UNREAD" khỏi email
+            var request = new ModifyMessageRequest();
+            request.RemoveLabelIds = new List<string> { "UNREAD" };
+
+            await service.Users.Messages.Modify(request, "me", messageId).ExecuteAsync();
+        }
+
+        // Lấy danh sách email chưa đọc từ một người gửi cụ thể
+        public static async Task<IList<Message>> GetUnreadEmailsFromSenderAsync(string senderEmail, string accessToken)
+        {
+            var credential = GoogleCredential.FromAccessToken(accessToken);
+
+            var service = new GmailService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            var request = service.Users.Messages.List("me");
+            request.LabelIds = "INBOX";
+            request.Q = $"from:{senderEmail} is:unread";
+
+            ListMessagesResponse response = await request.ExecuteAsync();
+
+            return response.Messages;
+        }
+
+
+        // Đánh dấu toàn bộ email của người gửi cụ thể là đã đọc
+        public static async Task MarkAllEmailsAsReadFromSenderAsync(string senderEmail, string accessToken)
+        {
+            var emails = await GetUnreadEmailsFromSenderAsync(senderEmail, accessToken);
+
+            foreach (var email in emails)
+            {
+                await MarkEmailAsReadAsync(email.Id, accessToken); // Đánh dấu từng email là đã đọc
+            }
+        }
 
 
     }

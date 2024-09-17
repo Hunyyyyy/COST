@@ -11,11 +11,6 @@
 
 <div class="container" style="margin-left: 230px; margin-top: 70px;">
 
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%">40%</div>
-
-
-
-
 <div class="container" >
     <h2>Công việc đã nhận</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -29,9 +24,8 @@
                         <p class="card-text"><small class="text-muted">Trạng thái: @task.Status</small></p>
                     </div>
                     <div class="card-footer text-end">
-                        <form asp-action="SubmitSubtask" asp-controller="ListTask" method="post">
-                            <input type="hidden" value="@task.SubtaskId" name="subtaskId" />
-                            <input type="hidden" value="@task.TaskId" name="taskId" />
+                     
+                        
                             @if (task.IsSubmitted)
                             {
                                 <button asp-action="SubmitSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-success">Cập nhật</button>
@@ -41,9 +35,13 @@
                             else
                             {
                                     <button asp-action="AcceptSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-danger">Hủy việc</button>
-                                    <button asp-action="SubmitSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-success">Nộp việc</button>
+                                   @*  <button asp-action="SubmitSubtask" asp-controller="ListTask" type="submit" class="btn btn-outline-success">Nộp việc</button> *@
+                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#submitTaskModal"
+                                            onclick="openSubmitTaskModal('@task.Title', '@task.SubtaskId', '@task.TaskId', '@ViewBag.currentUserName', '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")')">
+                                        Nộp việc
+                                    </button>
                             }
-                        </form>
+                      
                     </div>
                 </div>
             </div>
@@ -51,7 +49,63 @@
     </div>
 </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="submitTaskModal" tabindex="-1" aria-labelledby="submitTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitTaskModalLabel">Nộp công việc</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="subtaskId" name="subtaskId" />
+                        <input type="hidden" id="taskId" name="taskId" />
 
+                        <div class="mb-3">
+                            <label for="submittedBy" class="form-label">Người nộp</label>
+                            <input type="text" class="form-control" id="submittedBy" name="submittedBy" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="submissionDate" class="form-label">Ngày nộp</label>
+                            <input type="text" class="form-control" id="submissionDate" name="submissionDate" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="taskTitle" class="form-label">Tên công việc</label>
+                            <input type="text" class="form-control" id="taskTitle" name="taskTitle" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fileUpload" class="form-label">Chọn file hoặc hình ảnh</label>
+                            <input type="file" class="form-control" id="fileUpload" name="fileUpload" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Ghi chú</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button asp-action="SubmitSubtask" asp-controller="ListTask" type="submit" class="btn btn-primary">Nộp</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openSubmitTaskModal(taskTitle, subtaskId, taskId, submittedBy, submissionDate) {
+            document.getElementById('taskTitle').value = taskTitle;
+            document.getElementById('subtaskId').value = subtaskId;
+            document.getElementById('taskId').value = taskId;
+            document.getElementById('submittedBy').value = submittedBy;
+            document.getElementById('submissionDate').value = submissionDate;
+        }
+    </script>
 
 
 

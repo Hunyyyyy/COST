@@ -17,8 +17,6 @@
 </style>
 
 <div class="container" style="margin-left: 230px; margin-top: 60px;">
-    <!-- Kiểm tra thông báo lỗi -->
- 
     <h2>Danh sách nhiệm vụ</h2>
     <table class="table table-dark table-hover">
         <thead>
@@ -27,43 +25,84 @@
                 <th>Tên nhiệm vụ</th>
                 <th>Ngày gửi</th>
                 <th>Ngày hết hạn</th>
-                <th>Ưu tiên</th>           
+                <th>Ưu tiên</th>
                 <th>Trạng thái</th>
+                <th>Chỉnh sửa</th>
             </tr>
         </thead>
         <tbody>
-             @foreach (var task in Model)
+            @foreach (var task in Model)
             {
                 <tr data-id="@task.TaskId" class="clickable-row" style="cursor:pointer">
                     <td class="taskid">@task.TaskId</td>
-                    <td class="truncate">@task.Title</td>                 
+                    <td class="truncate">@task.Title</td>
                     <td>@task.CreatedAt</td>
                     <td>@task.DueDate.ToShortDateString()</td>
                     <td>@task.Priority</td>
-                    <td>@task.AssignedTo</td>
-                    <td class="truncate">@task.Note</td>
                     <td>@task.Status</td>
+                    @if (ViewBag.IsManager == true)
+                    {
+                        <td>
+                            <div class="btn-group" role="group">
+                                <!-- Nút sửa -->
+                                <form asp-action="EditTask" asp-controller="ListTask" method="get" class="d-inline">
+                                    <input type="hidden" name="taskId" value="@task.TaskId" />
+                                    <button type="submit" class="btn btn-warning btn-sm">Sửa</button>
+                                </form>
+
+                                <!-- Nút xóa -->
+                                <form asp-action="DeleteTask" asp-controller="ListTask" method="post" class="d-inline ms-2" onsubmit="return confirm('Bạn có chắc chắn muốn xóa nhiệm vụ này không?');">
+                                    <input type="hidden" name="taskId" value="@task.TaskId" />
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa nhiệm vụ này?');">Xóa</button>
+                                </form>
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <div class="btn-group" role="group">
+                                <!-- Nút sửa -->
+                                <form asp-action="EditTask" asp-controller="ListTask" method="get" class="d-inline">
+                                    <input type="hidden" name="taskId" value="@task.TaskId" />
+                                    <button type="submit" class="btn btn-warning btn-sm" disabled>Sửa</button>
+                                </form>
+
+                                <!-- Nút xóa -->
+                                <form asp-action="DeleteTask" asp-controller="ListTask" method="post" class="d-inline ms-2" onsubmit="return confirm('Bạn có chắc chắn muốn xóa nhiệm vụ này không?');">
+                                    <input type="hidden" name="taskId" value="@task.TaskId" />
+                                    <button type="submit" class="btn btn-danger btn-sm" disabled>Xóa</button>
+                                </form>
+                            </div>
+                        </td>
+                    }
+
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // Lấy tất cả các hàng có class "clickable-row"
-        const rows = document.querySelectorAll('.clickable-row');
 
-        rows.forEach(row => {
-            row.addEventListener('click', () => {
+<script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+    // Lấy tất cả các hàng có class "clickable-row"
+    const rows = document.querySelectorAll('.clickable-row');
+
+    rows.forEach(row => {
+        row.addEventListener('click', (event) => {
+            // Kiểm tra xem phần tử được nhấn không phải là nút hoặc liên kết
+            if (!event.target.closest('button') && !event.target.closest('a')) {
                 // Lấy ID từ thuộc tính data-id
                 const taskId = row.getAttribute('data-id');
                 if (taskId) { // Kiểm tra xem taskId có tồn tại
                     window.location.href = `@Url.Action("Subtasks", "ListTask")?taskId=${taskId}`;
                 }
-            });
+            }
         });
     });
+});
 
+         
 </script>
 
 <!-- Dialog HTML -->

@@ -158,7 +158,6 @@ namespace COTS1.Controllers
                     return BadRequest("Access token is missing.");
                 }
             }
-        
 
             if (currentUserId == null)
             {
@@ -174,21 +173,17 @@ namespace COTS1.Controllers
 
             // Lấy danh sách email của tất cả người dùng trong các dự án đó
             var emails = await _dbContext.ProjectUsers
-                .Where(pu => userProjects.Contains(pu.ProjectId)) // Tìm tất cả các ProjectId liên quan
+                .Where(pu => userProjects.Contains(pu.ProjectId))
                 .Join(_dbContext.Users,
                       pu => pu.UserId,
                       u => u.UserId,
-                      (pu, u) => new { u.Email })
-                .Select(x => x.Email)
+                      (pu, u) => u.Email)
                 .ToListAsync();
 
-            // Chuyển danh sách emails thành mảng senders
-            var senders = emails.ToArray();
+            var senders = emails.Distinct().ToArray(); // Loại bỏ các email trùng lặp
 
-            // Tạo query để tìm email gửi và nhận dựa trên danh sách senders
             var inboxQuery = $"label:inbox ({string.Join(" OR ", senders.Select(s => $"from:{s}"))})";
             var sentQuery = $"label:sent ({string.Join(" OR ", senders.Select(s => $"to:{s}"))})";
-
 
             var inboxApiUrl = $"https://www.googleapis.com/gmail/v1/users/me/messages?q={Uri.EscapeDataString(inboxQuery)}";
             var sentApiUrl = $"https://www.googleapis.com/gmail/v1/users/me/messages?q={Uri.EscapeDataString(sentQuery)}";
@@ -204,49 +199,14 @@ namespace COTS1.Controllers
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-                // Xử lý lấy email (nhận hoặc gửi)
-                async Task GetEmailsByUrl(string apiUrl, List<EmailSummary> emailList, Func<EmailSummary, bool> filter = null)
-                {
-                    var response = await client.GetAsync(apiUrl);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseString = await response.Content.ReadAsStringAsync();
-                        var emailsResponse = JsonConvert.DeserializeObject<EmailListResponse>(responseString);
-
-                        if (emailsResponse?.Messages != null && emailsResponse.Messages.Any())
-                        {
-                            var emails = emailsResponse.Messages.Take(MaxResults).ToList();
-                            foreach (var email in emails)
-                            {
-                                var detail = await GetEmailDetails(email.Id);
-                                if (filter == null || filter(detail))
-                                {
-                                    emailList.Add(detail);
-                                }
-                            }
-                        }
-                    }
-                }
-
                 // Lấy email đã nhận và kiểm tra nếu không phải là công việc
-                await GetEmailsByUrl(inboxApiUrl, emailDetails.ReceivedEmails, detail => !detail.Subject.StartsWith("Công Việc:"));
-
-                // Lấy email công việc và cập nhật ViewBag.CheckTask nếu có
-                await GetEmailsByUrl(inboxApiUrl, emailDetails.TaskEmails, detail =>
-                {
-                    if (detail.Subject.StartsWith("Công Việc:"))
-                    {
-                        ViewBag.CheckTask = "Task";  // Cập nhật ViewBag nếu tìm thấy email công việc
-                        return true;
-                    }
-                    return false;
-                });
+                await GetEmailsByUrlAsync(client, inboxApiUrl, emailDetails.ReceivedEmails, MaxResults);
+                await GetEmailsByUrlAsync(client, inboxApiUrl, emailDetails.TaskEmails, MaxResults, detail => detail.Subject.StartsWith("Công Việc:"));
 
                 // Lấy email đã gửi
-                await GetEmailsByUrl(sentApiUrl, emailDetails.SentEmails);
+                await GetEmailsByUrlAsync(client, sentApiUrl, emailDetails.SentEmails, MaxResults);
             }
 
-            // Trường hợp không có email nhận hoặc gửi
             if (!emailDetails.ReceivedEmails.Any())
             {
                 ViewBag.NoReceivedEmails = "No received emails found.";
@@ -260,9 +220,26 @@ namespace COTS1.Controllers
             return View(emailDetails);
         }
 
+        private async Task GetEmailsByUrlAsync(HttpClient client, string apiUrl, List<EmailSummary> emailList, int maxResults, Func<EmailSummary, bool> filter = null)
+        {
+            var response = await client.GetAsync(apiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+                var emailsResponse = JsonConvert.DeserializeObject<EmailListResponse>(responseString);
 
+                if (emailsResponse?.Messages != null && emailsResponse.Messages.Any())
+                {
+                    var emails = emailsResponse.Messages.Take(maxResults).ToList();
+                    var emailDetailsTasks = emails.Select(email => GetEmailDetailsAsync(email.Id, filter)).ToArray();
+                    var emailDetails = await Task.WhenAll(emailDetailsTasks);
 
-        public async Task<EmailSummary> GetEmailDetails(string messageId)
+                    emailList.AddRange(emailDetails.Where(detail => detail != null));
+                }
+            }
+        }
+
+        private async Task<EmailSummary> GetEmailDetailsAsync(string messageId, Func<EmailSummary, bool> filter = null)
         {
             var accessToken = HttpContext.Session.GetString("AccessToken");
             string apiUrl = $"https://www.googleapis.com/gmail/v1/users/me/messages/{messageId}";
@@ -329,8 +306,7 @@ namespace COTS1.Controllers
                         sentDate = DateTime.Now; // Hoặc sử dụng giá trị mặc định khác
                     }
 
-                    // Trả về đối tượng EmailSummary
-                    return new EmailSummary
+                    var emailSummary = new EmailSummary
                     {
                         Id = email.Id,
                         Sender = sender,
@@ -339,13 +315,25 @@ namespace COTS1.Controllers
                         BodyContents = bodyContents,
                         Attachments = attachments
                     };
+
+                    // Đánh dấu email đã đọc
+                    await GoogleUserInfo.MarkEmailAsReadAsync(messageId, accessToken);
+
+                    // Kiểm tra điều kiện lọc nếu có
+                    if (filter == null || filter(emailSummary))
+                    {
+                        return emailSummary;
+                    }
                 }
                 else
                 {
                     throw new Exception("Failed to retrieve email details.");
                 }
             }
+
+            return null;
         }
+
 
         string DecodeBase64(string base64Data)
         {
@@ -372,7 +360,7 @@ namespace COTS1.Controllers
 
         public async Task<ActionResult> ShowEmailDetails(string messageId,string CheckTask)
         {
-            var emailSummary = await GetEmailDetails(messageId);
+            var emailSummary = await GetEmailDetailsAsync(messageId);
             var emailTitle = $"{emailSummary.Subject}";
             var emailSender = $"{emailSummary.Sender}";
             

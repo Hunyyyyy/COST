@@ -47,5 +47,7 @@ public partial class Project
 
     public virtual ICollection<SubmittedSubtask> SubmittedSubtasks { get; set; } = new List<SubmittedSubtask>();
 
+    public virtual ICollection<SubmittedSubtasksByManager> SubmittedSubtasksByManagers { get; set; } = new List<SubmittedSubtasksByManager>();
+
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 }

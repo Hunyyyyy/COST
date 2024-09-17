@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace COTS1.Data;
 
-public partial class SubmittedSubtask
+public partial class SubmittedSubtasksByManager
 {
     public int SubmissionId { get; set; }
 

@@ -1,0 +1,193 @@
+﻿@{
+    ViewData["Title"] = "Tạo Nhiệm Vụ";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model SaveTasksModel
+<style>
+    textarea {
+        width: 100%;
+        height: 200px;
+        margin-top: 10px;
+        resize: none;
+    }
+
+    .is-invalid {
+        border-color: red;
+    }
+</style>
+@if (@TempData["Message"] != null)
+{
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông báo!!</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    @TempData["Message"]
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container mt-5" style="margin-left: 230px; margin-top: 70px; padding:50px 40px">
+    <h2 class="mb-4">Chỉnh sửa Nhiệm Vụ</h2>
+
+    <form method="post" asp-action="EditTask">
+        <input type="hidden" name="TaskId" value="@Model.TaskId" />
+        <div class="mb-3">
+            <label for="from" class="form-label">From</label>
+            <input type="text" class="form-control" id="from" name="from" value="@ViewBag.UserEmail" readonly required />
+        </div>
+
+        <div class="mb-3">
+            <label for="Title" class="form-label">Tên nhiệm vụ</label>
+            <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required>
+        </div>
+
+        <!-- Nút Thêm nhiệm vụ chính -->
+        <button type="button" class="btn btn-success" id="addMainTaskBtn">Thêm nhiệm vụ</button>
+
+        <!-- Khu vực Thêm công việc chính -->
+        <div id="mainTaskArea" class="mb-3" style="display:none;">
+            <label for="taskInput" class="form-label">Thêm công việc</label>
+            <input type="text" class="form-control" id="taskInput" placeholder="Nhập công việc">
+            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Add Công Việc Chính</button>
+        </div>
+
+        <!-- Khu vực công việc phụ và ghi chú -->
+        <div id="subTaskArea" class="mb-3" style="display:none;">
+            
+            <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú">@Model.Note</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="Description" class="form-label">Danh sách công việc</label>
+            <textarea id="Description" class="editable-textarea" name="Description" readonly>@Model.Description</textarea>
+            <button type="button" class="btn btn-danger" id="editTaskBtn">Chỉnh sửa công việc</button>
+        </div>
+
+        <div class="mb-3">
+            <label for="DueDate" class="form-label">Ngày hết hạn</label>
+            <input type="date" class="form-control" id="DueDate" name="DueDate" value="@Model.DueDate.ToString("yyyy-MM-dd")" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="Priority" class="form-label">Mức độ ưu tiên</label>
+            <select class="form-select" id="Priority" name="Priority" required>
+                <option value="Thấp" >Thấp</option>
+                <option value="Trung Bình" >Trung Bình</option>
+                <option value="Cao" >Cao</option>
+            </select>
+        </div>
+
+        <!-- Nút Lưu thay đổi -->
+        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+    </form>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    });
+    @*  cong viec *@
+
+
+        let taskCounter = 1;  // Đếm số công việc
+    let isSubTaskVisible = false; // Trạng thái hiển thị công việc phụ
+
+    // Hiển thị khu vực thêm công việc chính khi nhấn nút "Thêm nhiệm vụ"
+    document.getElementById('addMainTaskBtn').addEventListener('click', function () {
+        document.getElementById('mainTaskArea').style.display = 'block';
+    });
+
+    // Xử lý khi nhấn nút "Add Công Việc Chính"
+    document.getElementById('addTaskBtn').addEventListener('click', function () {
+        const taskInput = document.getElementById('taskInput').value.trim();
+
+        if (!taskInput) {
+            alert('Vui lòng nhập công việc chính.');
+            return;
+        }
+
+        // Thêm công việc chính vào danh sách
+        const newTask = `Công việc ${taskCounter}: ${taskInput}\n`;
+        const description = document.getElementById('Description');
+        description.value += newTask;
+
+        // Hiển thị khu vực thêm công việc phụ và ghi chú
+        document.getElementById('subTaskArea').style.display = 'block';
+
+        // Tăng số công việc và xóa input
+        taskCounter++;
+        document.getElementById('taskInput').value = '';
+    });
+
+    // Xử lý khi nhấn nút "Add Công Việc Phụ"
+    document.getElementById('addSubTaskBtn').addEventListener('click', function () {
+        const suptaskInput = document.getElementById('SuptaskInput').value.trim();
+
+        if (!suptaskInput) {
+            alert('Vui lòng nhập công việc phụ.');
+            return;
+        }
+
+        // Thêm công việc phụ vào danh sách với dấu "+"
+        const newSubTask = `+ ${suptaskInput}\n`;
+        const description = document.getElementById('Description');
+        description.value += newSubTask;
+
+        // Xóa input sau khi thêm
+        document.getElementById('SuptaskInput').value = '';
+    });
+
+    // Xử lý khi nhấn nút "Add Ghi Chú"
+    document.getElementById('addNoteBtn').addEventListener('click', function () {
+        const note = document.getElementById('Note').value.trim();
+
+        if (!note) {
+            alert('Vui lòng nhập ghi chú.');
+            return;
+        }
+
+        // Thêm ghi chú vào danh sách
+        const newNote = `Ghi chú: ${note}\n`;
+        const description = document.getElementById('Description');
+        description.value += newNote;
+
+        // Xóa textarea ghi chú sau khi thêm
+        document.getElementById('Note').value = '';
+
+    });
+    let isEditing = false;
+
+    document.getElementById('editTaskBtn').addEventListener('click', function () {
+        const Description = document.getElementById('Description');
+
+        if (isEditing) {
+            // Nếu đang trong chế độ chỉnh sửa thì khóa lại textarea
+            Description.setAttribute('readonly', true);
+            isEditing = false;
+            this.innerText = 'Chỉnh sửa công việc'; // Thay đổi lại tên nút
+        } else {
+            // Nếu không trong chế độ chỉnh sửa thì cho phép chỉnh sửa
+            Description.removeAttribute('readonly');
+            isEditing = true;
+            this.innerText = 'Lưu công việc'; // Đổi tên nút thành Lưu công việc
+        }
+    });
+</script>

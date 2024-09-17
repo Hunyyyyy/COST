@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SubmittedSubtaskViewModel>
+
+@{
+    ViewData["Title"] = "Danh sách công việc đã nộp";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div class="container mt-4" style="margin-left: 230px; margin-top: 70px;">
+    <h2>Danh sách công việc đã nộp</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Công việc con ID: @item.SubtaskId</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Nhiệm vụ ID: @item.TaskId</h6>
+                        <p class="card-text">Dự án ID: @item.ProjectId</p>
+                        <p class="card-text">Người nộp: @item.UserName</p>
+                        <p class="card-text">Ngày nộp: @item.SubmittedAt.ToString("dd/MM/yyyy HH:mm")</p>
+                        <p class="card-text">Trạng thái: @item.Status</p>
+                        <p class="card-text">Ghi chú: @item.Notes</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            @if (!string.IsNullOrEmpty(item.FilePath))
+                            {
+                                <a href="@Url.Content(item.FilePath)" class="btn btn-primary" target="_blank">Xem File</a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Không có file</span>
+                            }
+                            @if (@item.Status == "Đã phê duyệt")
+                            {
+                            <button type="submit" class="btn btn-success" disabled>Đã Phê Duyệt</button>
+                            }else{
+                            <div class="btn-group" role="group">
+                                <form asp-action="SubmitSubtaskByManager" asp-controller="ListTask" method="post" class="d-inline">
+                                    <input type="hidden" name="subtaskId" value="@item.SubtaskId" />
+                                    <button type="submit" class="btn btn-success">Phê Duyệt</button>
+                                </form>
+                                <form asp-action="RejectTask" asp-controller="Task" method="post" class="d-inline ms-2">
+                                    <input type="hidden" name="subtaskId" value="@item.SubtaskId" />
+                                    <button type="submit" class="btn btn-danger">Từ Chối</button>
+                                </form>
+                            </div>
+                            }
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

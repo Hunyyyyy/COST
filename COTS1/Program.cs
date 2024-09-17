@@ -1,5 +1,6 @@
 ﻿using COTS1.Class;
 using COTS1.Data;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,11 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true; // Chỉ sử dụng Session qua HTTP, không qua JavaScript
     options.Cookie.IsEssential = true; // Bắt buộc cho Session
 });
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 20971520; // Kích thước tệp tối đa (20MB)
+});
+builder.Services.AddLogging();
 /*builder.Services.AddHttpClient();*/
 builder.Services.AddHttpContextAccessor();
 /*builder.Services.AddScoped<GetMails>();*/
