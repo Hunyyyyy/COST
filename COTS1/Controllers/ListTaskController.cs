@@ -209,10 +209,6 @@ namespace COTS1.Controllers
             return View(viewModel);
         }
 
-
-
-
-
         public async Task<IActionResult> AcceptSubtask(int subtaskId, int taskID)
         {
             // Lấy ID người dùng hiện tại từ Session
@@ -289,7 +285,29 @@ namespace COTS1.Controllers
 
             // Lấy danh sách công việc đã gửi
             var submittedSubtasks = await db.SubmittedSubtasks
-                .Where(p => p.UserId == currentUserId&&p.Status== "đang chờ phê duyệt")
+                .Where(p => p.UserId == currentUserId)
+                .Select(p => new SubmittedSubtaskViewModel
+                {
+                    SubtaskId = p.SubtaskId,
+                    Status = p.Status,
+                    SubmittedAt = p.SubmittedAt
+                })
+                .ToListAsync();
+
+            // Lấy danh sách công việc đã được phê duyệt
+            var approvedSubtasks = await db.SubmittedSubtasks
+                .Where(p => p.UserId == currentUserId && p.Status == "Đã phê duyệt")
+                .Select(p => new SubmittedSubtaskViewModel
+                {
+                    SubtaskId = p.SubtaskId,
+                    Status = p.Status,
+                    SubmittedAt = p.SubmittedAt
+                })
+                .ToListAsync();
+
+            // Lấy danh sách công việc bị từ chối
+            var rejectedSubtasks = await db.SubmittedSubtasks
+                .Where(p => p.UserId == currentUserId && p.Status == "Từ chối phê duyệt")
                 .Select(p => new SubmittedSubtaskViewModel
                 {
                     SubtaskId = p.SubtaskId,
@@ -302,11 +320,120 @@ namespace COTS1.Controllers
             var model = new RecivedTask_And_SubmittedSubtask_Model
             {
                 ReceivedTasks = receivedTasks,
-                SubmittedSubtasks = submittedSubtasks
+                SubmittedSubtasks = submittedSubtasks,
+                ApprovedSubtasks = approvedSubtasks,
+                RejectedSubtasks = rejectedSubtasks
             };
             ViewBag.currentUserName = currentUserName;
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAssignedSubtask(int subtaskId)
+        {
+            var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+            if (currentUserId == null)
+            {
+                TempData["ErrorMessage"] = "Bạn cần đăng nhập để thực hiện thao tác này.";
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Tìm công việc con được gán với ID và người dùng hiện tại
+            var assignedSubtask = await db.AssignedSubtasks
+                .FirstOrDefaultAsync(ast => ast.SubtaskId == subtaskId && ast.AssignedTo == currentUserId);
+
+            if (assignedSubtask == null)
+            {
+                TempData["ErrorMessage"] = "Công việc không tồn tại hoặc bạn không có quyền xóa công việc này.";
+                return RedirectToAction("ListRecivedTask");
+            }
+
+            // Xóa công việc con được gán
+            db.AssignedSubtasks.Remove(assignedSubtask);
+            await db.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Công việc đã được xóa thành công.";
+            return RedirectToAction("ListRecivedTask");
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteSubmittedSubtask(int subtaskId)
+        {
+            var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+            if (currentUserId == null)
+            {
+                TempData["ErrorMessage"] = "Bạn cần đăng nhập để thực hiện thao tác này.";
+                return RedirectToAction("Login", "Login");
+            }
+
+            // Tìm công việc đã gửi với ID và người dùng hiện tại
+            var submittedSubtask = await db.SubmittedSubtasks
+                .FirstOrDefaultAsync(ss => ss.SubtaskId == subtaskId && ss.UserId == currentUserId);
+
+            if (submittedSubtask == null)
+            {
+                TempData["ErrorMessage"] = "Công việc không tồn tại hoặc bạn không có quyền xóa công việc này.";
+                return RedirectToAction("ListRecivedTask");
+            }
+
+            // Xóa công việc đã gửi
+            db.SubmittedSubtasks.Remove(submittedSubtask);
+            await db.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Công việc đã được xóa thành công.";
+            return RedirectToAction("ListRecivedTask");
+        }
+        [HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubtask(int subtaskId, IFormFile fileUpload, string notes)
+        {
+            var userId = HttpContext.Session.GetInt32("UserIDEmail");
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            // Tìm công việc con đã nộp dựa trên subtaskId và userId
+            var submittedSubtask = await db.SubmittedSubtasks
+                .Where(st => st.SubtaskId == subtaskId && st.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            if (submittedSubtask == null)
+            {
+                return NotFound("Không tìm thấy công việc đã nộp.");
+            }
+
+            // Cập nhật ghi chú
+            submittedSubtask.Notes = notes;
+
+            // Nếu có file mới, lưu file và cập nhật đường dẫn
+            if (fileUpload != null && fileUpload.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = $"{Guid.NewGuid()}_{fileUpload.FileName}";
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await fileUpload.CopyToAsync(fileStream);
+                }
+
+                // Cập nhật đường dẫn file mới
+                submittedSubtask.FilePath = $"/uploads/{uniqueFileName}";
+            }
+
+            db.SubmittedSubtasks.Update(submittedSubtask);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("ListRecivedTask");
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> SubmitSubtask(int subtaskId, IFormFile fileUpload, string notes)
@@ -561,7 +688,7 @@ namespace COTS1.Controllers
 
             // Lấy danh sách công việc có trạng thái 'đang chờ phê duyệt' cho dự án
             var submittedTasks = await db.SubmittedSubtasks
-                .Where(ss => ss.ProjectId == projectId )
+                .Where(ss => ss.ProjectId == projectId)
                 .Select(ss => new SubmittedSubtaskViewModel
                 {
                     SubmissionId = ss.SubmissionId,
@@ -669,6 +796,88 @@ namespace COTS1.Controllers
             return RedirectToAction("SubmittedTasksByProject", new { projectId = projectId });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RejectSubtaskByManager(int subtaskId)
+        {
+            var userId = HttpContext.Session.GetInt32("UserIDEmail");
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var email = db.Users.Where(p => p.UserId == userId).Select(p => p.Email).FirstOrDefault();
+
+            // Kiểm tra subtaskId có tồn tại hay không
+            var taskId = await db.Subtasks
+                .Where(st => st.SubtaskId == subtaskId)
+                .Select(st => st.TaskId)
+                .FirstOrDefaultAsync();
+
+            if (taskId == 0)
+            {
+                return BadRequest("Nhiệm vụ không tồn tại.");
+            }
+
+            // Lấy ProjectId từ TaskId
+            var projectId = await db.SaveTasks
+                .Where(t => t.TaskId == taskId)
+                .Select(t => t.ProjectId)
+                .FirstOrDefaultAsync();
+
+            if (projectId == 0)
+            {
+                return BadRequest("Dự án không tồn tại.");
+            }
+
+            // Tìm kiếm công việc con đã nộp trong SubmittedSubtasks
+            var submittedSubtask = await db.SubmittedSubtasks
+                .Where(s => s.SubtaskId == subtaskId && s.TaskId == taskId)
+                .FirstOrDefaultAsync();
+
+            if (submittedSubtask == null)
+            {
+                return BadRequest("Công việc con chưa được nộp.");
+            }
+
+            // Cập nhật trạng thái thành "Từ chối phê duyệt"
+            submittedSubtask.Status = "Từ chối phê duyệt";
+           // submittedSubtask.RejectedAt = DateTime.Now; // Cập nhật thời gian từ chối (tuỳ chọn)
+
+            db.SubmittedSubtasks.Update(submittedSubtask);
+            await db.SaveChangesAsync();
+
+            // Lấy thông tin người đã nộp công việc con (người dùng bị từ chối)
+            var userEmail = await db.Users
+                .Where(u => u.UserId == submittedSubtask.UserId)
+                .Select(u => u.Email)
+                .FirstOrDefaultAsync();
+
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return BadRequest("Không tìm thấy email của người dùng.");
+            }
+
+            // Gửi email thông báo từ chối
+            var accessToken = HttpContext.Session.GetString("AccessToken");
+
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var sendNotificationMail = new SendNotificationMail(accessToken);
+            await SendNotificationMail.SendEmailAsync(
+                sendNotificationMail._gmailService,
+                email, // Thay bằng địa chỉ email của bạn hoặc hệ thống
+                userEmail,
+                "Công việc của bạn đã bị từ chối",
+                $"Công việc con ID: {subtaskId} trong dự án ID: {projectId} đã bị từ chối phê duyệt."
+            );
+
+
+            return RedirectToAction("SubmittedTasksByProject", new { projectId = projectId });
+        }
 
 
     }

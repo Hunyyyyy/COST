@@ -4,5 +4,7 @@
     {
         public List<AssignedSubtasksModel> ReceivedTasks { get; set; }
         public List<SubmittedSubtaskViewModel> SubmittedSubtasks { get; set; }
+        public IEnumerable<SubmittedSubtaskViewModel> ApprovedSubtasks { get; set; } // New
+        public IEnumerable<SubmittedSubtaskViewModel> RejectedSubtasks { get; set; }
     }
 }

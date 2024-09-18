@@ -206,9 +206,11 @@ DROP TABLE TaskProgress;
 	DELETE FROM Subtasks ;
 	DELETE FROM Subtasks ;
 	DELETE FROM SubmittedSubtasks ;
-		DELETE FROM AssignedSubtasks ;
-			DELETE FROM SentTasksList ;
-	select * from SubtaskProgress
+		DELETE FROM SubtaskProgress ;
+		
+		DELETE FROM SentTasksList ;
+			DELETE FROM Projects ;
+	select * from SentTasksList
 
 	select * from ProjectUsers
 	select * from TaskProgress
