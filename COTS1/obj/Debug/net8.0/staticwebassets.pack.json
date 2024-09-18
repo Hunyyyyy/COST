@@ -1,659 +1,659 @@
 {
   "Files": [
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\COTS1.bundle.scp.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\COTS1.bundle.scp.css",
       "PackagePath": "staticwebassets\\COTS1.bundle.scp.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\.editorconfig",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\.editorconfig",
       "PackagePath": "staticwebassets\\.editorconfig"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\.gitignore",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\.gitignore",
       "PackagePath": "staticwebassets\\.gitignore"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\LICENSE",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\LICENSE",
       "PackagePath": "staticwebassets"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\README.md",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\README.md",
       "PackagePath": "staticwebassets\\README.md"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\css\\StyleSheet.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\css\\StyleSheet.css",
       "PackagePath": "staticwebassets\\css\\StyleSheet.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\css\\site.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\401.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\401.html",
       "PackagePath": "staticwebassets\\dist\\401.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\404.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\404.html",
       "PackagePath": "staticwebassets\\dist\\404.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\500.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\500.html",
       "PackagePath": "staticwebassets\\dist\\500.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-area-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-area-demo.js",
       "PackagePath": "staticwebassets\\dist\\assets\\demo\\chart-area-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-bar-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-bar-demo.js",
       "PackagePath": "staticwebassets\\dist\\assets\\demo\\chart-bar-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-pie-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-pie-demo.js",
       "PackagePath": "staticwebassets\\dist\\assets\\demo\\chart-pie-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\demo\\datatables-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\datatables-demo.js",
       "PackagePath": "staticwebassets\\dist\\assets\\demo\\datatables-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\anh2.png",
       "PackagePath": "staticwebassets\\dist\\assets\\img\\anh2.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\error-404-monochrome.svg",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\error-404-monochrome.svg",
       "PackagePath": "staticwebassets\\dist\\assets\\img\\error-404-monochrome.svg"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\gmailimages.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\gmailimages.png",
       "PackagePath": "staticwebassets\\dist\\assets\\img\\gmailimages.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
       "PackagePath": "staticwebassets\\dist\\assets\\img\\moutain.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\charts.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\charts.html",
       "PackagePath": "staticwebassets\\dist\\charts.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\css\\StyleSheet.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\css\\StyleSheet.css",
       "PackagePath": "staticwebassets\\dist\\css\\StyleSheet.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\css\\styles.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\css\\styles.css",
       "PackagePath": "staticwebassets\\dist\\css\\styles.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\index.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\index.html",
       "PackagePath": "staticwebassets\\dist\\index.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\js\\datatables-simple-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\js\\datatables-simple-demo.js",
       "PackagePath": "staticwebassets\\dist\\js\\datatables-simple-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\js\\scripts.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\js\\scripts.js",
       "PackagePath": "staticwebassets\\dist\\js\\scripts.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\layout-sidenav-light.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\layout-sidenav-light.html",
       "PackagePath": "staticwebassets\\dist\\layout-sidenav-light.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\layout-static.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\layout-static.html",
       "PackagePath": "staticwebassets\\dist\\layout-static.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\login.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\login.html",
       "PackagePath": "staticwebassets\\dist\\login.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\password.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\password.html",
       "PackagePath": "staticwebassets\\dist\\password.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\register.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\register.html",
       "PackagePath": "staticwebassets\\dist\\register.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\tables.html",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\tables.html",
       "PackagePath": "staticwebassets\\dist\\tables.html"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\favicon.ico",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\js\\site.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\package-lock.json",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\package-lock.json",
       "PackagePath": "staticwebassets\\package-lock.json"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\package.json",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\package.json",
       "PackagePath": "staticwebassets\\package.json"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\build-assets.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-assets.js",
       "PackagePath": "staticwebassets\\scripts\\build-assets.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\build-pug.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-pug.js",
       "PackagePath": "staticwebassets\\scripts\\build-pug.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\build-scripts.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-scripts.js",
       "PackagePath": "staticwebassets\\scripts\\build-scripts.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\build-scss.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-scss.js",
       "PackagePath": "staticwebassets\\scripts\\build-scss.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\clean.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\clean.js",
       "PackagePath": "staticwebassets\\scripts\\clean.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\render-assets.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-assets.js",
       "PackagePath": "staticwebassets\\scripts\\render-assets.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\render-pug.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-pug.js",
       "PackagePath": "staticwebassets\\scripts\\render-pug.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\render-scripts.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-scripts.js",
       "PackagePath": "staticwebassets\\scripts\\render-scripts.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\render-scss.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-scss.js",
       "PackagePath": "staticwebassets\\scripts\\render-scss.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\sb-watch.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\sb-watch.js",
       "PackagePath": "staticwebassets\\scripts\\sb-watch.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\start-debug.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\start-debug.js",
       "PackagePath": "staticwebassets\\scripts\\start-debug.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\scripts\\start.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\start.js",
       "PackagePath": "staticwebassets\\scripts\\start.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\assets\\demo\\chart-area-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-area-demo.js",
       "PackagePath": "staticwebassets\\src\\assets\\demo\\chart-area-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\assets\\demo\\chart-bar-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-bar-demo.js",
       "PackagePath": "staticwebassets\\src\\assets\\demo\\chart-bar-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\assets\\demo\\chart-pie-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-pie-demo.js",
       "PackagePath": "staticwebassets\\src\\assets\\demo\\chart-pie-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\assets\\demo\\datatables-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\datatables-demo.js",
       "PackagePath": "staticwebassets\\src\\assets\\demo\\datatables-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\assets\\img\\error-404-monochrome.svg",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\img\\error-404-monochrome.svg",
       "PackagePath": "staticwebassets\\src\\assets\\img\\error-404-monochrome.svg"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\js\\datatables-simple-demo.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\js\\datatables-simple-demo.js",
       "PackagePath": "staticwebassets\\src\\js\\datatables-simple-demo.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\js\\scripts.js",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\js\\scripts.js",
       "PackagePath": "staticwebassets\\src\\js\\scripts.js"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\authentication.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\authentication.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\authentication.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\dashboard.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\dashboard.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\dashboard.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\error.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\error.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\error.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\footer.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\footer.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\footer.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\css.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\css.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\head\\css.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\icons.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\icons.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\head\\icons.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\meta.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\meta.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\head\\meta.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\title.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\title.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\head\\title.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\sidenav.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\sidenav.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\navigation\\sidenav.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\topnav.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\topnav.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\navigation\\topnav.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\scripts.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\scripts.pug",
       "PackagePath": "staticwebassets\\src\\pug\\layouts\\includes\\scripts.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\401.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\401.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\401.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\404.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\404.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\404.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\500.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\500.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\500.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\charts.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\charts.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\charts.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\datatable.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\datatable.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\includes\\datatable.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\page-header.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\page-header.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\includes\\page-header.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\index.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\index.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\index.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\layout-sidenav-light.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\layout-sidenav-light.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\layout-sidenav-light.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\layout-static.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\layout-static.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\layout-static.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\login.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\login.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\login.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\password.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\password.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\password.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\register.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\register.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\register.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\pug\\pages\\tables.pug",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\tables.pug",
       "PackagePath": "staticwebassets\\src\\pug\\pages\\tables.pug"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\_global.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\_global.scss",
       "PackagePath": "staticwebassets\\src\\scss\\_global.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\_variables.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\_variables.scss",
       "PackagePath": "staticwebassets\\src\\scss\\_variables.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\layout\\_authentication.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_authentication.scss",
       "PackagePath": "staticwebassets\\src\\scss\\layout\\_authentication.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-default.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-default.scss",
       "PackagePath": "staticwebassets\\src\\scss\\layout\\_dashboard-default.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-fixed.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-fixed.scss",
       "PackagePath": "staticwebassets\\src\\scss\\layout\\_dashboard-fixed.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\layout\\_error.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_error.scss",
       "PackagePath": "staticwebassets\\src\\scss\\layout\\_error.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\navigation\\_nav.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\_nav.scss",
       "PackagePath": "staticwebassets\\src\\scss\\navigation\\_nav.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\navigation\\_topnav.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\_topnav.scss",
       "PackagePath": "staticwebassets\\src\\scss\\navigation\\_topnav.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-dark.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-dark.scss",
       "PackagePath": "staticwebassets\\src\\scss\\navigation\\sidenav\\_sidenav-dark.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-light.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-light.scss",
       "PackagePath": "staticwebassets\\src\\scss\\navigation\\sidenav\\_sidenav-light.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav.scss",
       "PackagePath": "staticwebassets\\src\\scss\\navigation\\sidenav\\_sidenav.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\plugins\\simple-datatables.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\plugins\\simple-datatables.scss",
       "PackagePath": "staticwebassets\\src\\scss\\plugins\\simple-datatables.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\styles.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\styles.scss",
       "PackagePath": "staticwebassets\\src\\scss\\styles.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\variables\\_navigation.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\variables\\_navigation.scss",
       "PackagePath": "staticwebassets\\src\\scss\\variables\\_navigation.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\src\\scss\\variables\\_spacing.scss",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\variables\\_spacing.scss",
       "PackagePath": "staticwebassets\\src\\scss\\variables\\_spacing.scss"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx",
       "PackagePath": "staticwebassets\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx",
       "PackagePath": "staticwebassets\\uploads\\1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png",
       "PackagePath": "staticwebassets\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png",
       "PackagePath": "staticwebassets\\uploads\\4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\58a75eef-972c-4c69-824a-1238776718a3_1.docx",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\58a75eef-972c-4c69-824a-1238776718a3_1.docx",
       "PackagePath": "staticwebassets\\uploads\\58a75eef-972c-4c69-824a-1238776718a3_1.docx"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png",
       "PackagePath": "staticwebassets\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx",
       "PackagePath": "staticwebassets\\uploads\\95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png",
       "PackagePath": "staticwebassets\\uploads\\99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png",
       "PackagePath": "staticwebassets\\uploads\\e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx",
       "PackagePath": "staticwebassets\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx"
     },
     {
-      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\uploads\\fb90d219-90f5-4e7f-a311-09b10cebd1ef_anh2.png",
+      "Id": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\fb90d219-90f5-4e7f-a311-09b10cebd1ef_anh2.png",
       "PackagePath": "staticwebassets\\uploads\\fb90d219-90f5-4e7f-a311-09b10cebd1ef_anh2.png"
     },
     {
