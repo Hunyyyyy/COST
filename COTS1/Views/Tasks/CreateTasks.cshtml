@@ -3,7 +3,7 @@
     ViewData["Title"] = "Tạo Nhiệm Vụ";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
-@model List<COTS1.Data.Project>
+@model COTS1.Data.Project
 <style>
     textarea {
         width: 100%;
@@ -42,16 +42,18 @@
         </div>
     </div>
 }
-
+@if(Model == null)
+{
+    <h2 class="mb-4">Đã xảy ra lỗi.Vui lòng thử lại  </h2>
+}
 <div class="container mt-5" style="margin-left: 230px; margin-top: 70px; padding:50px 40px">
-    @foreach(var item in Model)
-    {
-        <h2 class="mb-4">Tạo Nhiệm Vụ Mới cho @item.ProjectName </h2>
-         
-    }
-   
 
-    <form method="post">
+    <h2 class="mb-4">Tạo Nhiệm Vụ Mới cho @Model.ProjectName </h2>
+
+
+
+
+    <form method="post" id="taskForm">
         <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
         <div class="mb-3">
             <label for="from" class="form-label">From</label>
@@ -59,32 +61,22 @@
         </div>
 
         <div class="mb-3">
-            <label for="Title" class="form-label">Tên nhiệm vụ</label>
-            <input type="text" class="form-control" id="Title" name="Title" required>
+            <label for="Title" class="form-label">Tên dự án</label>
+            <input type="text" class="form-control" id="Title" name="Title" value="@Model.ProjectName" readonly>
         </div>
-
-        <!-- Nút Thêm nhiệm vụ chính -->
-        <button type="button" class="btn btn-success" id="addMainTaskBtn">Thêm nhiệm vụ</button>
 
         <!-- Khu vực Thêm công việc chính -->
-        <div id="mainTaskArea" class="mb-3" style="display:none;">
+        <div id="mainTaskArea" class="mb-3">
             <label for="taskInput" class="form-label">Thêm công việc</label>
-            <input type="text" class="form-control" id="taskInput" placeholder="Nhập công việc">
-            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Add Công Việc Chính</button>
-        </div>
-
-        <!-- Khu vực công việc phụ và ghi chú -->
-        <div id="subTaskArea" class="mb-3" style="display:none;">
-            <input type="text" class="form-control" id="SuptaskInput" placeholder="Nhập công việc phụ (Nếu có)">
-            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addSubTaskBtn">Add Công Việc Phụ</button>
-
-            <textarea id="Note" name="Note" class="editable-textarea"  placeholder="Ghi chú"></textarea>
-            
+            <input type="text" class="form-control" id="taskInput" placeholder="Nhập tên nhiệm vụ" >
+            <input type="text" class="form-control mt-2" id="SuptaskInput" placeholder="Nhập công việc của nhiệm vụ" >
+            <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú"></textarea>
+            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Thêm nhiệm vụ</button>
         </div>
 
         <div class="mb-3">
             <label for="Description" class="form-label">Danh sách công việc</label>
-            <textarea id="Description" class="editable-textarea" name="Description" readonly></textarea>
+            <textarea id="Description" class="editable-textarea" name="Description" readonly required></textarea>
             <button type="button" class="btn btn-danger" id="editTaskBtn">Chỉnh sửa công việc</button>
         </div>
 
@@ -102,92 +94,64 @@
             </select>
         </div>
 
-       @*  <div class="mb-3">
-            <label for="Recipients" class="form-label">Người nhận</label>
-            <input type="email" class="form-control" id="Recipients" name="Recipients" placeholder="Nhập email người nhận, ngăn cách bằng dấu phẩy" required>
-        </div> *@
-       
         <!-- Nút Create tasks để lưu tất cả -->
-        <button asp-action="SaveTask" asp-controller="Tasks" type="submit" class="btn btn-primary" >Tạo Nhiệm Vụ</button>
+        <button asp-action="SaveTask" asp-controller="Tasks" type="submit" class="btn btn-primary">Tạo Nhiệm Vụ</button>
     </form>
+
+
+    
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    // Xử lý khi nhấn nút "Tạo Nhiệm Vụ"
+    document.getElementById('taskForm').addEventListener('submit', function (event) {
+        const description = document.getElementById('Description').value.trim();
+
+        if (!description) {
+            alert('Vui lòng thêm ít nhất một nhiệm vụ vào danh sách.');
+            event.preventDefault(); // Ngăn chặn gửi form
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
             keyboard: false
         });
         myModal.show();
     });
-   @*  cong viec *@
 
+    let taskCounter = 1;  // Đếm số công việc
 
-        let taskCounter = 1;  // Đếm số công việc
-    let isSubTaskVisible = false; // Trạng thái hiển thị công việc phụ
-
-    // Hiển thị khu vực thêm công việc chính khi nhấn nút "Thêm nhiệm vụ"
-    document.getElementById('addMainTaskBtn').addEventListener('click', function () {
-        document.getElementById('mainTaskArea').style.display = 'block';
-    });
-
-    // Xử lý khi nhấn nút "Add Công Việc Chính"
+    // Xử lý khi nhấn nút "Thêm nhiệm vụ"
     document.getElementById('addTaskBtn').addEventListener('click', function () {
         const taskInput = document.getElementById('taskInput').value.trim();
-
-        if (!taskInput) {
-            alert('Vui lòng nhập công việc chính.');
-            return;
-        }
-
-        // Thêm công việc chính vào danh sách
-        const newTask = `Công việc ${taskCounter}: ${taskInput}\n`;
-        const description = document.getElementById('Description');
-        description.value += newTask;
-
-        // Hiển thị khu vực thêm công việc phụ và ghi chú
-        document.getElementById('subTaskArea').style.display = 'block';
-
-        // Tăng số công việc và xóa input
-        taskCounter++;
-        document.getElementById('taskInput').value = '';
-    });
-
-    // Xử lý khi nhấn nút "Add Công Việc Phụ"
-    document.getElementById('addSubTaskBtn').addEventListener('click', function () {
         const suptaskInput = document.getElementById('SuptaskInput').value.trim();
 
-        if (!suptaskInput) {
-            alert('Vui lòng nhập công việc phụ.');
+        if (!taskInput && !suptaskInput) {
+            alert('Vui lòng nhập tên nhiệm vụ hoặc công việc của nhiệm vụ.');
             return;
         }
 
-        // Thêm công việc phụ vào danh sách với dấu "+"
-        const newSubTask = `+ ${suptaskInput}\n`;
+        // Thêm công việc chính vào danh sách nếu có
         const description = document.getElementById('Description');
-        description.value += newSubTask;
+
+        if (taskInput) {
+            const newTask = `Công việc ${taskCounter}: ${taskInput}\n`;
+            description.value += newTask;
+            taskCounter++;
+        }
+
+        // Thêm công việc phụ nếu có
+        if (suptaskInput) {
+            const newSubTask = `+ ${suptaskInput}\n`;
+            description.value += newSubTask;
+        }
 
         // Xóa input sau khi thêm
+        document.getElementById('taskInput').value = '';
         document.getElementById('SuptaskInput').value = '';
     });
 
-    // Xử lý khi nhấn nút "Add Ghi Chú"
-    document.getElementById('addNoteBtn').addEventListener('click', function () {
-        const note = document.getElementById('Note').value.trim();
-
-        if (!note) {
-            alert('Vui lòng nhập ghi chú.');
-            return;
-        }
-
-        // Thêm ghi chú vào danh sách
-        const newNote = `Ghi chú: ${note}\n`;
-        const description = document.getElementById('Description');
-        description.value += newNote;
-
-        // Xóa textarea ghi chú sau khi thêm
-        document.getElementById('Note').value = '';
-     
-    });
     let isEditing = false;
 
     document.getElementById('editTaskBtn').addEventListener('click', function () {
@@ -206,3 +170,5 @@
         }
     });
 </script>
+
+
