@@ -910,29 +910,7 @@ namespace COTS1.Controllers
             await db.SaveChangesAsync();
         }
 
-        private async Task CancelReminderIfTaskCompleted(int taskId)
-        {
-            // Kiểm tra xem tất cả các nhiệm vụ con của nhiệm vụ này đã được phê duyệt chưa
-            var allSubtasksApproved = !await db.Subtasks
-                .Where(st => st.TaskId == taskId)
-                .AnyAsync(st => !db.SubmittedSubtasks
-                    .Any(ss => ss.SubtaskId == st.SubtaskId && ss.Status == "Đã phê duyệt"));
-
-            if (allSubtasksApproved)
-            {
-                // Lấy nhắc nhở liên quan đến nhiệm vụ
-                var reminders = await db.Reminders
-                    .Where(r => r.TaskId == taskId)
-                    .ToListAsync();
-
-                if (reminders.Any())
-                {
-                    // Xóa tất cả nhắc nhở liên quan
-                    db.Reminders.RemoveRange(reminders);
-                    await db.SaveChangesAsync();
-                }
-            }
-        }
+        
         [HttpPost]
         public async Task<IActionResult> RejectSubtaskByManager(int subtaskId)
         {
@@ -1015,7 +993,29 @@ namespace COTS1.Controllers
 
             return RedirectToAction("SubmittedTasksByProject", new { projectId = projectId });
         }
+        private async Task CancelReminderIfTaskCompleted(int taskId)
+        {
+            // Kiểm tra xem tất cả các nhiệm vụ con của nhiệm vụ này đã được phê duyệt chưa
+            var allSubtasksApproved = !await db.Subtasks
+                .Where(st => st.TaskId == taskId)
+                .AnyAsync(st => !db.SubmittedSubtasks
+                    .Any(ss => ss.SubtaskId == st.SubtaskId && ss.Status == "Đã phê duyệt"));
 
+            if (allSubtasksApproved)
+            {
+                // Lấy nhắc nhở liên quan đến nhiệm vụ
+                var reminders = await db.Reminders
+                    .Where(r => r.TaskId == taskId)
+                    .ToListAsync();
+
+                if (reminders.Any())
+                {
+                    // Xóa tất cả nhắc nhở liên quan
+                    db.Reminders.RemoveRange(reminders);
+                    await db.SaveChangesAsync();
+                }
+            }
+        }
 
 
     }

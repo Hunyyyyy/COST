@@ -1,10 +1,12 @@
 ﻿using COTS1.Class;
 using COTS1.Data;
 using COTS1.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Cms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace COTS1.Controllers
 {
@@ -17,6 +19,7 @@ namespace COTS1.Controllers
         {
             _contextAccessor = contextAccessor;
             _dbContext = dbContext;
+            
         }
 
         public async Task<IActionResult> CreateTasks(int projectId)
@@ -75,6 +78,7 @@ namespace COTS1.Controllers
 
                 _dbContext.SentTasksLists.Add(task);
                 await _dbContext.SaveChangesAsync();
+                
 
                 // Thêm nhiệm vụ chính vào bảng SaveTasks
                 var saveTask = new SaveTask
@@ -91,6 +95,7 @@ namespace COTS1.Controllers
                 };
 
                 _dbContext.SaveTasks.Add(saveTask);
+
                 await _dbContext.SaveChangesAsync();
 
                 var taskId = saveTask.TaskId;
@@ -129,7 +134,6 @@ namespace COTS1.Controllers
                     await _dbContext.SaveChangesAsync();
                 }
 
-               
 
                 // Tách các công việc phụ từ mô tả nhiệm vụ chính
                 var subtasks = SplitTasks(saveTask.Description);

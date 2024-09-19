@@ -29,6 +29,8 @@ namespace COTS1.Models
 
         // Danh sách các nhắc nhở nhiệm vụ (có thể chứa nhiều nhiệm vụ liên quan đến nhắc nhở này)
         public List<TaskReminderViewModel> TaskReminders { get; set; } = new List<TaskReminderViewModel>();
+        public DateTime? EndDate { get; internal set; }
+        
     }
 
     // Mô hình cho nhiệm vụ liên quan đến nhắc nhở
