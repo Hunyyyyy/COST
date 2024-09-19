@@ -113,17 +113,8 @@ namespace COTS1.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteProject(int projectId)
         {
-            //var project = await db.Projects.FindAsync(projectId);
-            var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+            var project = await db.Projects.FindAsync(projectId);
 
-            // Kiểm tra xem người dùng hiện tại có phải là Manager của dự án này không
-            var project = await db.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId && p.ManagerId == managerID);
-
-            if (project == null)
-            {
-                TempData["ErrorMessage"] = "Bạn không có quyền đổi tên dự án này hoặc dự án không tồn tại.";
-                return RedirectToAction("Index");
-            }
             if (project != null)
             {
                 try
@@ -131,16 +122,10 @@ namespace COTS1.Controllers
                     // Xóa tất cả các thành viên liên quan đến dự án
                     var projectMembers = db.ProjectUsers.Where(pm => pm.ProjectId == projectId);
                     var projectSentTask = db.SentTasksLists.Where(pm => pm.ProjectId == projectId);
-                    var Subtasks = db.Subtasks.Where(pm => pm.ProjectId == projectId);
-                    var SaveTasks = db.SaveTasks.Where(pm => pm.ProjectId == projectId);
-                    var AssignedSubtasks = db.AssignedSubtasks.Where(pm => pm.ProjectId == projectId);
                     if(projectMembers != null && projectSentTask != null)
                     {
                         db.ProjectUsers.RemoveRange(projectMembers);
                         db.SentTasksLists.RemoveRange(projectSentTask);
-                        db.Subtasks.RemoveRange(Subtasks);
-                        db.SaveTasks.RemoveRange(SaveTasks);
-                        db.AssignedSubtasks.RemoveRange(AssignedSubtasks);
                     }
                    
 

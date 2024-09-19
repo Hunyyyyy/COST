@@ -23,31 +23,26 @@ namespace COTS1.Controllers
 
             if (string.IsNullOrEmpty(accessToken))
             {
-                return RedirectToAction("Mail", "Home");
+                return RedirectToAction("Mail", "Home"); // Redirect to login/authentication page
             }
-
             var googleUserInfo = new GoogleUserInfo(accessToken);
             var email = await googleUserInfo.GetUserEmailAsync();
-
-            var project = await _dbContext.Projects
-                .Where(p => p.ProjectId == projectId)
+            var project = await _dbContext.Projects.Where(p => p.ProjectId == projectId)
                 .Select(p => new Project
                 {
                     ProjectName = p.ProjectName,
                     ProjectId = p.ProjectId,
-                }).FirstOrDefaultAsync();
+                }).ToListAsync();
 
             if (project != null)
             {
                 ViewBag.UserEmail = email;
                 ViewBag.ProjectId = projectId;
-                ViewBag.ProjectName = project.ProjectName;
                 return View(project);
             }
             else
             {
-                // Trả về một đối tượng Project mặc định
-                return RedirectToAction("CreateTaskProject", "ProjectManager"); // Trả về một Project rỗng
+                return View();
             }
         }
 
