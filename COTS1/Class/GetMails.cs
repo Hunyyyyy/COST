@@ -1,15 +1,14 @@
 ﻿namespace COTS1.Class
 {
+    using COTS1.Models;
+    using Microsoft.AspNetCore.Http;
+    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using COTS1.Models;
-    using Google.Apis.Auth.OAuth2;
-    using Microsoft.AspNetCore.Http;
-    using Newtonsoft.Json;
 
     public class GetMails
     {
@@ -41,7 +40,7 @@
                 }
                 else
                 {
-                   // return BadRequest("Access token is missing.");
+                    // return BadRequest("Access token is missing.");
                 }
             }
             var response = await _client.GetAsync(apiUrl);
@@ -64,6 +63,7 @@
 
             return emailSummaries;
         }
+
         public async Task<string> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
         {
             var values = new Dictionary<string, string>
@@ -92,6 +92,7 @@
                 }
             }
         }
+
         public async Task<MailViewModel> GetMailViewModelAsync()
         {
             var senders = new[] { "ngonhathuy501@gmail.com", "ngonhat501@gmail.com" };
@@ -213,5 +214,4 @@
             }
         }
     }
-
-    }
+}

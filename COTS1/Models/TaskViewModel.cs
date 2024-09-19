@@ -16,6 +16,4 @@
         public int Progress { get; set; }
         public List<SubtaskViewModel> Subtasks { get; set; } = new List<SubtaskViewModel>();
     }
-    
-
 }

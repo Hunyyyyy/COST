@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Web;
 
 namespace COTS1.Controllers
 {
@@ -14,7 +13,8 @@ namespace COTS1.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly TestNhiemVuContext _dbContext;
-        public HomeController(ILogger<HomeController> logger,IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext)
+
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext)
         {
             _logger = logger;
             _contextAccessor = contextAccessor;
@@ -45,10 +45,9 @@ namespace COTS1.Controllers
                 .Select(x => x.Email)
                 .ToListAsync();
 
-           
             return View();
-          
         }
+
         public async Task<int> GetSumUnreadEmails(int currentUserId, string accessToken)
         {
             // Lấy danh sách các dự án mà người dùng thuộc về
@@ -75,7 +74,6 @@ namespace COTS1.Controllers
             return sumEmail;
         }
 
-
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
@@ -97,16 +95,17 @@ namespace COTS1.Controllers
         public IActionResult Mail()
         {
             // Ki?m tra xem token có t?n t?i trong session không
-          AccessToken a = new AccessToken(_contextAccessor);
-    string tokenOrRedirectUrl = a.CheckToken();
+            AccessToken a = new AccessToken(_contextAccessor);
+            string tokenOrRedirectUrl = a.CheckToken();
 
-    // Nếu chưa có token, chuyển hướng đến trang xác thực
-    if (tokenOrRedirectUrl.StartsWith("https://"))
-    {
-        return Redirect(tokenOrRedirectUrl);
-    }
+            // Nếu chưa có token, chuyển hướng đến trang xác thực
+            if (tokenOrRedirectUrl.StartsWith("https://"))
+            {
+                return Redirect(tokenOrRedirectUrl);
+            }
             return RedirectToAction("GetEmails", "GmailAPI");
         }
+
         public IActionResult SendNotification()
         {
             // Ki?m tra xem token có t?n t?i trong session không
@@ -120,7 +119,6 @@ namespace COTS1.Controllers
             }
             return RedirectToAction("ViewEmailNotification", "GmailAPI");
         }
-      
 
         public IActionResult Privacy()
         {

@@ -1,17 +1,14 @@
-﻿using COTS1.Models;
+﻿using COTS1.Class;
+using COTS1.Data;
+using COTS1.Models;
+using COTS1.Models.EmailModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
-using COTS1.Class;
 using System.Text.RegularExpressions;
-using COTS1.Models.EmailModel;
-using Microsoft.EntityFrameworkCore;
-using COTS1.Data;
-using Microsoft.CodeAnalysis;
-
-
-
 
 namespace COTS1.Controllers
 {
@@ -20,12 +17,14 @@ namespace COTS1.Controllers
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly TestNhiemVuContext _dbContext;
         /* private readonly GetMails _getMails;*/
+
         public GmailAPIController(IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext  /*GetMails getMails*/)
         {
             _contextAccessor = contextAccessor;
             _dbContext = dbContext;
             /* _getMails = getMails;*/
         }
+
         public IActionResult Index()
         {
             return View();
@@ -135,7 +134,6 @@ namespace COTS1.Controllers
                 }
             }
         }
-
 
         public async Task<ActionResult> GetEmails()
         {
@@ -334,12 +332,12 @@ namespace COTS1.Controllers
             return null;
         }
 
-
-        string DecodeBase64(string base64Data)
+        private string DecodeBase64(string base64Data)
         {
             var base64EncodedBytes = System.Convert.FromBase64String(base64Data);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
+
         public string DecodeBase64Url(string base64Url)
         {
             // Base64 URL-safe thường thay thế '+' bằng '-', '/' bằng '_', và không có padding '='
@@ -356,14 +354,11 @@ namespace COTS1.Controllers
             return Encoding.UTF8.GetString(data);
         }
 
-
-
-        public async Task<ActionResult> ShowEmailDetails(string messageId,string CheckTask)
+        public async Task<ActionResult> ShowEmailDetails(string messageId, string CheckTask)
         {
             var emailSummary = await GetEmailDetailsAsync(messageId);
             var emailTitle = $"{emailSummary.Subject}";
             var emailSender = $"{emailSummary.Sender}";
-            
 
             // Kết hợp nội dung email
             var emailBody = string.Join("\n", emailSummary.BodyContents);
@@ -384,13 +379,12 @@ namespace COTS1.Controllers
             return View(combinedModel);
         }
 
+        /* private Email ParseEmailJson(string jsonString)
+         {
+             return JsonConvert.DeserializeObject<Email>(jsonString);
+         }*/
 
-     
-       /* private Email ParseEmailJson(string jsonString)
-        {
-            return JsonConvert.DeserializeObject<Email>(jsonString);
-        }*/
-       public async Task<IActionResult> ViewEmailNotification()
+        public async Task<IActionResult> ViewEmailNotification()
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var googleUserInfo = new GoogleUserInfo(accessToken);
@@ -399,14 +393,15 @@ namespace COTS1.Controllers
             ViewBag.UserEmail = email;
             return View();
         }
-       public async Task<IActionResult> EmailNotification(string recipients, string subject, string message,string from,string type)
+
+        public async Task<IActionResult> EmailNotification(string recipients, string subject, string message, string from, string type)
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
 
-           /* if (string.IsNullOrEmpty(accessToken))
-            {
-                return RedirectToAction("Authenticate", "Account"); // Redirect to login/authentication page
-            }*/
+            /* if (string.IsNullOrEmpty(accessToken))
+             {
+                 return RedirectToAction("Authenticate", "Account"); // Redirect to login/authentication page
+             }*/
 
             var sendNotificationMail = new SendNotificationMail(accessToken);
 
@@ -415,19 +410,18 @@ namespace COTS1.Controllers
 
             foreach (var email in emailAddresses)
             {
-            
                 await SendNotificationMail.SendEmailAsync(sendNotificationMail._gmailService, from.Trim(), email.Trim(), subject, message);
             }
             TempData["Message"] = "Gửi Email thành công!";
 
-            if (type!=null){
+            if (type != null)
+            {
                 return RedirectToAction("ShowEmailDetails");
             }
-           
-
 
             return RedirectToAction("ViewEmailNotification");
         }
+
         //nhận nhiệm vụ
         public TaskViewModel AnalyzeEmail(string emailContent, string title, string sender, DateTime sentDay)
         {
@@ -489,23 +483,17 @@ namespace COTS1.Controllers
                 // Thêm công việc phụ vào danh sách với dấu cộng
                 for (int i = 1; i < lines.Count; i++)
                 {
-                    descriptions.Add( lines[i]);
+                    descriptions.Add(lines[i]);
                 }
             }
 
             // Thêm ghi chú
-           
 
             return descriptions;
         }
 
-
-
-
-
-
         //save task
-      
+
         [HttpPost]
         public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string Note, string Sender)
         {
@@ -563,8 +551,6 @@ namespace COTS1.Controllers
             return View("ShowEmailDetails");
         }
 
-
-
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {
             var subtasks = new List<SubtaskViewModel>();
@@ -595,6 +581,5 @@ namespace COTS1.Controllers
 
             return subtasks;
         }
-
     }
 }

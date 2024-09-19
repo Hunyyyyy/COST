@@ -1,5 +1,4 @@
-﻿using COTS1.Class;
-using COTS1.Data;
+﻿using COTS1.Data;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 

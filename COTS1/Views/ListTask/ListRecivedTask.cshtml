@@ -21,61 +21,67 @@
                             <h5 class="card-title">@task.Title</h5>
                             <p class="card-text">@task.Description</p>
                             <p class="card-text"><small class="text-muted">Trạng thái: @task.Status</small></p>
-                        </div>
-                        <div class="card-footer text-end">
+
                             @if (task.IsSubmitted)
                             {
-                                @foreach (var status in Model.SubmittedSubtasks)
+                                @foreach (var status in Model.SubmittedSubtasks.Where(s => s.SubtaskId == task.SubtaskId))
                                 {
-                                    if (status.Status == "Đang chờ phê duyệt" || status.Status == "Từ chối phê duyệt" || status.Status == "Đã phê duyệt")
-                                    {
-                                        <!-- Cập nhật công việc -->
-                                        <button type="button" class="btn btn-outline-success"
-                                                data-bs-toggle="modal" data-bs-target="#updateTaskModal"
-                                                onclick="openUpdateTaskModal('@task.Title', '@task.SubtaskId', '@task.TaskId', '@ViewBag.currentUserName', '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")')"
-                                        @((status.Status == "Từ chối phê duyệt" || status.Status == "Đã phê duyệt") ? "disabled" : "")>
-                                            Cập nhật
-                                        </button>
+                                    <p class="card-text"><small class="text-muted">Ngày nộp: @status.SubmittedAt</small></p>
 
+                                    @if (!string.IsNullOrEmpty(status.FilePath))
+                                    {
+                                        <a href="@Url.Content(status.FilePath)" class="btn btn-outline-info" target="_blank">Xem File</a>
+                                    }
+
+                                    <div class="card-footer text-end">
+                                        <!-- Hiển thị nút Cập nhật -->
+                                        @if (status.Status == "Đang chờ phê duyệt" || status.Status == "Từ chối phê duyệt")
+                                        {
+                                            <button type="button" class="btn btn-outline-success"
+                                                    data-bs-toggle="modal" data-bs-target="#updateTaskModal"
+                                                    onclick="openUpdateTaskModal('@task.Title', '@task.SubtaskId', '@task.TaskId', '@ViewBag.currentUserName', '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")')">
+                                                Cập nhật
+                                            </button>
+                                        }
+
+                                        <!-- Nút Hủy nộp -->
                                         @if (status.Status == "Từ chối phê duyệt" || status.Status == "Đã phê duyệt")
                                         {
                                             <form class="mb-0 d-inline" method="post" asp-action="DeleteSubmittedSubtask" asp-controller="ListTask">
                                                 <input type="hidden" name="subtaskId" value="@task.SubtaskId" />
-                                                <button type="submit" class="btn btn-outline-danger" @((status.Status == "Từ chối phê duyệt" || status.Status == "Đã phê duyệt") ? "disabled" : "")>
-                                                    Hủy nộp
-                                                </button>
+                                                <button type="submit" class="btn btn-outline-danger">Hủy nộp</button>
                                             </form>
-
-                                            <!-- Hiển thị trạng thái hiện tại -->
-                                            <button type="button" class="btn btn-outline-success" disabled>
-                                                @status.Status
-                                            </button>
                                         }
-                                    }
-                                }
 
-                               
+                                        <!-- Hiển thị trạng thái hiện tại -->
+                                        <button type="button" class="btn btn-outline-success" disabled>
+                                            @status.Status
+                                        </button>
+                                    </div>
+                                }
                             }
                             else
                             {
+                                <!-- Nút Nộp việc nếu chưa nộp -->
                                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#submitTaskModal"
                                         onclick="openSubmitTaskModal('@task.Title', '@task.SubtaskId', '@task.TaskId', '@ViewBag.currentUserName', '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")')">
                                     Nộp việc
                                 </button>
+
+                                <!-- Nút Hủy việc -->
                                 <form class="mb-0 d-inline" method="post" asp-action="DeleteAssignedSubtask" asp-controller="ListTask">
                                     <input type="hidden" name="subtaskId" value="@task.SubtaskId" />
                                     <button type="submit" class="btn btn-outline-danger">Hủy việc</button>
                                 </form>
                             }
                         </div>
-
-
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
+
 
 <!-- Modal Nộp Công Việc -->
 <div class="modal fade" id="submitTaskModal" tabindex="-1" aria-labelledby="submitTaskModalLabel" aria-hidden="true">
