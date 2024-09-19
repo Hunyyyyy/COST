@@ -17,135 +17,139 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = COTS1
 build_property.RootNamespace = COTS1
-build_property.ProjectDir = D:\WebASP\DOANCOTS\COST\COTS1\
+build_property.ProjectDir = D:\DoanCOTS\COST\COTS1\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\WebASP\DOANCOTS\COST\COTS1
+build_property.MSBuildProjectDirectory = D:\DoanCOTS\COST\COTS1
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/Code.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/Code.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcQ29kZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/EmailNotification.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/EmailNotification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcRW1haWxOb3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/GetEmailDetails.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/GetEmailDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcR2V0RW1haWxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/GetEmails.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/GetEmails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcR2V0RW1haWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/GetSentEmails.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/GetSentEmails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcR2V0U2VudEVtYWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/ShowEmailDetails.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/ShowEmailDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcU2hvd0VtYWlsRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/GmailAPI/ViewEmailNotification.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/GmailAPI/ViewEmailNotification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR21haWxBUElcVmlld0VtYWlsTm90aWZpY2F0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Home/Code.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Home/Code.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb2RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Home/Index.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Home/Privacy.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/EditTask.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/EditTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcRWRpdFRhc2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/Index.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/ListRecivedTask.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/ListRecivedTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcTGlzdFJlY2l2ZWRUYXNrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/ProjectDetails.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/ProjectDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcUHJvamVjdERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/SubmittedTasksByProject.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/SubmittedTasksByProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcU3VibWl0dGVkVGFza3NCeVByb2plY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/Subtasks.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/Subtasks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcU3VidGFza3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ListTask/TrackProgress.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ListTask/TrackProgress.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFRhc2tcVHJhY2tQcm9ncmVzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Login/Login.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Login/Register.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Login/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Login/VerifyCode.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Login/VerifyCode.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cVmVyaWZ5Q29kZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ProjectManager/CreateTaskProject.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ProjectManager/CreateTaskProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcQ3JlYXRlVGFza1Byb2plY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ProjectManager/Index.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ProjectManager/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/ProjectManager/SettingProject.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/ProjectManager/SettingProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcU2V0dGluZ1Byb2plY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Shared/Error.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/RemindTask/RemindTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVtaW5kVGFza1xSZW1pbmRUYXNrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/DoanCOTS/COST/COTS1/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Shared/MainLayout.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Shared/MainLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1haW5MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Tasks/CreateTasks.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Tasks/CreateTasks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcQ3JlYXRlVGFza3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Tasks/ReceiveTask.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Tasks/ReceiveTask.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcUmVjZWl2ZVRhc2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/_ViewImports.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/_ViewStart.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/WebASP/DOANCOTS/COST/COTS1/Views/Shared/_Layout.cshtml]
+[D:/DoanCOTS/COST/COTS1/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xdkvxsdd7x

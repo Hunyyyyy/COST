@@ -19,17 +19,11 @@ public partial class AssignedSubtask
 
     public int? ProjectId { get; set; }
 
-    public int? MemberId { get; set; }
-
     public int? TaskId { get; set; }
+
+    public int? MemberId { get; set; }
 
     public virtual User? AssignedToNavigation { get; set; }
 
-    public virtual User? Member { get; set; }
-
-    public virtual Project? Project { get; set; }
-
     public virtual Subtask? Subtask { get; set; }
-
-    public virtual SaveTask? Task { get; set; }
 }

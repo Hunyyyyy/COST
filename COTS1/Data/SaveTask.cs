@@ -23,13 +23,11 @@ public partial class SaveTask
 
     public DateTime? CreatedAt { get; set; }
 
-    public string? Note { get; set; }
-
     public int? ProjectId { get; set; }
 
     public int? Progress { get; set; }
 
-    public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
+    public string? Note { get; set; }
 
     public virtual User? AssignedToNavigation { get; set; }
 

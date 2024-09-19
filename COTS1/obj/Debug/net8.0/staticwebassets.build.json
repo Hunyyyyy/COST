@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QCgLPlmZ9SE0MTgWR9NYIqpQB9b0mAKF8MPKl5rMKAA=",
+  "Hash": "urY5aphtqs21T/j/8Th8wz6CUrobxOBpWoV2k1U8Ovs=",
   "Source": "COTS1",
   "BasePath": "_content/COTS1",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "COTS1\\wwwroot",
       "Source": "COTS1",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\COTS1.styles.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\COTS1.styles.css",
       "SourceId": "COTS1",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "COTS1.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\COTS1.styles.css"
+      "OriginalItemSpec": "D:\\DoanCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\COTS1.styles.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\COTS1.bundle.scp.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\COTS1.bundle.scp.css",
       "SourceId": "COTS1",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "COTS1.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\COTS1.bundle.scp.css"
+      "OriginalItemSpec": "D:\\DoanCOTS\\COST\\COTS1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\COTS1.bundle.scp.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\.editorconfig",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\.editorconfig",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": ".editorconfig",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\.editorconfig"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\.gitignore",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\.gitignore",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": ".gitignore",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\.gitignore"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\css\\site.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\css\\site.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\css\\StyleSheet.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\css\\StyleSheet.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "css/StyleSheet.css",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\StyleSheet.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\401.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\401.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/401.html",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\401.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\404.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\404.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/404.html",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\404.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\500.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\500.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/500.html",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\500.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-area-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-area-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/demo/chart-area-demo.js",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\demo\\chart-area-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-bar-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-bar-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/demo/chart-bar-demo.js",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\demo\\chart-bar-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-pie-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\chart-pie-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/demo/chart-pie-demo.js",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\demo\\chart-pie-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\datatables-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\demo\\datatables-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/demo/datatables-demo.js",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\demo\\datatables-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/img/anh2.png",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\anh2.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\error-404-monochrome.svg",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\error-404-monochrome.svg",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/img/error-404-monochrome.svg",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\error-404-monochrome.svg"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\gmailimages.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\gmailimages.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/img/gmailimages.png",
       "AssetKind": "All",
@@ -321,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\gmailimages.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/assets/img/moutain.png",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\moutain.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\charts.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\charts.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/charts.html",
       "AssetKind": "All",
@@ -359,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\charts.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\css\\styles.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\css\\styles.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/css/styles.css",
       "AssetKind": "All",
@@ -378,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\css\\styles.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\css\\StyleSheet.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\css\\StyleSheet.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/css/StyleSheet.css",
       "AssetKind": "All",
@@ -397,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\css\\StyleSheet.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\index.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\index.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/index.html",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\index.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\js\\datatables-simple-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\js\\datatables-simple-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/js/datatables-simple-demo.js",
       "AssetKind": "All",
@@ -435,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\js\\datatables-simple-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\js\\scripts.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\js\\scripts.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/js/scripts.js",
       "AssetKind": "All",
@@ -454,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\js\\scripts.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\layout-sidenav-light.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\layout-sidenav-light.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/layout-sidenav-light.html",
       "AssetKind": "All",
@@ -473,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\layout-sidenav-light.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\layout-static.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\layout-static.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/layout-static.html",
       "AssetKind": "All",
@@ -492,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\layout-static.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\login.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\login.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/login.html",
       "AssetKind": "All",
@@ -511,10 +511,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\login.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\password.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\password.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/password.html",
       "AssetKind": "All",
@@ -530,10 +530,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\password.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\register.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\register.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/register.html",
       "AssetKind": "All",
@@ -549,10 +549,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\register.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\dist\\tables.html",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\dist\\tables.html",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "dist/tables.html",
       "AssetKind": "All",
@@ -568,10 +568,10 @@
       "OriginalItemSpec": "wwwroot\\dist\\tables.html"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\favicon.ico",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\favicon.ico",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -587,10 +587,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\js\\site.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\js\\site.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -606,10 +606,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -625,10 +625,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -644,10 +644,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -682,10 +682,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -701,10 +701,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -720,10 +720,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -739,10 +739,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -758,10 +758,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -777,10 +777,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -796,10 +796,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -815,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -834,10 +834,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -853,10 +853,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -872,10 +872,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -891,10 +891,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -910,10 +910,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -929,10 +929,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -948,10 +948,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -967,10 +967,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -986,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1005,10 +1005,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1024,10 +1024,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1043,10 +1043,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1062,10 +1062,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-theme.css",
       "AssetKind": "All",
@@ -1081,10 +1081,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-theme.css.map",
       "AssetKind": "All",
@@ -1100,10 +1100,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-theme.min.css",
       "AssetKind": "All",
@@ -1119,10 +1119,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-theme.min.css.map",
       "AssetKind": "All",
@@ -1138,10 +1138,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1157,10 +1157,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1176,10 +1176,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1195,10 +1195,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1214,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1233,10 +1233,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1252,10 +1252,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1271,10 +1271,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1290,10 +1290,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1309,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1328,10 +1328,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1347,10 +1347,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1366,10 +1366,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1385,10 +1385,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1404,10 +1404,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1423,10 +1423,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1442,10 +1442,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1461,10 +1461,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1480,10 +1480,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1499,10 +1499,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1518,10 +1518,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1537,10 +1537,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1556,10 +1556,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1575,10 +1575,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1594,10 +1594,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1613,10 +1613,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1632,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1651,10 +1651,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1670,10 +1670,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1689,10 +1689,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1708,10 +1708,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1727,10 +1727,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1746,10 +1746,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -1765,10 +1765,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\LICENSE",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\LICENSE",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "LICENSE",
       "AssetKind": "All",
@@ -1784,10 +1784,10 @@
       "OriginalItemSpec": "wwwroot\\LICENSE"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\package.json",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\package.json",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "package.json",
       "AssetKind": "All",
@@ -1803,10 +1803,10 @@
       "OriginalItemSpec": "wwwroot\\package.json"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\package-lock.json",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\package-lock.json",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "package-lock.json",
       "AssetKind": "All",
@@ -1822,10 +1822,10 @@
       "OriginalItemSpec": "wwwroot\\package-lock.json"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\README.md",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\README.md",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "README.md",
       "AssetKind": "All",
@@ -1841,10 +1841,10 @@
       "OriginalItemSpec": "wwwroot\\README.md"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-assets.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-assets.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/build-assets.js",
       "AssetKind": "All",
@@ -1860,10 +1860,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\build-assets.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-pug.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-pug.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/build-pug.js",
       "AssetKind": "All",
@@ -1879,10 +1879,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\build-pug.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-scripts.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-scripts.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/build-scripts.js",
       "AssetKind": "All",
@@ -1898,10 +1898,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\build-scripts.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-scss.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\build-scss.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/build-scss.js",
       "AssetKind": "All",
@@ -1917,10 +1917,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\build-scss.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\clean.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\clean.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/clean.js",
       "AssetKind": "All",
@@ -1936,10 +1936,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\clean.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-assets.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-assets.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/render-assets.js",
       "AssetKind": "All",
@@ -1955,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\render-assets.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-pug.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-pug.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/render-pug.js",
       "AssetKind": "All",
@@ -1974,10 +1974,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\render-pug.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-scripts.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-scripts.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/render-scripts.js",
       "AssetKind": "All",
@@ -1993,10 +1993,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\render-scripts.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-scss.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\render-scss.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/render-scss.js",
       "AssetKind": "All",
@@ -2012,10 +2012,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\render-scss.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\sb-watch.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\sb-watch.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/sb-watch.js",
       "AssetKind": "All",
@@ -2031,10 +2031,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\sb-watch.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\start.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\start.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/start.js",
       "AssetKind": "All",
@@ -2050,10 +2050,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\start.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\scripts\\start-debug.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\scripts\\start-debug.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "scripts/start-debug.js",
       "AssetKind": "All",
@@ -2069,10 +2069,10 @@
       "OriginalItemSpec": "wwwroot\\scripts\\start-debug.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-area-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-area-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/assets/demo/chart-area-demo.js",
       "AssetKind": "All",
@@ -2088,10 +2088,10 @@
       "OriginalItemSpec": "wwwroot\\src\\assets\\demo\\chart-area-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-bar-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-bar-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/assets/demo/chart-bar-demo.js",
       "AssetKind": "All",
@@ -2107,10 +2107,10 @@
       "OriginalItemSpec": "wwwroot\\src\\assets\\demo\\chart-bar-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-pie-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\chart-pie-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/assets/demo/chart-pie-demo.js",
       "AssetKind": "All",
@@ -2126,10 +2126,10 @@
       "OriginalItemSpec": "wwwroot\\src\\assets\\demo\\chart-pie-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\datatables-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\demo\\datatables-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/assets/demo/datatables-demo.js",
       "AssetKind": "All",
@@ -2145,10 +2145,10 @@
       "OriginalItemSpec": "wwwroot\\src\\assets\\demo\\datatables-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\img\\error-404-monochrome.svg",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\assets\\img\\error-404-monochrome.svg",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/assets/img/error-404-monochrome.svg",
       "AssetKind": "All",
@@ -2164,10 +2164,10 @@
       "OriginalItemSpec": "wwwroot\\src\\assets\\img\\error-404-monochrome.svg"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\js\\datatables-simple-demo.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\js\\datatables-simple-demo.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/js/datatables-simple-demo.js",
       "AssetKind": "All",
@@ -2183,10 +2183,10 @@
       "OriginalItemSpec": "wwwroot\\src\\js\\datatables-simple-demo.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\js\\scripts.js",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\js\\scripts.js",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/js/scripts.js",
       "AssetKind": "All",
@@ -2202,10 +2202,10 @@
       "OriginalItemSpec": "wwwroot\\src\\js\\scripts.js"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\authentication.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\authentication.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/authentication.pug",
       "AssetKind": "All",
@@ -2221,10 +2221,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\authentication.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\dashboard.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\dashboard.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/dashboard.pug",
       "AssetKind": "All",
@@ -2240,10 +2240,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\dashboard.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\error.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\error.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/error.pug",
       "AssetKind": "All",
@@ -2259,10 +2259,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\error.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\footer.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\footer.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/footer.pug",
       "AssetKind": "All",
@@ -2278,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\footer.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\css.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\css.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/head/css.pug",
       "AssetKind": "All",
@@ -2297,10 +2297,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\head\\css.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\icons.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\icons.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/head/icons.pug",
       "AssetKind": "All",
@@ -2316,10 +2316,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\head\\icons.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\meta.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\meta.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/head/meta.pug",
       "AssetKind": "All",
@@ -2335,10 +2335,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\head\\meta.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\title.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\head\\title.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/head/title.pug",
       "AssetKind": "All",
@@ -2354,10 +2354,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\head\\title.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\sidenav.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\sidenav.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/navigation/sidenav.pug",
       "AssetKind": "All",
@@ -2373,10 +2373,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\navigation\\sidenav.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\topnav.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\navigation\\topnav.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/navigation/topnav.pug",
       "AssetKind": "All",
@@ -2392,10 +2392,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\navigation\\topnav.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\scripts.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\layouts\\includes\\scripts.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/layouts/includes/scripts.pug",
       "AssetKind": "All",
@@ -2411,10 +2411,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\layouts\\includes\\scripts.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\401.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\401.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/401.pug",
       "AssetKind": "All",
@@ -2430,10 +2430,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\401.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\404.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\404.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/404.pug",
       "AssetKind": "All",
@@ -2449,10 +2449,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\404.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\500.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\500.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/500.pug",
       "AssetKind": "All",
@@ -2468,10 +2468,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\500.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\charts.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\charts.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/charts.pug",
       "AssetKind": "All",
@@ -2487,10 +2487,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\charts.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\datatable.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\datatable.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/includes/datatable.pug",
       "AssetKind": "All",
@@ -2506,10 +2506,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\includes\\datatable.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\page-header.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\includes\\page-header.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/includes/page-header.pug",
       "AssetKind": "All",
@@ -2525,10 +2525,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\includes\\page-header.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\index.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\index.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/index.pug",
       "AssetKind": "All",
@@ -2544,10 +2544,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\index.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\layout-sidenav-light.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\layout-sidenav-light.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/layout-sidenav-light.pug",
       "AssetKind": "All",
@@ -2563,10 +2563,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\layout-sidenav-light.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\layout-static.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\layout-static.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/layout-static.pug",
       "AssetKind": "All",
@@ -2582,10 +2582,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\layout-static.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\login.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\login.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/login.pug",
       "AssetKind": "All",
@@ -2601,10 +2601,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\login.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\password.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\password.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/password.pug",
       "AssetKind": "All",
@@ -2620,10 +2620,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\password.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\register.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\register.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/register.pug",
       "AssetKind": "All",
@@ -2639,10 +2639,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\register.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\tables.pug",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\pug\\pages\\tables.pug",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/pug/pages/tables.pug",
       "AssetKind": "All",
@@ -2658,10 +2658,10 @@
       "OriginalItemSpec": "wwwroot\\src\\pug\\pages\\tables.pug"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\_global.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\_global.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/_global.scss",
       "AssetKind": "All",
@@ -2677,10 +2677,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\_global.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\_variables.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\_variables.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/_variables.scss",
       "AssetKind": "All",
@@ -2696,10 +2696,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\_variables.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_authentication.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_authentication.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/layout/_authentication.scss",
       "AssetKind": "All",
@@ -2715,10 +2715,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\layout\\_authentication.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-default.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-default.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/layout/_dashboard-default.scss",
       "AssetKind": "All",
@@ -2734,10 +2734,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\layout\\_dashboard-default.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-fixed.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_dashboard-fixed.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/layout/_dashboard-fixed.scss",
       "AssetKind": "All",
@@ -2753,10 +2753,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\layout\\_dashboard-fixed.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_error.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\layout\\_error.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/layout/_error.scss",
       "AssetKind": "All",
@@ -2772,10 +2772,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\layout\\_error.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\_nav.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\_nav.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/navigation/_nav.scss",
       "AssetKind": "All",
@@ -2791,10 +2791,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\navigation\\_nav.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\_topnav.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\_topnav.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/navigation/_topnav.scss",
       "AssetKind": "All",
@@ -2810,10 +2810,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\navigation\\_topnav.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/navigation/sidenav/_sidenav.scss",
       "AssetKind": "All",
@@ -2829,10 +2829,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-dark.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-dark.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/navigation/sidenav/_sidenav-dark.scss",
       "AssetKind": "All",
@@ -2848,10 +2848,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-dark.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-light.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-light.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/navigation/sidenav/_sidenav-light.scss",
       "AssetKind": "All",
@@ -2867,10 +2867,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\navigation\\sidenav\\_sidenav-light.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\plugins\\simple-datatables.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\plugins\\simple-datatables.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/plugins/simple-datatables.scss",
       "AssetKind": "All",
@@ -2886,10 +2886,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\plugins\\simple-datatables.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\styles.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\styles.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/styles.scss",
       "AssetKind": "All",
@@ -2905,10 +2905,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\styles.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\variables\\_navigation.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\variables\\_navigation.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/variables/_navigation.scss",
       "AssetKind": "All",
@@ -2924,10 +2924,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\variables\\_navigation.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\variables\\_spacing.scss",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\src\\scss\\variables\\_spacing.scss",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "src/scss/variables/_spacing.scss",
       "AssetKind": "All",
@@ -2943,10 +2943,10 @@
       "OriginalItemSpec": "wwwroot\\src\\scss\\variables\\_spacing.scss"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx",
       "AssetKind": "All",
@@ -2962,10 +2962,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\04c7d28a-1f02-4bc7-aa3d-b7564f613327_1.docx"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx",
       "AssetKind": "All",
@@ -2981,10 +2981,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\1e93c89c-e5c9-4685-b676-e2bdbb92c108_1.docx"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png",
       "AssetKind": "All",
@@ -3000,10 +3000,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\20facbde-2fb0-426a-95a9-d68f3f251de4_anh2.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png",
       "AssetKind": "All",
@@ -3019,10 +3019,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\4555c22e-2f14-41b2-8cc0-63ac113622dc_anh2.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\58a75eef-972c-4c69-824a-1238776718a3_1.docx",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\58a75eef-972c-4c69-824a-1238776718a3_1.docx",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/58a75eef-972c-4c69-824a-1238776718a3_1.docx",
       "AssetKind": "All",
@@ -3038,10 +3038,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\58a75eef-972c-4c69-824a-1238776718a3_1.docx"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png",
       "AssetKind": "All",
@@ -3057,10 +3057,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\62f9d202-2703-42d1-9ac4-5e27f8109065_anh2.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx",
       "AssetKind": "All",
@@ -3076,10 +3076,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\95e953c6-160a-4f09-ac2a-81b1049841ad_1.docx"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png",
       "AssetKind": "All",
@@ -3095,10 +3095,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\99683cee-efe7-40de-8c5d-8ae9cdb53448_anh2.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png",
       "AssetKind": "All",
@@ -3114,10 +3114,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\e758d34a-d44f-4260-87c3-736aa8e9ee4b_anh2.png"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx",
       "AssetKind": "All",
@@ -3133,10 +3133,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\eaece393-f00f-4f97-888c-8c4718cd1f61_1.docx"
     },
     {
-      "Identity": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\uploads\\fb90d219-90f5-4e7f-a311-09b10cebd1ef_anh2.png",
+      "Identity": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\uploads\\fb90d219-90f5-4e7f-a311-09b10cebd1ef_anh2.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\WebASP\\DOANCOTS\\COST\\COTS1\\wwwroot\\",
+      "ContentRoot": "D:\\DoanCOTS\\COST\\COTS1\\wwwroot\\",
       "BasePath": "_content/COTS1",
       "RelativePath": "uploads/fb90d219-90f5-4e7f-a311-09b10cebd1ef_anh2.png",
       "AssetKind": "All",
