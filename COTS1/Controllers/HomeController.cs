@@ -3,7 +3,6 @@ using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -26,7 +25,6 @@ namespace COTS1.Controllers
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
-           var name =  HttpContext.Session.GetString("UserFullName");
             if (currentUserId == null)
             {
                 return RedirectToAction("Login", "Login"); // Điều hướng đến trang đăng nhập nếu không có UserId
@@ -46,71 +44,10 @@ namespace COTS1.Controllers
                       (pu, u) => new { u.Email })
                 .Select(x => x.Email)
                 .ToListAsync();
-            var dashboardSummary = await SummaryDashboard((int)currentUserId, accessToken);
-            ViewBag.Name=name;
-            return View(dashboardSummary);
+
+            return View();
         }
-        public async Task<DashboardSummary> SummaryDashboard(int currentUserId, string accessToken)
-        {
-            // Lấy danh sách ProjectId của các dự án mà người dùng là người quản lý
-            var projectIdList = await _dbContext.ProjectUsers
-                .Where(p => p.UserId == currentUserId)
-                .Select(p => p.ProjectId)
-                .ToListAsync();
 
-            // Tổng số dự án mà người dùng là người tham gia
-            var totalParticipatedProjects = await _dbContext.ProjectUsers
-                .Where(pu => pu.UserId == currentUserId)
-                .Select(pu => pu.ProjectId)
-                .Distinct()
-                .CountAsync();
-
-            // Số nhiệm vụ đã hoàn thành cho các dự án mà người dùng là người tham gia
-            var totalApprovedTasksAsParticipant = await _dbContext.SubmittedSubtasks
-                .CountAsync(ss => ss.Status == "Đã phê duyệt" &&
-                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
-            // Số nhiệm vụ đã nhận
-            var totalRecivedTasks = await _dbContext.AssignedSubtasks
-                .CountAsync(ss =>  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
-            // Số nhiệm vụ đang chờ phê duyệt
-            var pendingApprovalTasks = await _dbContext.SubmittedSubtasks
-                .CountAsync(ss => ss.Status == "đang chờ phê duyệt" &&
-                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
-            // Số nhiệm vụ bị từ chối
-            var refusedTasks = await _dbContext.SubmittedSubtasks
-                .CountAsync(ss => ss.Status == "Từ chối phê duyệt" &&
-                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
-            //Nhiệm vụ đang tiến hành
-            var isWorking = await _dbContext.AssignedSubtasks
-                .CountAsync(ss => ss.Status == "Đang thực hiện" &&
-                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
-            //progeress
-            var projectProgressList = await _dbContext.ProjectUsers
-        .Where(pu => pu.UserId == currentUserId)
-        .Join(_dbContext.Projects,
-              pu => pu.ProjectId,
-              p => p.ProjectId,
-              (pu, p) => new ProjectProgressInfo
-              {
-                  ProjectName = p.ProjectName,  // Tên dự án
-                  Progress = p.Progress ?? 0    // Tiến độ dự án, mặc định là 0 nếu null
-              })
-        .ToListAsync();
-
-
-
-            return new DashboardSummary
-            {
-                TotalParticipatedProjects = totalParticipatedProjects,
-                TotalApprovedTasks = totalApprovedTasksAsParticipant,
-                TotalReceivedTasks = totalRecivedTasks,
-                PendingApprovalTasks = pendingApprovalTasks,
-                isWorking = isWorking,
-                refusedTasks = refusedTasks,
-                projectProgressList = projectProgressList,
-            };
-
-        }
         public async Task<int> GetSumUnreadEmails(int currentUserId, string accessToken)
         {
             // Lấy danh sách các dự án mà người dùng thuộc về
