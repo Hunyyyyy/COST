@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7L+plq/gA0hP3eOIUgIztzlA/kTURNB05Dfc/3qdBQM=",
+  "Hash": "a0uL8mMEutdRtfN0upxcRwzhOhtY/8g/XRyeSf4Q+FI=",
   "Source": "COTS1",
   "BasePath": "_content/COTS1",
   "Mode": "Default",
@@ -321,6 +321,25 @@
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\gmailimages.png"
     },
     {
+      "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\job.png",
+      "SourceId": "COTS1",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\",
+      "BasePath": "_content/COTS1",
+      "RelativePath": "dist/assets/img/job.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\job.png"
+    },
+    {
       "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
       "SourceId": "COTS1",
       "SourceType": "Discovered",
@@ -338,6 +357,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\moutain.png"
+    },
+    {
+      "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\undraw_work_chat_re_qes4.svg",
+      "SourceId": "COTS1",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\",
+      "BasePath": "_content/COTS1",
+      "RelativePath": "dist/assets/img/undraw_work_chat_re_qes4.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\assets\\img\\undraw_work_chat_re_qes4.svg"
     },
     {
       "Identity": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\charts.html",

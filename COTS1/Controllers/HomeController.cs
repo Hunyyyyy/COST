@@ -4,6 +4,7 @@ using COTS1.Models;
 using Google.Apis.PeopleService.v1.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -26,7 +27,10 @@ namespace COTS1.Controllers
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+
             var name = HttpContext.Session.GetString("UserFullName");
+
+
             if (currentUserId == null)
             {
                 return RedirectToAction("Login", "Login"); // Điều hướng đến trang đăng nhập nếu không có UserId
@@ -46,6 +50,7 @@ namespace COTS1.Controllers
                       (pu, u) => new { u.Email })
                 .Select(x => x.Email)
                 .ToListAsync();
+
 
             var dashboardSummary = await SummaryDashboard((int)currentUserId, accessToken);
             ViewBag.Name = name;
@@ -105,7 +110,8 @@ namespace COTS1.Controllers
                 refusedTasks = refusedTasks,
                 projectProgressList = projectProgressList,
             };
-           
+                          
+
         }
 
         public async Task<int> GetSumUnreadEmails(int currentUserId, string accessToken)
