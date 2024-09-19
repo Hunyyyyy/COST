@@ -69,8 +69,16 @@
       "PackagePath": "staticwebassets\\dist\\assets\\img\\gmailimages.png"
     },
     {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\job.png",
+      "PackagePath": "staticwebassets\\dist\\assets\\img\\job.png"
+    },
+    {
       "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\moutain.png",
       "PackagePath": "staticwebassets\\dist\\assets\\img\\moutain.png"
+    },
+    {
+      "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\assets\\img\\undraw_work_chat_re_qes4.svg",
+      "PackagePath": "staticwebassets\\dist\\assets\\img\\undraw_work_chat_re_qes4.svg"
     },
     {
       "Id": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\wwwroot\\dist\\charts.html",
