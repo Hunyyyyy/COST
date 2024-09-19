@@ -3,4 +3,5 @@
 
 # Bỏ qua toàn bộ thư mục obj và nội dung bên trong
 /COTS1/obj/
-/COTS1\bin
+/COTS1/bin/
+
