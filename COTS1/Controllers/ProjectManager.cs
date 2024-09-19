@@ -122,10 +122,16 @@ namespace COTS1.Controllers
                     // Xóa tất cả các thành viên liên quan đến dự án
                     var projectMembers = db.ProjectUsers.Where(pm => pm.ProjectId == projectId);
                     var projectSentTask = db.SentTasksLists.Where(pm => pm.ProjectId == projectId);
+                    var AssignedSubtasks = db.AssignedSubtasks.Where(pm => pm.ProjectId == projectId);
+                    var SaveTasks = db.SaveTasks.Where(pm => pm.ProjectId == projectId);
+                    var SentTasksList = db.SentTasksLists.Where(pm => pm.ProjectId == projectId);
                     if(projectMembers != null && projectSentTask != null)
                     {
                         db.ProjectUsers.RemoveRange(projectMembers);
                         db.SentTasksLists.RemoveRange(projectSentTask);
+                        db.AssignedSubtasks.RemoveRange(AssignedSubtasks);
+                        db.SaveTasks.RemoveRange(SaveTasks);
+                        db.SentTasksLists.RemoveRange(SentTasksList);
                     }
                    
 
