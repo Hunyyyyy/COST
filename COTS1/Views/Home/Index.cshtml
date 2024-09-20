@@ -1,8 +1,11 @@
 ﻿﻿@{
     ViewData["Title"] = "Quản Lý Công Việc";
     Layout = "~/Views/Shared/MainLayout.cshtml";
+    
 }
-@model COTS1.Models.DashboardSummary
+
+@model COTS1.Models.DataViewHome
+
 <style>
     .Container {
         margin-top: 60px;
@@ -197,7 +200,7 @@
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Tổng số dự án
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalParticipatedProjects</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.TotalParticipatedProjects</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-folder fa-2x text-gray-300"></i>
@@ -216,7 +219,7 @@
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Nhiệm vụ đã nhận
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalReceivedTasks</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.TotalReceivedTasks</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-tasks fa-2x text-gray-300"></i>
@@ -235,7 +238,7 @@
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Nhiệm vụ hoàn thành
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalApprovedTasks</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.TotalApprovedTasks</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-check-circle fa-2x text-gray-300"></i>
@@ -254,7 +257,7 @@
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                     Nhiệm vụ đang tiến hành
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.isWorking</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.isWorking</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-tasks fa-2x text-gray-300"></i>
@@ -274,7 +277,7 @@
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                         Yêu cầu chưa xử lý
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.PendingApprovalTasks</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.PendingApprovalTasks</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-exclamation-circle fa-2x text-gray-300"></i>
@@ -293,7 +296,7 @@
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                         Nhiệm vụ bị từ chối
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.refusedTasks</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.refusedTasks</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-times-circle fa-2x text-gray-300"></i>
@@ -354,7 +357,7 @@
                         <!-- Content Row -->
 
                         <div class="row">
-                            @foreach (var pro in Model.projectProgressList)
+                            @foreach (var pro in Model.DataSummary.projectProgressList)
                             {                
                                 <div class="col-lg-6 mb-4">
                                     <!-- Card dự án -->
@@ -447,4 +450,61 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+        
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Nhắc Nhở</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                    @if (Model != null && Model.DataReminder.Any())
+                {
+                    <ul>
+                            @foreach (var reminder in Model.DataReminder)
+                        {
+                            <li>
+                                <strong>@reminder.ProjectName</strong>: 
+                                Ngày hết hạn: @(reminder.EndDate.HasValue ? reminder.EndDate.Value.ToShortDateString() : "Chưa xác định") 
+                                - @if (reminder.Status == "Đã quá hạn") { <span class="text-danger">Đã quá hạn</span> } 
+                                else { <span class="text-warning">Còn @reminder.DaysRemaining ngày</span> }
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>Không có nhắc nhở nào.</p>
+                }
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
     </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    });
+</script>   
+</div>
+
+=======
+    </div>
+>>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d

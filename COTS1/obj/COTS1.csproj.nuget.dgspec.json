@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\COTS1.csproj": {}
+    "D:\\DoanCOTS\\COST\\COTS1\\COTS1.csproj": {}
   },
   "projects": {
-    "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\COTS1.csproj": {
+    "D:\\DoanCOTS\\COST\\COTS1\\COTS1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\COTS1.csproj",
+        "projectUniqueName": "D:\\DoanCOTS\\COST\\COTS1\\COTS1.csproj",
         "projectName": "COTS1",
-        "projectPath": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\COTS1.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "E:\\LT_Web\\WebASP\\COTS1\\COTS1\\obj\\",
+        "projectPath": "D:\\DoanCOTS\\COST\\COTS1\\COTS1.csproj",
+        "packagesPath": "C:\\Users\\PC THANH\\.nuget\\packages\\",
+        "outputPath": "D:\\DoanCOTS\\COST\\COTS1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
