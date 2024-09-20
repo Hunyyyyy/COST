@@ -2,6 +2,6 @@
 .vs/
 
 # Bỏ qua các file nhị phân
-/COTS1/bin/
-/COTS1/obj/
+/COST/COTS1/bin/
+/COST/COTS1/obj/
 

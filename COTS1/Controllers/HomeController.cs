@@ -25,6 +25,7 @@ namespace COTS1.Controllers
 
         public async Task<IActionResult> Index()
         {
+
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
 
@@ -52,9 +53,50 @@ namespace COTS1.Controllers
                 .ToListAsync();
 
 
+            var reminders = await _dbContext.Reminders
+                    .Where(r => r.UserId == currentUserId)
+                    .Include(r => r.Project)
+                    .ToListAsync();
+
+            var reminderViewModels = reminders.Select(r => new ReminderViewModel
+            {
+                
+                ReminderId = r.ReminderId,
+                ProjectId = r.ProjectId,
+                UserId = r.UserId,
+                ReminderContent = r.ReminderContent,
+                ReminderDate = r.ReminderDate,
+                IsAcknowledged = r.IsAcknowledged,
+                CreatedAt = r.CreatedAt,
+                Project = r.Project,
+                User = r.User,
+                DaysRemaining = (r.ReminderDate - DateTime.Now).Days,
+                ProjectName = r.Project.ProjectName,
+                Status = (r.ReminderDate < DateTime.Now) ? "Đã quá hạn" : $"Còn {(r.ReminderDate - DateTime.Now).Days} ngày",
+                EndDate = r.Project.EndDate,
+
+                TaskReminders = _dbContext.SaveTasksReminders
+               .Where(t => t.ProjectId == r.ProjectId)
+               .Select(t => new TaskReminderViewModel
+               {
+                   TaskTitle = t.Title,
+                   DaysRemaining = (t.DueDate - DateTime.Now).Days,
+                   TaskStatus = (t.DueDate < DateTime.Now) ? "Đã quá hạn" : "Còn thời gian"
+               })
+               .ToList() // You can populate this if needed
+            }).ToList();
+
+            ViewData["Reminders"] = reminderViewModels;
             var dashboardSummary = await SummaryDashboard((int)currentUserId, accessToken);
+            var Data = new DataViewHome
+            {
+                DataReminder = reminderViewModels,
+                DataSummary = dashboardSummary
+            };
             ViewBag.Name = name;
-            return View(dashboardSummary);
+            return View(Data);
+          
+
         }
         public async Task<DashboardSummary> SummaryDashboard(int currentUserId, string accessToken)
         {

@@ -1,0 +1,136 @@
+﻿@model IEnumerable<COTS1.Models.ReminderViewModel>
+
+@{
+    ViewData["Title"] = "Danh Sách Nhắc Nhở";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-5" style="margin-left: 230px; margin-top: 60px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Danh Sách Nhắc Nhở</h3>
+        </div>
+        <div class="card-body">
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Tên Dự Án</th>
+                            <th scope="col">Nội Dung Nhắc Nhở</th>
+                            <th scope="col">Ngày Hết Hạn</th>
+                            <th scope="col">Số Ngày Còn Lại</th>
+                            <th scope="col">Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var reminder in Model)
+                        {
+                            <tr class="align-middle @(reminder.DaysRemaining <= 2 ? "table-danger" : (reminder.DaysRemaining <= 5 ? "table-warning" : "table-success"))">
+                                <td>@reminder.ProjectName</td>
+                                <td>@reminder.ReminderContent</td>
+                                <td>@reminder.ReminderDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <span class="countdown"
+                                          data-days="@reminder.DaysRemaining"
+                                          data-task-id="@reminder.TaskReminders.FirstOrDefault()?.TaskId"></span>
+                                </td>
+                                <td>@reminder.Status</td>
+                            </tr>
+
+                            @if (reminder.TaskReminders != null && reminder.TaskReminders.Any())
+                            {
+                                <tr>
+                                    <td colspan="5">
+                                        <h5>Nhiệm Vụ Liên Quan:</h5>
+                                        <div class="row">
+                                            @foreach (var task in reminder.TaskReminders)
+                                            {
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card border-@(task.DaysRemaining <= 2 ? "danger" : (task.DaysRemaining <= 5 ? "warning" : "success"))"
+                                                         style="border-width: 3px;">
+                                                        <div class="card-body">
+                                                            <h6 class="card-title"><strong>@task.TaskTitle</strong></h6>
+                                                            <p class="card-text">Còn @task.DaysRemaining ngày</p>
+                                                            <p class="card-text"><small class="text-muted">Trạng thái: @task.TaskStatus</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info" role="alert">
+                    Không có nhắc nhở nào.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var countdownElements = document.querySelectorAll('.countdown');
+
+        countdownElements.forEach(function (el) {
+            var daysRemaining = parseInt(el.getAttribute('data-days'));
+            var taskId = el.getAttribute('data-task-id');
+            var countdownDate = new Date();
+            countdownDate.setDate(countdownDate.getDate() + daysRemaining);
+
+            var interval = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countdownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    el.innerHTML = "Hết hạn";
+
+                    // Gửi yêu cầu AJAX để cập nhật trạng thái nhiệm vụ trong cơ sở dữ liệu
+                    if (taskId) {
+                        updateTaskStatus(taskId);
+                    }
+                } else {
+                    el.innerHTML = days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây ";
+                }
+            }, 1000);
+        });
+
+        function updateTaskStatus(taskId) {
+            fetch('/Tasks/UpdateTaskStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ taskId: taskId })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Cập nhật trạng thái thành công');
+                    } else {
+                        console.error('Cập nhật trạng thái thất bại:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi khi gửi yêu cầu:', error);
+                });
+        }
+    });
+</script>

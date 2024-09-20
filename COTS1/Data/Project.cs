@@ -21,13 +21,7 @@ public partial class Project
 
     public DateTime? CreatedAt { get; set; }
 
-    public int? CreatedBy { get; set; }
-
     public int? Progress { get; set; }
-
-    public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
-
-    public virtual User? CreatedByNavigation { get; set; }
 
     public virtual User? Manager { get; set; }
 
@@ -39,11 +33,13 @@ public partial class Project
 
     public virtual ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();
 
-    public virtual ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
+    public virtual ProjectUser? ProjectUser { get; set; }
+
+    public virtual ICollection<Reminder> Reminders { get; set; } = new List<Reminder>();
 
     public virtual ICollection<SaveTask> SaveTasks { get; set; } = new List<SaveTask>();
 
-    public virtual ICollection<SentTasksList> SentTasksLists { get; set; } = new List<SentTasksList>();
+    public virtual ICollection<SaveTasksReminder> SaveTasksReminders { get; set; } = new List<SaveTasksReminder>();
 
     public virtual ICollection<SubmittedSubtask> SubmittedSubtasks { get; set; } = new List<SubmittedSubtask>();
 
