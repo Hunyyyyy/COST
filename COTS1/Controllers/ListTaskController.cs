@@ -152,11 +152,7 @@ namespace COTS1.Controllers
 
             return NotFound("Nhiệm vụ không tồn tại.");
         }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
         public async Task<IActionResult> Subtasks(int taskID)
         {
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
@@ -821,13 +817,7 @@ namespace COTS1.Controllers
             {
                 return Unauthorized();
             }
-<<<<<<< HEAD
-
             var email = db.Users.Where(p => p.UserId == userId).Select(p => p.Email).FirstOrDefault();
-
-=======
-            var email = db.Users.Where(p => p.UserId == userId).Select(p => p.Email).FirstOrDefault();
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
             // Kiểm tra subtaskId có tồn tại hay không
             var taskId = await db.Subtasks
                 .Where(st => st.SubtaskId == subtaskId)
@@ -1000,7 +990,7 @@ namespace COTS1.Controllers
 
             return RedirectToAction("SubmittedTasksByProject", new { projectId = projectId });
         }
-<<<<<<< HEAD
+
         private async Task CancelReminderIfTaskCompleted(int taskId)
         {
             // Kiểm tra xem tất cả các nhiệm vụ con của nhiệm vụ này đã được phê duyệt chưa
@@ -1025,8 +1015,5 @@ namespace COTS1.Controllers
             }
         }
 
-
-=======
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
     }
 }

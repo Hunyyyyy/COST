@@ -8,11 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TestNhiemVuContext>(options =>
 {
-<<<<<<< HEAD
+
     options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-BDUKE70U\\SQLEXPRESS01;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
-=======
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-R74JRM89\\HUY;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
+
 });
 builder.Services.AddSession(options =>
 {

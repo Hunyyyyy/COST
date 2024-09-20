@@ -4,12 +4,10 @@ using COTS1.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Cms;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-=======
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
+
 
 namespace COTS1.Controllers
 {

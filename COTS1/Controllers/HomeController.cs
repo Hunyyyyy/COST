@@ -53,7 +53,6 @@ namespace COTS1.Controllers
                 .ToListAsync();
 
 
-<<<<<<< HEAD
             var reminders = await _dbContext.Reminders
                     .Where(r => r.UserId == currentUserId)
                     .Include(r => r.Project)
@@ -78,14 +77,16 @@ namespace COTS1.Controllers
             }).ToList();
 
             ViewData["Reminders"] = reminderViewModels;
-
-            return View(reminderViewModels);
-          
-=======
             var dashboardSummary = await SummaryDashboard((int)currentUserId, accessToken);
-            ViewBag.Name = name;
-            return View(dashboardSummary);
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
+            var Data = new DataViewHome
+            {
+                DataReminder = reminderViewModels,
+                DataSummary = dashboardSummary
+            };
+
+            return View(Data);
+          
+
         }
         public async Task<DashboardSummary> SummaryDashboard(int currentUserId, string accessToken)
         {

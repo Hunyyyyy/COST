@@ -59,11 +59,9 @@ public partial class TestNhiemVuContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-<<<<<<< HEAD
+
         => optionsBuilder.UseSqlServer("Data Source=LAPTOP-BDUKE70U\\SQLEXPRESS01;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
-=======
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-R74JRM89\\HUY;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

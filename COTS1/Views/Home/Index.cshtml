@@ -4,7 +4,7 @@
     
 }
 
-@model COTS1.Models.Data
+@model COTS1.Models.DataViewHome
 
 <style>
     .Container {
@@ -200,7 +200,7 @@
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Tổng số dự án
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalParticipatedProjects</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.TotalParticipatedProjects</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-folder fa-2x text-gray-300"></i>
@@ -219,7 +219,7 @@
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Nhiệm vụ đã nhận
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalReceivedTasks</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.TotalReceivedTasks</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-tasks fa-2x text-gray-300"></i>
@@ -238,7 +238,7 @@
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Nhiệm vụ hoàn thành
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalApprovedTasks</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.TotalApprovedTasks</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-check-circle fa-2x text-gray-300"></i>
@@ -257,7 +257,7 @@
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                     Nhiệm vụ đang tiến hành
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.isWorking</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.isWorking</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-tasks fa-2x text-gray-300"></i>
@@ -277,7 +277,7 @@
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                         Yêu cầu chưa xử lý
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.PendingApprovalTasks</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.PendingApprovalTasks</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-exclamation-circle fa-2x text-gray-300"></i>
@@ -296,7 +296,7 @@
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                         Nhiệm vụ bị từ chối
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.refusedTasks</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.DataSummary.refusedTasks</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-times-circle fa-2x text-gray-300"></i>
@@ -357,7 +357,7 @@
                         <!-- Content Row -->
 
                         <div class="row">
-                            @foreach (var pro in Model.projectProgressList)
+                            @foreach (var pro in Model.DataSummary.projectProgressList)
                             {                
                                 <div class="col-lg-6 mb-4">
                                     <!-- Card dự án -->
@@ -465,10 +465,10 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                @if (Model != null && Model.Any())
+                    @if (Model != null && Model.DataReminder.Any())
                 {
                     <ul>
-                        @foreach (var reminder in Model)
+                            @foreach (var reminder in Model.DataReminder)
                         {
                             <li>
                                 <strong>@reminder.ProjectName</strong>: 
