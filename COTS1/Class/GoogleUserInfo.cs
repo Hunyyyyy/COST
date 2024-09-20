@@ -1,11 +1,8 @@
 ﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Gmail.v1.Data;
 using Google.Apis.Gmail.v1;
+using Google.Apis.Gmail.v1.Data;
 using Google.Apis.PeopleService.v1;
 using Google.Apis.Services;
-using Google.Apis.Util.Store;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Auth.OAuth2.Responses;
 
 namespace COTS1.Class
 {
@@ -39,8 +36,9 @@ namespace COTS1.Class
 
             return null; // Không có địa chỉ email
         }
-        static string[] Scopes = { GmailService.Scope.GmailReadonly, GmailService.Scope.GmailModify };  // Thêm GmailModify để đánh dấu email
-        static string ApplicationName = "COST1";
+
+        private static string[] Scopes = { GmailService.Scope.GmailReadonly, GmailService.Scope.GmailModify };  // Thêm GmailModify để đánh dấu email
+        private static string ApplicationName = "COST1";
 
         // Lấy số lượng email chưa đọc từ một người gửi cụ thể
         public static async Task<int> GetUnreadEmailCountFromSenderAsync(string senderEmail, string accessToken)
@@ -116,7 +114,6 @@ namespace COTS1.Class
             return response.Messages;
         }
 
-
         // Đánh dấu toàn bộ email của người gửi cụ thể là đã đọc
         public static async Task MarkAllEmailsAsReadFromSenderAsync(string senderEmail, string accessToken)
         {
@@ -127,7 +124,5 @@ namespace COTS1.Class
                 await MarkEmailAsReadAsync(email.Id, accessToken); // Đánh dấu từng email là đã đọc
             }
         }
-
-
     }
 }

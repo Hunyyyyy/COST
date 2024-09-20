@@ -202,22 +202,22 @@ Delete Tasks
 DROP TABLE TaskProgress;
 
     -- Tuỳ chọn, nếu bạn sử dụng salt
-	DELETE FROM SubmittedSubtasks ;
+	DELETE FROM Projects ;
+	DELETE FROM ProjectUsers ;
+	DELETE FROM AssignedSubtasks ;
 	DELETE FROM Subtasks ;
-	DELETE FROM Subtasks ;
-	DELETE FROM SubmittedSubtasks ;
-		DELETE FROM SubtaskProgress ;
+		DELETE FROM SaveTasks ;
 		
 		DELETE FROM SentTasksList ;
 			DELETE FROM Projects ;
 	select * from SentTasksList
 
 	select * from ProjectUsers
-	select * from TaskProgress
+	select * from Projects
 		select * from SubmittedSubtasks
-		select * from ProjectProgress
+		select * from Subtasks
 		select * from SaveTasks
-				select * from SubtaskProgress
+				select * from SubmittedSubtasks
 EXEC sp_rename 'Tasks', 'SaveTasks';
 
 

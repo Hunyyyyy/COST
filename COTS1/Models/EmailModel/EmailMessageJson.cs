@@ -12,6 +12,7 @@
         public int SizeEstimate { get; set; }     // Kích thước ước tính của email
         public string Raw { get; set; }
     }
+
     public class MessagePart
     {
         public string PartId { get; set; }        // Id của phần MIME

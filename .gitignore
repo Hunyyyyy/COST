@@ -1,6 +1,7 @@
 ﻿# Bỏ qua thư mục .vs của Visual Studio
 .vs/
 
-# Bỏ qua toàn bộ thư mục obj và nội dung bên trong
+# Bỏ qua các file nhị phân
+/COTS1/bin/
 /COTS1/obj/
 

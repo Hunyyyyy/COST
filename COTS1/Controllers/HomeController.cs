@@ -1,11 +1,12 @@
 ﻿using COTS1.Class;
 using COTS1.Data;
 using COTS1.Models;
+using Google.Apis.PeopleService.v1.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Web;
 
 namespace COTS1.Controllers
 {
@@ -14,7 +15,8 @@ namespace COTS1.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly TestNhiemVuContext _dbContext;
-        public HomeController(ILogger<HomeController> logger,IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext)
+
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor contextAccessor, TestNhiemVuContext dbContext)
         {
             _logger = logger;
             _contextAccessor = contextAccessor;
@@ -26,6 +28,10 @@ namespace COTS1.Controllers
 
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+
+            var name = HttpContext.Session.GetString("UserFullName");
+
+
             if (currentUserId == null)
             {
                 return RedirectToAction("Login", "Login"); // Điều hướng đến trang đăng nhập nếu không có UserId
@@ -47,6 +53,7 @@ namespace COTS1.Controllers
                 .ToListAsync();
 
 
+<<<<<<< HEAD
             var reminders = await _dbContext.Reminders
                     .Where(r => r.UserId == currentUserId)
                     .Include(r => r.Project)
@@ -74,7 +81,70 @@ namespace COTS1.Controllers
 
             return View(reminderViewModels);
           
+=======
+            var dashboardSummary = await SummaryDashboard((int)currentUserId, accessToken);
+            ViewBag.Name = name;
+            return View(dashboardSummary);
+>>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
         }
+        public async Task<DashboardSummary> SummaryDashboard(int currentUserId, string accessToken)
+        {
+            // Lấy danh sách ProjectId của các dự án mà người dùng là người quản lý
+            var projectIdList = await _dbContext.ProjectUsers
+                .Where(p => p.UserId == currentUserId)
+                .Select(p => p.ProjectId)
+                .ToListAsync();
+            // Tổng số dự án mà người dùng là người tham gia
+            var totalParticipatedProjects = await _dbContext.ProjectUsers
+                .Where(pu => pu.UserId == currentUserId)
+                .Select(pu => pu.ProjectId)
+                .Distinct()
+                .CountAsync();
+            // Số nhiệm vụ đã hoàn thành cho các dự án mà người dùng là người tham gia
+            var totalApprovedTasksAsParticipant = await _dbContext.SubmittedSubtasks
+                .CountAsync(ss => ss.Status == "Đã phê duyệt" &&
+                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
+            // Số nhiệm vụ đã nhận
+            var totalRecivedTasks = await _dbContext.AssignedSubtasks
+                .CountAsync(ss => _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
+            // Số nhiệm vụ đang chờ phê duyệt
+            var pendingApprovalTasks = await _dbContext.SubmittedSubtasks
+                .CountAsync(ss => ss.Status == "đang chờ phê duyệt" &&
+                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
+            // Số nhiệm vụ bị từ chối
+            var refusedTasks = await _dbContext.SubmittedSubtasks
+                .CountAsync(ss => ss.Status == "Từ chối phê duyệt" &&
+                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
+            //Nhiệm vụ đang tiến hành
+            var isWorking = await _dbContext.AssignedSubtasks
+                .CountAsync(ss => ss.Status == "Đang thực hiện" &&
+                                  _dbContext.ProjectUsers.Any(pu => pu.ProjectId == ss.ProjectId && pu.UserId == currentUserId));
+            //progeress
+            var projectProgressList = await _dbContext.ProjectUsers
+        .Where(pu => pu.UserId == currentUserId)
+        .Join(_dbContext.Projects,
+              pu => pu.ProjectId,
+              p => p.ProjectId,
+              (pu, p) => new ProjectProgressInfo
+              {
+                  ProjectName = p.ProjectName,  // Tên dự án
+                  Progress = p.Progress ?? 0    // Tiến độ dự án, mặc định là 0 nếu null
+              })
+        .ToListAsync();
+            return new DashboardSummary
+            {
+                TotalParticipatedProjects = totalParticipatedProjects,
+                TotalApprovedTasks = totalApprovedTasksAsParticipant,
+                TotalReceivedTasks = totalRecivedTasks,
+                PendingApprovalTasks = pendingApprovalTasks,
+                isWorking = isWorking,
+                refusedTasks = refusedTasks,
+                projectProgressList = projectProgressList,
+            };
+                          
+
+        }
+
         public async Task<int> GetSumUnreadEmails(int currentUserId, string accessToken)
         {
             // Lấy danh sách các dự án mà người dùng thuộc về
@@ -101,7 +171,6 @@ namespace COTS1.Controllers
             return sumEmail;
         }
 
-
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
@@ -123,16 +192,17 @@ namespace COTS1.Controllers
         public IActionResult Mail()
         {
             // Ki?m tra xem token có t?n t?i trong session không
-          AccessToken a = new AccessToken(_contextAccessor);
-    string tokenOrRedirectUrl = a.CheckToken();
+            AccessToken a = new AccessToken(_contextAccessor);
+            string tokenOrRedirectUrl = a.CheckToken();
 
-    // Nếu chưa có token, chuyển hướng đến trang xác thực
-    if (tokenOrRedirectUrl.StartsWith("https://"))
-    {
-        return Redirect(tokenOrRedirectUrl);
-    }
+            // Nếu chưa có token, chuyển hướng đến trang xác thực
+            if (tokenOrRedirectUrl.StartsWith("https://"))
+            {
+                return Redirect(tokenOrRedirectUrl);
+            }
             return RedirectToAction("GetEmails", "GmailAPI");
         }
+
         public IActionResult SendNotification()
         {
             // Ki?m tra xem token có t?n t?i trong session không
@@ -146,7 +216,6 @@ namespace COTS1.Controllers
             }
             return RedirectToAction("ViewEmailNotification", "GmailAPI");
         }
-      
 
         public IActionResult Privacy()
         {

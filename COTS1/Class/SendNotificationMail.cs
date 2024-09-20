@@ -1,12 +1,8 @@
 ﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
 using Google.Apis.Services;
-using Google.Apis.Util.Store;
-using Microsoft.AspNetCore.Mvc;
 using MimeKit;
-using Newtonsoft.Json.Linq;
 
 namespace COTS1.Class
 {
@@ -53,9 +49,8 @@ namespace COTS1.Class
                 await service.Users.Messages.Send(message, "me").ExecuteAsync();
             }
         }
-		
 
-		private static string Base64UrlEncode(byte[] input)
+        private static string Base64UrlEncode(byte[] input)
         {
             var output = Convert.ToBase64String(input)
                 .Replace('+', '-')
@@ -64,5 +59,4 @@ namespace COTS1.Class
             return output;
         }
     }
-
-    }
+}

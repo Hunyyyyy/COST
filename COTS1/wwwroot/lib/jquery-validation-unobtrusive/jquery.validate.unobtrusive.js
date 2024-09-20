@@ -1,4 +1,4 @@
-﻿// Unobtrusive validation support library for jQuery and jQuery Validate
+// Unobtrusive validation support library for jQuery and jQuery Validate
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 // @version v3.2.11
@@ -11,7 +11,7 @@
         // AMD. Register as an anonymous module.
         define("jquery.validate.unobtrusive", ['jquery-validation'], factory);
     } else if (typeof module === 'object' && module.exports) {
-        // CommonJS-like environments that support module.exports     
+        // CommonJS-like environments that support module.exports
         module.exports = factory(require('jquery-validation'));
     } else {
         // Browser global

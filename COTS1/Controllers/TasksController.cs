@@ -4,9 +4,12 @@ using COTS1.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Cms;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+=======
+>>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
 
 namespace COTS1.Controllers
 {
@@ -28,30 +31,34 @@ namespace COTS1.Controllers
 
             if (string.IsNullOrEmpty(accessToken))
             {
-                return RedirectToAction("Mail", "Home"); // Redirect to login/authentication page
+                return RedirectToAction("Mail", "Home");
             }
+
             var googleUserInfo = new GoogleUserInfo(accessToken);
             var email = await googleUserInfo.GetUserEmailAsync();
-            var project = await _dbContext.Projects.Where(p => p.ProjectId == projectId)
+
+            var project = await _dbContext.Projects
+                .Where(p => p.ProjectId == projectId)
                 .Select(p => new Project
                 {
                     ProjectName = p.ProjectName,
                     ProjectId = p.ProjectId,
-                }).ToListAsync();
-
+                }).FirstOrDefaultAsync();
 
             if (project != null)
             {
                 ViewBag.UserEmail = email;
                 ViewBag.ProjectId = projectId;
+                ViewBag.ProjectName = project.ProjectName;
                 return View(project);
             }
             else
             {
-                return View();
+                // Trả về một đối tượng Project mặc định
+                return RedirectToAction("CreateTaskProject", "ProjectManager"); // Trả về một Project rỗng
             }
         }
-       
+
         [HttpPost]
         public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId)
         {
@@ -144,7 +151,7 @@ namespace COTS1.Controllers
                     _dbContext.Subtasks.Add(new Subtask
                     {
                         TaskId = taskId, // Sử dụng TaskId vừa lấy
-                        ProjectId=ProjectId,
+                        ProjectId = ProjectId,
                         Title = subtask.Title,
                         Description = subtask.Description,
                         Status = subtask.Status,
@@ -161,7 +168,6 @@ namespace COTS1.Controllers
 
             return View("CreateTasks", "Tasks");
         }
-
 
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {
@@ -193,8 +199,5 @@ namespace COTS1.Controllers
 
             return subtasks;
         }
-
-
-
     }
 }
