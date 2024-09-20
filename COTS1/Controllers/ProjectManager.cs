@@ -22,60 +22,137 @@ namespace COTS1.Controllers
           {
               return View();
           }*/
-        public async Task<IActionResult> Index(string NameProject)
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
             var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+
+            if (managerID == null)
+            {
+                return Unauthorized();
+            }
+
+            // Kiểm tra vai trò của người dùng
             var isManager = await db.ProjectUsers
-              .AnyAsync(pu => pu.UserId == managerID && pu.Role == "Manager");
+                .AnyAsync(pu => pu.UserId == managerID && pu.Role == "Manager");
 
             // Truyền thông tin vai trò vào ViewBag
             ViewBag.IsManager = isManager;
-            if (NameProject != null && managerID!=null && ModelState.IsValid) {
+
+            // Lấy danh sách dự án của người dùng
+            var listProject = await db.Projects
+                .Where(p => p.ManagerId == managerID.Value)
+                .Select(n => new ProjectModel
+                {
+                    ProjectName = n.ProjectName,
+                    ProjectId = n.ProjectId,
+                    CreatedAt = n.CreatedAt,
+                    Status = n.Status
+                }).ToListAsync();
+
+            return View(listProject);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateProject(string NameProject)
+        {
+            var nameUser = HttpContext.Session.GetString("UserFullName");
+            var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+
+            if (managerID == null)
+            {
+                return Unauthorized();
+            }
+
+            if (NameProject != null && ModelState.IsValid)
+            {
+                // Lưu dự án mới
                 var saveNameProject = new Project
                 {
                     ProjectName = NameProject,
-                    ManagerId = managerID,
-                   StartDate=DateTime.Now,
-                   EndDate=null,
+                    ManagerId = managerID.Value, // Ensure managerID is not null
+                    StartDate = DateTime.Now,
+                    EndDate = null
                 };
                 db.Projects.Add(saveNameProject);
                 await db.SaveChangesAsync();
+
+                
+                var projectId = saveNameProject.ProjectId;
+
+               
+                // Lưu người tạo dự án vào nhóm và set vai trò "Manager"
+               
+
+                var projectUser = await db.ProjectUsers
+                    .FirstOrDefaultAsync(pu => pu.ProjectId == projectId && pu.UserId == managerID.Value);
+
+                if (projectUser == null)
+                {
+                    // Nếu không có bản ghi, tạo mới
+                    projectUser = new ProjectUser
+                    {
+                        ProjectId = projectId,
+                        UserId = managerID.Value,
+                        Role = "Manager"
+                    };
+                    db.ProjectUsers.Add(projectUser);
+                }
+                else
+                {
+                    // Cập nhật vai trò nếu bản ghi tồn tại
+                    projectUser.Role = "Manager";
+                    db.ProjectUsers.Update(projectUser);
+                }
+
+                await db.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Dự án đã được tạo và bạn đã được gán vai trò 'Manager'.";
             }
-            if (managerID != null)
-            {
-                var listProject = await db.Projects.Where(p => p.ManagerId == managerID)
-               .Select(n => new ProjectModel
-               {
-                   ProjectName = n.ProjectName,
-                   ProjectId = n.ProjectId,
-                   CreatedAt=n.CreatedAt,
-                   Status=n.Status
-               }).ToListAsync();
-                return View(listProject);
-            }
-          return View();
-            
-        }
-        [HttpPost]
-        public async Task<IActionResult> DeleteProject(int projectId)
-        {
-            var managerID = HttpContext.Session.GetInt32("UserIDEmail");
 
-            // Kiểm tra xem người dùng hiện tại có phải là Manager của dự án này không
-            var project = await db.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId && p.ManagerId == managerID);
-
-            if (project == null)
-            {
-                TempData["ErrorMessage"] = "Bạn không có quyền xóa dự án này hoặc dự án không tồn tại.";
-                return RedirectToAction("Index");
-            }
-
-            db.Projects.Remove(project);
-            await db.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Dự án đã được xóa thành công!";
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> DeleteProject(int projectId)
+        {
+            var project = await db.Projects.FindAsync(projectId);
+
+            if (project != null)
+            {
+                try
+                {
+                    // Xóa tất cả các thành viên liên quan đến dự án
+                    var projectMembers = db.ProjectUsers.Where(pm => pm.ProjectId == projectId);
+                    var projectRemind  = db.Reminders.Where(pm => pm.ProjectId == projectId);
+                    var projectSaveTaskReminder = db.SaveTasksReminders.Where(pm => pm.ProjectId == projectId);
+                    var projectSentTask = db.SentTasksLists.Where(pm => pm.ProjectId == projectId);
+                    if (projectMembers != null && projectSentTask != null&& projectRemind!=null&& projectSaveTaskReminder!=null)
+                    {
+                        db.ProjectUsers.RemoveRange(projectMembers);
+                        db.Reminders.RemoveRange(projectRemind);
+                        db.SaveTasksReminders.RemoveRange(projectSaveTaskReminder);
+                        db.SentTasksLists.RemoveRange(projectSentTask);
+                    }
+
+
+                    // Xóa dự án
+                    db.Projects.Remove(project);
+                    await db.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = "Dự án đã được xóa thành công.";
+                    return RedirectToAction("Index"); // Hoặc trang phù hợp sau khi xóa
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Xử lý lỗi cập nhật cơ sở dữ liệu
+                    TempData["ErrorMessage"] = "Đã xảy ra lỗi khi xóa dự án. " + ex.Message;
+                }
+            }
+
+            return NotFound("Dự án không tồn tại.");
+        }
+
         [HttpPost]
         public async Task<IActionResult> RenameProject(int projectId, string newProjectName)
         {
@@ -177,15 +254,17 @@ namespace COTS1.Controllers
             ViewBag.ProjectId = projectId;
             return View(projectContent); 
         }
-        [HttpPost] 
+        [HttpPost]
         public async Task<IActionResult> UpdateSettingProject(int projectId, string NameProject, string Description, DateTime StartDay, DateTime EndDay, string Status)
         {
-            // Lấy dự án hiện tại từ cơ sở dữ liệu dựa trên ProjectId
+            var nameUser = HttpContext.Session.GetString("UserFullName");
+            var managerID = HttpContext.Session.GetInt32("UserIDEmail");
+
             var project = await db.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId);
 
             if (project != null)
             {
-
+                // Cập nhật thông tin dự án
                 project.ProjectName = NameProject;
                 project.Description = Description;
                 project.StartDate = StartDay;
@@ -195,17 +274,31 @@ namespace COTS1.Controllers
                 db.Projects.Update(project);
                 await db.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "Cập nhật dự án thành công!";
+                // Tạo nhắc nhở với ReminderDate là EndDay và DaysRemaining tính từ EndDay - StartDay
+                var reminder = new Reminder
+                {
+                    ProjectId = projectId,
+                    ReminderContent = $"Nhắc nhở: Dự án {NameProject} sắp hết hạn vào {EndDay.ToShortDateString()}.",
+                    ReminderDate = EndDay, // Đặt ngày nhắc nhở là EndDay
+                    CreatedAt = DateTime.Now,
+                    UserId = managerID.Value,
+                    ProjectName = NameProject,
+                    FullName = nameUser,
+                    IsAcknowledged = false
+                };
+                db.Reminders.Add(reminder);
+                await db.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Cập nhật dự án thành công và nhắc nhở đã được tạo!";
             }
             else
             {
                 TempData["ErrorMessage"] = "Dự án không tồn tại!";
             }
 
-          
-
             return RedirectToAction("SettingProject", new { projectId = projectId });
         }
+
         [HttpGet]
         public async Task<IActionResult> SaveRole(string Role, int projectId, int userId)
         {

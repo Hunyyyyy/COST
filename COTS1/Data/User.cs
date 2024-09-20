@@ -15,21 +15,15 @@ public partial class User
 
     public DateTime? CreatedAt { get; set; }
 
-    public string PasswordHash { get; set; } = null!;
+    public string? PasswordHash { get; set; }
 
     public string? PasswordSalt { get; set; }
 
-    public virtual ICollection<AssignedSubtask> AssignedSubtaskAssignedToNavigations { get; set; } = new List<AssignedSubtask>();
-
-    public virtual ICollection<AssignedSubtask> AssignedSubtaskMembers { get; set; } = new List<AssignedSubtask>();
+    public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
 
     public virtual ICollection<GroupMember> GroupMembers { get; set; } = new List<GroupMember>();
 
     public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
-
-    public virtual ICollection<Project> ProjectCreatedByNavigations { get; set; } = new List<Project>();
-
-    public virtual ICollection<Project> ProjectManagers { get; set; } = new List<Project>();
 
     public virtual ICollection<ProjectMember> ProjectMembers { get; set; } = new List<ProjectMember>();
 
@@ -37,9 +31,17 @@ public partial class User
 
     public virtual ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
 
+    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+
+    public virtual ICollection<Reminder> Reminders { get; set; } = new List<Reminder>();
+
     public virtual ICollection<SaveTask> SaveTaskAssignedToNavigations { get; set; } = new List<SaveTask>();
 
     public virtual ICollection<SaveTask> SaveTaskCreatedByNavigations { get; set; } = new List<SaveTask>();
+
+    public virtual ICollection<SaveTasksReminder> SaveTasksReminderAssignedToNavigations { get; set; } = new List<SaveTasksReminder>();
+
+    public virtual ICollection<SaveTasksReminder> SaveTasksReminderCreatedByNavigations { get; set; } = new List<SaveTasksReminder>();
 
     public virtual ICollection<SentTasksList> SentTasksLists { get; set; } = new List<SentTasksList>();
 

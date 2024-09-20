@@ -23,6 +23,7 @@ namespace COTS1.Controllers
 
         public async Task<IActionResult> Index()
         {
+
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
             if (currentUserId == null)
@@ -45,8 +46,33 @@ namespace COTS1.Controllers
                 .Select(x => x.Email)
                 .ToListAsync();
 
-           
-            return View();
+
+            var reminders = await _dbContext.Reminders
+                    .Where(r => r.UserId == currentUserId)
+                    .Include(r => r.Project)
+                    .ToListAsync();
+
+            var reminderViewModels = reminders.Select(r => new ReminderViewModel
+            {
+                ReminderId = r.ReminderId,
+                ProjectId = r.ProjectId,
+                UserId = r.UserId,
+                ReminderContent = r.ReminderContent,
+                ReminderDate = r.ReminderDate,
+                IsAcknowledged = r.IsAcknowledged,
+                CreatedAt = r.CreatedAt,
+                Project = r.Project,
+                User = r.User,
+                DaysRemaining = (r.ReminderDate - DateTime.Now).Days,
+                ProjectName = r.Project.ProjectName,
+                Status = (r.ReminderDate < DateTime.Now) ? "Đã quá hạn" : $"Còn {(r.ReminderDate - DateTime.Now).Days} ngày",
+                EndDate = r.Project.EndDate,
+                TaskReminders = new List<TaskReminderViewModel>() // You can populate this if needed
+            }).ToList();
+
+            ViewData["Reminders"] = reminderViewModels;
+
+            return View(reminderViewModels);
           
         }
         public async Task<int> GetSumUnreadEmails(int currentUserId, string accessToken)

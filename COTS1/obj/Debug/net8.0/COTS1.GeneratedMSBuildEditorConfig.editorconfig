@@ -118,6 +118,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdE1hbmFnZXJcU2V0dGluZ1Byb2plY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/DoanCOTS/COST/COTS1/Views/RemindTask/RemindTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVtaW5kVGFza1xSZW1pbmRUYXNrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/DoanCOTS/COST/COTS1/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
