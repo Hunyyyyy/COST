@@ -11,7 +11,12 @@
     <link href="~/css/stylesheet.css" rel="stylesheet" />
 </head>
 <body>
-   
+    @if (@TempData["Error"] != null)
+    {
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> @TempData["Error"];
+        </div>
+    }
    
     <div class="wrapper">
         <div class="logo">
@@ -27,11 +32,17 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="gmail" id="gmail" placeholder="example@gmail.com" style="padding:15px 10px" required>
+                <input type="email" name="gmail" id="gmail" placeholder="example@gmail.com" style="padding:15px 10px" required>
+
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password" style="padding:15px 10px" maxlength="20" pattern=".{7,}" required>
+                <input type="password" name="password" id="pwd" placeholder="Password" style="padding:15px 10px"
+                       minlength="7" maxlength="30"
+                       pattern=".{7,30}"
+                       title="Mật khẩu phải có từ 7 đến 30 ký tự"
+                       required>
+
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
@@ -41,13 +52,7 @@
 
         </form>       
     </div>
-    @if (@TempData["Error"] == "Mật khẩu xác nhận không khớp.")
-    {
-        <div class="alert alert-warning">
-            <strong>Warning!</strong> Mật khẩu xác nhận không khớp.;
-}
-        </div>
-    }
+  
 
 
     <script>
