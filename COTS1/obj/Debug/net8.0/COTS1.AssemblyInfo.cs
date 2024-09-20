@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("COTS1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7afbd7c28813545ffd13defdc89fd04b38f3b4f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+387bbfc5830cb95ed29ff7f2e838b9d4616f9fee")]
 [assembly: System.Reflection.AssemblyProductAttribute("COTS1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("COTS1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
