@@ -60,6 +60,7 @@ namespace COTS1.Controllers
 
             var reminderViewModels = reminders.Select(r => new ReminderViewModel
             {
+
                 ReminderId = r.ReminderId,
                 ProjectId = r.ProjectId,
                 UserId = r.UserId,
@@ -73,7 +74,18 @@ namespace COTS1.Controllers
                 ProjectName = r.Project.ProjectName,
                 Status = (r.ReminderDate < DateTime.Now) ? "Đã quá hạn" : $"Còn {(r.ReminderDate - DateTime.Now).Days} ngày",
                 EndDate = r.Project.EndDate,
-                TaskReminders = new List<TaskReminderViewModel>() // You can populate this if needed
+
+ // You can populate this if needed
+                TaskReminders = _dbContext.SaveTasksReminders
+               .Where(t => t.ProjectId == r.ProjectId)
+               .Select(t => new TaskReminderViewModel
+               {
+                   TaskTitle = t.Title,
+                   DaysRemaining = (t.DueDate - DateTime.Now).Days,
+                   TaskStatus = (t.DueDate < DateTime.Now) ? "Đã quá hạn" : "Còn thời gian"
+               })
+               .ToList() // You can populate this if needed
+
             }).ToList();
 
             ViewData["Reminders"] = reminderViewModels;
@@ -83,6 +95,8 @@ namespace COTS1.Controllers
                 DataReminder = reminderViewModels,
                 DataSummary = dashboardSummary
             };
+
+            ViewBag.Name = name;
 
             return View(Data);
           

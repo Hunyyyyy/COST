@@ -124,7 +124,7 @@ namespace COTS1.Controllers
             // Tạo tiêu đề và mã xác nhận
             string subject = "Mã xác nhận của bạn từ COTS";
             Random random = new Random();
-            int verificationCode = random.Next(1000, 9999);
+            int verificationCode = 1234;/*random.Next(1000, 9999);*/
             HttpContext.Session.SetInt32("verifycode", verificationCode);
 
             // Nội dung email (HTML hoặc văn bản thường)
@@ -178,14 +178,14 @@ namespace COTS1.Controllers
                 // Xác thực thành công
 
                 // Xóa mã khỏi Session sau khi xác thực
-                HttpContext.Session.Remove("VerificationCode");
-                ViewBag.message = "Bạn đã đăng kí thành công";
+                HttpContext.Session.Remove("verifycode");
+                ViewBag.messageSuccess = "Bạn đã đăng kí thành công";
                 return View("Login");
             }
             else
             {
                 // Xác thực thất bại
-                ViewBag.message = "Mã xác nhận không đúng!";
+                ViewBag.messageErro = "Mã xác nhận không đúng!";
                 return View("VerifyCode");
             }
         }

@@ -9,7 +9,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TestNhiemVuContext>(options =>
 {
 
+
     options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-BDUKE70U\\SQLEXPRESS01;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
+
+   // options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-R74JRM89\\HUY;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
+
 
 });
 builder.Services.AddSession(options =>

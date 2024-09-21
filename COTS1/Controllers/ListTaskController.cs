@@ -4,6 +4,7 @@ using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace COTS1.Controllers
 {
@@ -202,19 +203,7 @@ namespace COTS1.Controllers
                     .Select(r => r.Role)
                         .FirstOrDefaultAsync();
 
-            /*if (userRole == null)
-            {
-                TempData["ErrorMessage"] = "Bạn không tham gia dự án này.";
-                return RedirectToAction("Index", "ListTask");
-            }*/
-
-            // Kiểm tra nếu vai trò của người dùng là "View", không cho phép nhận công việc
-            /* if (userRole == "View")
-             {
-                 TempData["ErrorMessage"] = "Bạn không có quyền nhận công việc phụ.";
-                 return RedirectToAction("Index", "ListTask");
-             }*/
-            // Truyền ViewModel vào view
+            
             ViewBag.taskId = taskID;
             ViewBag.userRole = userRole;
             return View(viewModel);
@@ -256,7 +245,7 @@ namespace COTS1.Controllers
             subtask.AssignedTo = currentUserId;
             db.Subtasks.Update(subtask);
             await db.SaveChangesAsync();
-
+            
             TempData["SuccessMessageFromAcceptSubtask"] = "Công việc phụ đã được nhận thành công!";
             return RedirectToAction("Subtasks", "ListTask", new { taskID = taskID });
         }
@@ -304,27 +293,7 @@ namespace COTS1.Controllers
                 })
                 .ToListAsync();
 
-            // Lấy danh sách công việc đã được phê duyệt
-           /* var approvedSubtasks = await db.SubmittedSubtasks
-                .Where(p => p.UserId == currentUserId && p.Status == "Đã phê duyệt")
-                .Select(p => new SubmittedSubtaskViewModel
-                {
-                    SubtaskId = p.SubtaskId,
-                    Status = p.Status,
-                    SubmittedAt = p.SubmittedAt
-                })
-                .ToListAsync();*/
-
-            // Lấy danh sách công việc bị từ chối
-         /*   var rejectedSubtasks = await db.SubmittedSubtasks
-                .Where(p => p.UserId == currentUserId)
-                .Select(p => new SubmittedSubtaskViewModel
-                {
-                    SubtaskId = p.SubtaskId,
-                    Status = p.Status,
-                    SubmittedAt = p.SubmittedAt
-                })
-                .ToListAsync();*/
+           
 
             // Tạo model để truyền dữ liệu vào view
             var model = new RecivedTask_And_SubmittedSubtask_Model

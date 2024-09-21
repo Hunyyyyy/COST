@@ -315,43 +315,79 @@
                         <div class="row">
 
                             <!-- Biểu đồ doanh thu -->
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Tổng thời gian làm dự án trong tháng</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                            <canvas id="myAreaChart"></canvas>
-                                        </div>
-                                    </div>
+                           <div class="col-xl-8 col-lg-7">
+    <div class="card shadow mb-4 card-project">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Nhắc nhở dự án</h6>
+        </div>
+        <div class="card-body">
+            @if (Model.DataReminder.Count > 0)
+            {
+                foreach (var reminder in Model.DataReminder)
+                {
+                    <div class="alert alert-info">
+                        <h5 class="alert-heading">@reminder.ProjectName</h5>
+                        <p>@reminder.ReminderContent</p>
+                        <p><strong>Ngày nhắc nhở:</strong> @reminder.ReminderDate.ToString("dd/MM/yyyy")</p>
+                        <p><strong>Trạng thái:</strong> @reminder.Status</p>
+                    </div>
+                    
+                    <div class="d-flex flex-column">
+                        @foreach (var task in reminder.TaskReminders)
+                        {
+                            @if (reminder.TaskReminders.Count > 0)
+                            {
+                                <div class="alert alert-warning card-task">
+                                    <h5 class="alert-heading">@task.TaskTitle</h5>
+                                    <p><strong>Ngày nhắc nhở:</strong> @task.DaysRemaining</p>
+                                    <p><strong>Trạng thái:</strong> @task.TaskStatus</p>
                                 </div>
-                            </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Không có nhắc nhở nào.</p>
+            }
+        </div>
+    </div>
+</div>
+
+
 
                             <!-- Biểu đồ hình tròn -->
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Nguồn doanh thu</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2">
-                                            <canvas id="myPieChart"></canvas>
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i>  Số tháng
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Số ngày
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Số giờ
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-5">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Biểu đồ thống kê số nhiệm vụ của @ViewBag.Name</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+                <span class="mr-2">
+                    <i class="fas fa-circle text-primary"></i> Nhiệm vụ đã nhận
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-success"></i> Nhiệm vụ hoàn thành
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-info"></i> Nhiệm vụ đang tiến hành
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-warning"></i> Nhiệm vụ đang chờ xử lý
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-danger"></i> Nhiệm vụ bị từ chối
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
                         </div>
 
                         <!-- Content Row -->
@@ -371,7 +407,7 @@
                                             </h4>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar
-                            @(pro.Progress < 50 ? "bg-danger" : (pro.Progress < 100 ? "bg-warning" : "bg-success"))"
+                                                    @(pro.Progress < 50 ? "bg-danger" : (pro.Progress < 100 ? "bg-warning" : "bg-success"))"
                                                      role="progressbar"
                                                      style="width: @pro.Progress%"
                                                      aria-valuenow="@pro.Progress"
@@ -394,7 +430,7 @@
                                                      src="~/dist/assets/img/undraw_work_chat_re_qes4.svg" alt="Hình minh họa">
                                             </div>
                                             <p>
-                                                Sẽ tốt hơn khi bạn làm việc nhóm với!!  <a target="_blank" rel="nofollow" href="https://undraw.co/">COTS</a>.
+                                                Sẽ tốt hơn khi bạn làm việc nhóm với!!  <a target="_blank" rel="nofollow" href="#">COTS</a>.
                                             </p>
                                             
                                         </div>
@@ -415,7 +451,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
+                            <span>Copyright &copy;COTS 2024</span>
                         </div>
                     </div>
                 </footer>
@@ -451,6 +487,10 @@
             </div>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> dataTest
         
 <!-- The Modal -->
 <div class="modal" id="myModal">
@@ -493,6 +533,10 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+>>>>>>> dataTest
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -504,7 +548,49 @@
     });
 </script>   
 </div>
+<<<<<<< HEAD
 
 =======
     </div>
 >>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
+=======
+    </div>
+    <script>
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Nhiệm vụ đã nhận',
+                'Nhiệm vụ hoàn thành',
+                'Nhiệm vụ đang tiến hành',
+                'Nhiệm vụ đang chờ xử lý',
+                'Nhiệm vụ bị từ chối'
+            ],
+            datasets: [{
+                data: [
+                    @Model.DataSummary.TotalReceivedTasks,  // Nhiệm vụ đã nhận
+                    @Model.DataSummary.TotalApprovedTasks,   // Nhiệm vụ hoàn thành
+                    @Model.DataSummary.isWorking,            // Nhiệm vụ đang tiến hành
+                    @Model.DataSummary.PendingApprovalTasks, // Nhiệm vụ đang chờ xử lý
+                    @Model.DataSummary.refusedTasks          // Nhiệm vụ bị từ chối
+                ],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)',  // Blue
+                    'rgba(75, 192, 192, 0.6)',  // Green
+                    'rgba(255, 206, 86, 0.6)',  // Yellow
+                    'rgba(255, 99, 132, 0.6)',   // Red
+                    'rgba(153, 102, 255, 0.6)'   // Purple
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+</script>
+
+
+>>>>>>> dataTest

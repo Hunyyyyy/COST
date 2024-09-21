@@ -33,9 +33,11 @@ public partial class Project
 
     public virtual ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();
 
-    public virtual ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
+    public virtual ProjectUser? ProjectUser { get; set; }
 
     public virtual ICollection<Reminder> Reminders { get; set; } = new List<Reminder>();
+
+    public virtual ICollection<Reminder> Reminder { get; set; } = new List<Reminder>();
 
     public virtual ICollection<SaveTask> SaveTasks { get; set; } = new List<SaveTask>();
 
