@@ -1,6 +1,6 @@
 ﻿# Bỏ qua thư mục .vs của Visual Studio
 .vs/
+/bin
+/obj
 
-# Bỏ qua toàn bộ thư mục obj và nội dung bên trong
-/COTS1/obj/
 
