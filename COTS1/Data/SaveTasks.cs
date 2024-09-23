@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace COTS1.Data;
+﻿namespace COTS1.Data;
 
 public partial class SaveTasks
 {

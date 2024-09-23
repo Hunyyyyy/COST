@@ -26,6 +26,4 @@ public partial class SentTasksList
     public int? ProjectId { get; set; }
 
     public virtual User? CreatedByNavigation { get; set; }
-
-    public virtual Project? Project { get; set; }
 }

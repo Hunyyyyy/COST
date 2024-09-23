@@ -1,10 +1,13 @@
 ﻿using COTS1.Class;
 using COTS1.Data;
 using COTS1.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Org.BouncyCastle.Cms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 
 namespace COTS1.Controllers
 {
@@ -17,6 +20,7 @@ namespace COTS1.Controllers
         {
             _contextAccessor = contextAccessor;
             _dbContext = dbContext;
+            
         }
 
         public async Task<IActionResult> CreateTasks(int projectId)
@@ -25,30 +29,34 @@ namespace COTS1.Controllers
 
             if (string.IsNullOrEmpty(accessToken))
             {
-                return RedirectToAction("Mail", "Home"); // Redirect to login/authentication page
+                return RedirectToAction("Mail", "Home");
             }
+
             var googleUserInfo = new GoogleUserInfo(accessToken);
             var email = await googleUserInfo.GetUserEmailAsync();
-            var project = await _dbContext.Projects.Where(p => p.ProjectId == projectId)
+
+            var project = await _dbContext.Projects
+                .Where(p => p.ProjectId == projectId)
                 .Select(p => new Project
                 {
                     ProjectName = p.ProjectName,
                     ProjectId = p.ProjectId,
-                }).ToListAsync();
-
+                }).FirstOrDefaultAsync();
 
             if (project != null)
             {
                 ViewBag.UserEmail = email;
                 ViewBag.ProjectId = projectId;
+                ViewBag.ProjectName = project.ProjectName;
                 return View(project);
             }
             else
             {
-                return View();
+                // Trả về một đối tượng Project mặc định
+                return RedirectToAction("CreateTaskProject", "ProjectManager"); // Trả về một Project rỗng
             }
         }
-       
+
         [HttpPost]
         public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId)
         {
@@ -75,6 +83,7 @@ namespace COTS1.Controllers
 
                 _dbContext.SentTasksLists.Add(task);
                 await _dbContext.SaveChangesAsync();
+                
 
                 // Thêm nhiệm vụ chính vào bảng SaveTasks
                 var saveTask = new SaveTask
@@ -91,10 +100,45 @@ namespace COTS1.Controllers
                 };
 
                 _dbContext.SaveTasks.Add(saveTask);
+
                 await _dbContext.SaveChangesAsync();
 
-                // Lấy TaskId của nhiệm vụ vừa thêm vào bảng SaveTasks
                 var taskId = saveTask.TaskId;
+                var getday = _dbContext.SaveTasks
+                    .Where(b => b.ProjectId == ProjectId && b.TaskId == taskId)
+                    .Select(c => new
+                    {
+                        DueDate = c.DueDate,
+                        CreatedAt = c.CreatedAt
+                    })
+                    .FirstOrDefault();
+
+                if (getday != null)
+                {
+                    DateTime dueDate = getday.DueDate;
+                    DateTime create = (DateTime)getday.CreatedAt;
+
+                    // Tính toán số giây còn lại giữa DueDate và CreatedAt
+                    TimeSpan timeSpanRemaining = dueDate - create;
+                    int reminderDate = (int)timeSpanRemaining.Days;
+
+                    var saveTaskReminder = new SaveTasksReminder
+                    {
+                        Priority = Priority,
+                        Title = Title,
+                        Description = Description,
+                        DueDate = DueDate,
+                        TempReminderDate = reminderDate, // Lưu trữ số giây đã tính toán
+                        ProjectId = ProjectId,
+                        AssignedTo = null,
+                        CreatedBy = manager?.UserId,
+                        CreatedAt = DateTime.Now
+                    };
+
+                    _dbContext.SaveTasksReminders.Add(saveTaskReminder);
+                    await _dbContext.SaveChangesAsync();
+                }
+
 
                 // Tách các công việc phụ từ mô tả nhiệm vụ chính
                 var subtasks = SplitTasks(saveTask.Description);
@@ -105,7 +149,7 @@ namespace COTS1.Controllers
                     _dbContext.Subtasks.Add(new Subtask
                     {
                         TaskId = taskId, // Sử dụng TaskId vừa lấy
-                        ProjectId=ProjectId,
+                        ProjectId = ProjectId,
                         Title = subtask.Title,
                         Description = subtask.Description,
                         Status = subtask.Status,
@@ -122,7 +166,6 @@ namespace COTS1.Controllers
 
             return View("CreateTasks", "Tasks");
         }
-
 
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {
@@ -154,8 +197,5 @@ namespace COTS1.Controllers
 
             return subtasks;
         }
-
-
-
     }
 }

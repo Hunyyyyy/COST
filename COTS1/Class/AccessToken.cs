@@ -2,7 +2,6 @@
 
 namespace COTS1.Class
 {
-
     public class AccessToken
     {
         private readonly IHttpContextAccessor _contextAccessor;
@@ -39,6 +38,5 @@ namespace COTS1.Class
             }
             return accessToken;
         }
-      
     }
 }

@@ -1,6 +1,4 @@
-﻿using COTS1.Data;
-
-namespace COTS1.Models
+﻿namespace COTS1.Models
 {
     public class Assigned_And_Suptask_Model
 
