@@ -1,16 +1,8 @@
 ﻿# Bỏ qua thư mục .vs của Visual Studio
 .vs/
-<<<<<<< HEAD
-/bin
-/obj
-=======
+
 obj/
 bin/
-# Bỏ qua các file nhị phân
->>>>>>> b46d19f8aaadf0dd1c56ce7a9136fdd1923e190d
 
-
-
-/ C O T S 1 / o b j / 
  
  

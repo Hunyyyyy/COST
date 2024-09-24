@@ -4,15 +4,108 @@
 }
 @model SaveTasksModel
 <style>
+    body {
+        background-color: #ffffff; /* White background for the page */
+        color: #343a40; /* Dark text for readability */
+    }
+
+    .container {
+        width: 100%;
+        margin-top: 70px; /* Top margin for spacing */
+        padding: 50px 40px; /* Padding for content */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        background-color: #fefefe; /* Slightly off-white background */
+    }
+    .container-expanded{
+        width: 82%;
+    }
+
+    h2 {
+        font-weight: bold;
+        color: #343a40; /* Dark color for headings */
+        margin-bottom: 30px; /* Space below heading */
+    }
+
     textarea {
         width: 100%;
         height: 200px;
         margin-top: 10px;
         resize: none;
+        border: 1px solid #ced4da; /* Light gray border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px; /* Inner padding for textarea */
+        font-family: inherit; /* Inherit font style */
     }
 
     .is-invalid {
-        border-color: red;
+        border-color: red; /* Red border for invalid fields */
+    }
+
+    .btn {
+        border-radius: 5px; /* Rounded button corners */
+        transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* White text */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    .btn-success {
+        background-color: #28a745; /* Green color */
+        color: white; /* White text */
+    }
+
+    .btn-success:hover {
+        background-color: #218838; /* Darker green on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    .btn-info {
+        background-color: #17a2b8; /* Info color */
+        color: white; /* White text */
+    }
+
+    .btn-info:hover {
+        background-color: #138496; /* Darker info color on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Danger color */
+        color: white; /* White text */
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333; /* Darker danger color on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    .form-label {
+        font-weight: bold; /* Bold labels */
+    }
+
+    .mb-3 {
+        margin-bottom: 20px; /* Bottom margin for spacing */
+    }
+
+    .modal-header {
+        background-color: #343a40; /* Dark header */
+        color: white; /* White text */
+    }
+
+    .modal-footer {
+        background-color: #f8f9fa; /* Light footer */
+    }
+
+    .modal-title {
+        color: gold; /* Gold color for modal title */
     }
 </style>
 @if (@TempData["Message"] != null)
@@ -41,7 +134,7 @@
     </div>
 }
 
-<div class="container mt-5" style="margin-left: 230px; margin-top: 70px; padding:50px 40px">
+<div class="container mt-5 container-expanded" id="chartContainer" style="margin-top: 70px; padding:50px 40px">
     <h2 class="mb-4">Chỉnh sửa Nhiệm Vụ</h2>
 
     <form method="post" asp-action="EditTask">

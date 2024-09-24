@@ -1,58 +1,139 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Subtasks";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 <style>
+    body {
+        background-color: #ffffff; /* White background */
+        color: #343a40; /* Dark text for readability */
+    }
+
+    .container {
+        width: 100%;
+        margin-top: 70px; /* Top margin for spacing */
+    }
+
+    .container-expanded {
+        width: 82%;
+    }
+
+    .card {
+        border: 1px solid #e0e0e0; /* Light gray border */
+        border-radius: 10px; /* Slightly rounded corners */
+        transition: transform 0.3s, box-shadow 0.3s; /* Smooth scaling and shadow */
+        background-color: #fefefe; /* Off-white card background */
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+        }
+
+    .card-body {
+        padding: 20px; /* Increased padding for spacious look */
+    }
+
+    .card-title {
+        font-weight: bold; /* Bold title */
+        color: #333; /* Darker color for title */
+        font-size: 1.2rem; /* Increased font size */
+    }
+
     .card-footer {
-        text-align: right; /* Căn chỉnh nút "Nhận việc" sang bên phải */
+        text-align: right; /* Align button to the right */
+        background-color: #ffffff; /* White background for footer */
+        border-top: 1px solid #e0e0e0; /* Light gray top border */
+        border-radius: 0 0 10px 10px; /* Round bottom corners */
+        padding: 10px; /* Padding for footer */
+    }
+
+    .btn-primary {
+        background-color: #6c757d; /* Gray primary button */
+        color: white; /* White text */
+        border: none; /* Remove border */
+        transition: background-color 0.3s, transform 0.2s; /* Transition for hover effect */
+    }
+
+        .btn-primary:hover {
+            background-color: #5a6268; /* Darker gray on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+    .btn-outline-success {
+        color: #28a745; /* Success button text */
+        border-color: #28a745; /* Success button border */
+        transition: background-color 0.3s; /* Transition for hover effect */
+    }
+
+        .btn-outline-success:hover {
+            background-color: #28a745; /* Background color on hover */
+            color: white; /* White text on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+    .btn-outline-danger {
+        color: #dc3545; /* Danger button text */
+        border-color: #dc3545; /* Danger button border */
+        transition: background-color 0.3s; /* Transition for hover effect */
+    }
+
+        .btn-outline-danger:hover {
+            background-color: #dc3545; /* Background color on hover */
+            color: white; /* White text on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+    small.text-muted {
+        color: #6c757d; /* Muted text color */
+    }
+
+    .status-text {
+        font-weight: bold; /* Bold status text */
+        color: #ffc107; /* Gold color for status */
     }
 </style>
+
 @model Assigned_And_Suptask_Model
 
-<div class="container" style="margin-left: 230px; margin-top: 70px;">
+<div class="container container-expanded" id="chartContainer">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach (var task in Model.Subtasks)
         {
             <form asp-action="AcceptSubtask" asp-controller="ListTask" method="post">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">@task.Title</h5>
-                        <p class="card-text">@task.Description</p>
-                        <p class="card-text"><small class="text-muted" style="color:green;">Trạng thái: @task.Status</small></p>
-                        <p class="card-text"><small class="text-muted">Người nhận: @task.Assigneder</small></p>
-                    </div>
-                    <div class="card-footer text-end">
-                        
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@task.Title</h5>
+                            <p class="card-text">@task.Description</p>
+                            <p class="card-text">
+                                <small class="text-muted status-text">Trạng thái: @task.Status</small>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">Người nhận: @task.Assigneder</small>
+                            </p>
+                        </div>
+                        <div class="card-footer text-end">
                             <input type="hidden" value="@task.SubtaskId" name="subtaskId" />
-                            <input type="hidden" value="@ViewBag.taskId " name="taskId" />
+                            <input type="hidden" value="@ViewBag.taskId" name="taskId" />
                             @if (Model.AssignedSubtaskIds.Contains(task.SubtaskId))
                             {
-                                <button type="button" class="btn btn-outline-success " disabled>Đã nhận việc</button>
+                                <button type="button" class="btn btn-outline-success" disabled>Đã nhận việc</button>
                             }
-
                             else
                             {
                                 if (@ViewBag.userRole == "View")
                                 {
-                                    <button type="button" class="btn btn-outline-danger " disabled>bạn chỉ được xem</button>
+                                    <button type="button" class="btn btn-outline-danger" disabled>bạn chỉ được xem</button>
                                 }
                                 else
                                 {
-                                    <button asp-action="AcceptSubtask" asp-controller="ListTask" type="submit" class="btn btn-primary">Nhận việc</button>
-
+                                    <button type="submit" class="btn btn-primary">Nhận việc</button>
                                 }
                             }
-                    
+                        </div>
                     </div>
                 </div>
-            </div>
             </form>
         }
     </div>
 </div>
-
-
-<!-- The Modal -->
-

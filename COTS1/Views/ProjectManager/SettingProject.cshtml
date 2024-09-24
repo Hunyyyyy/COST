@@ -1,28 +1,123 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "SettingProject";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 @model ProjectAndUserGroupModel
 <style>
-    /* Đảm bảo thẻ chứa có thuộc tính position tương ứng */
-    .container {
-        position: relative; /* hoặc relative nếu cần */
+    body {
+        background-color: #f8f9fa; /* Light background */
+        font-family: 'Arial', sans-serif; /* Change font for better readability */
+    }
+
+    .Container {
+        width: 100%;
+    }
+
+    .container-expanded {
+        width: 82%;
     }
 
     .sticky-btn {
-      float:right;
-        padding:10px;
-        margin:20px;
+        float: right;
+        padding: 10px;
+        margin: 20px 0;
+        background-color: #007bff; /* Primary color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add shadow */
+        transition: background-color 0.3s, transform 0.2s; /* Transition for transform effect */
     }
-    /* Thay đổi kích thước nút xóa nếu cần */
+
+        .sticky-btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
     .delete-btn {
         margin-left: auto;
+        background-color: #dc3545; /* Danger color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add shadow */
+        transition: background-color 0.3s, transform 0.2s;
     }
 
+        .delete-btn:hover {
+            background-color: #c82333; /* Darker shade on hover */
+            transform: translateY(-2px);
+        }
 
+    .card {
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 20px; /* Spacing between cards */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add card shadow */
+    }
+
+    .card-header {
+        background-color: #343a40; /* Dark header */
+        color: white;
+        border-radius: 10px 10px 0 0; /* Rounded corners on top */
+        padding: 15px; /* Added padding */
+    }
+
+        .card-header a {
+            text-decoration: none;
+            color: white; /* Link color */
+            font-weight: bold;
+        }
+
+    .form-label {
+        font-weight: bold; /* Bold labels */
+        color: #343a40; /* Change label color */
+    }
+
+    .form-control {
+        border-radius: 5px; /* Rounded inputs */
+        border: 1px solid #ced4da; /* Default border */
+        transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+    }
+
+        .form-control:focus {
+            border-color: #007bff; /* Primary border on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, .5); /* Focus shadow */
+        }
+
+    .alert {
+        border-radius: 5px; /* Rounded alert */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add shadow */
+    }
+
+    .modal-header {
+        background-color: #007bff; /* Modal header color */
+        color: white;
+        border-bottom: 1px solid #0056b3; /* Slight border at the bottom */
+    }
+
+    .modal-footer .btn {
+        border-radius: 5px; /* Rounded modal buttons */
+    }
+
+    .list-group-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Space out items */
+        border: 1px solid #ced4da; /* Border around items */
+        border-radius: 5px;
+        padding: 10px; /* Padding for items */
+        margin-bottom: 5px; /* Spacing between items */
+        transition: background-color 0.3s; /* Smooth background transition */
+    }
+
+        .list-group-item:hover {
+            background-color: #e9ecef; /* Light background on hover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+        }
 </style>
-<div class="container mt-5" style="margin-left: 230px; margin-top: 80px;margin-bottom:15px;padding:10px 0px" >
+<div class="Container container-expanded" id="chartContainer">
+<div class="container mt-5" style="margin-top: 80px;margin-bottom:15px;padding:10px 0px">
     @if (TempData["SuccessFindUser"] != null)
     {
         <div class="alert alert-success mb-3 alert-dismissible">
@@ -53,14 +148,14 @@
         </div>
     }
 </div>
-<div id="accordion" class="container mt-5" style="margin-left: 270px;">
+<div class="container mt-5">
 
     <div class="card">
         <div class="card-header d-grid">
             <a class="collapsed btn btn-outline-info btn-block" data-bs-toggle="collapse" href="#collapseOne">
                 <h5>Thông tin dự án</h5>
             </a>
-            
+
         </div>
         <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
             <div class="card-body">
@@ -114,7 +209,7 @@
         </div>
         <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
             <div class="card-body">
-              
+
                 <label for="Priority" class="form-label">Những người tham gia</label>
 
                 <!-- List Group -->
@@ -138,19 +233,19 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form>
-                                     <input type="hidden" value="@u.UserId" name="userId" />
+                                        <input type="hidden" value="@u.UserId" name="userId" />
                                         <input type="hidden" value="@u.ProjectId" name="projectId" />
-                                    <div class="modal-body">
-                                        <select class="form-select" id="Role" name="Role" required>
-                                            <option value="ReadOnly">Chỉ đọc</option>
-                                            <option value="Editable">Cho phép chỉnh sửa</option>
-                                            <option value="Manager">Quản lý</option>
-                                        </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                        <div class="modal-body">
+                                            <select class="form-select" id="Role" name="Role" required>
+                                                <option value="ReadOnly">Chỉ đọc</option>
+                                                <option value="Editable">Cho phép chỉnh sửa</option>
+                                                <option value="Manager">Quản lý</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                             <button asp-action="SaveRole" asp-controller="ProjectManager" type="submit" class="btn btn-success">Lưu</button>
-                                    </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -158,12 +253,12 @@
                     }
                 </div>
 
-           
-               
+
+
                 <button data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" title="Những người có thể tham gia dự án của bạn!" data-id="@ViewBag.ProjectId" type="button" class="btn btn-info sticky-btn">Thêm thành viên</button>
             </div>
-            </div>
         </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
@@ -176,85 +271,340 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
-   
+
 </div>
 <!-- Modal role-->
-
 <!-- The Modal -->
 
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
-            
+
             <!-- Modal Header -->
             <div class="modal-header">
-                
+
                 <h4 class="modal-title">Thêm thành viên</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
             </div>
-            
+
             <!-- Modal body -->
             <form>
                 <input type="hidden" class="form-control" id="from" name="ProjectId" value="@ViewBag.ProjectId" />
-               
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="from" class="form-label">Tìm kiếm bằng Email</label>
-                    <input  type="text" class="form-control" id="from" name="EmailUser" placeholder="Tìm kiếm" required />
-                    <ul id="user-list" class="list-group mt-2"></ul> <!-- Danh sách kết quả tìm kiếm -->
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="from" class="form-label">Tìm kiếm bằng Email</label>
+                        <input type="text" class="form-control" id="from" name="EmailUser" placeholder="Tìm kiếm" required />
+                        <ul id="user-list" class="list-group mt-2"></ul> <!-- Danh sách kết quả tìm kiếm -->
+                    </div>
                 </div>
-            </div>
 
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     <button data-id="@ViewBag.ProjectId" asp-action="SearchUsers" asp-controller="ProjectManager" type="submit" class="btn btn-info">Thêm</button>
-            </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
 <script>
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        // Khởi tạo Toast
-        var toastElement = document.getElementById('toast1');
-        var toast = new bootstrap.Toast(toastElement);
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Khởi tạo Toast
+            var toastElement = document.getElementById('toast1');
+            var toast = new bootstrap.Toast(toastElement);
 
-        // Thêm sự kiện cho các nút "Quyền"
-        document.querySelectorAll('.show-toast-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                // Lấy email của người dùng từ thuộc tính data-email
-                var email = this.getAttribute('data-email');
+            // Thêm sự kiện cho các nút "Quyền"
+            document.querySelectorAll('.show-toast-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    // Lấy email của người dùng từ thuộc tính data-email
+                    var email = this.getAttribute('data-email');
 
-                // Cập nhật thông tin nếu cần (ví dụ: email người dùng)
-                document.getElementById('toast1').querySelector('.toast-body').setAttribute('data-email', email);
+                    // Cập nhật thông tin nếu cần (ví dụ: email người dùng)
+                    document.getElementById('toast1').querySelector('.toast-body').setAttribute('data-email', email);
 
-                // Hiển thị Toast
-                toast.show();
+                    // Hiển thị Toast
+                    toast.show();
+                });
+            });
+
+            // Thêm sự kiện cho nút xóa
+            document.querySelectorAll('.delete-btn').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Ngăn không cho sự kiện nhấp vào item được kích hoạt
+                    // Xóa item khỏi danh sách
+                    btn.parentElement.remove();
+                });
             });
         });
-
-        // Thêm sự kiện cho nút xóa
-        document.querySelectorAll('.delete-btn').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation(); // Ngăn không cho sự kiện nhấp vào item được kích hoạt
-                // Xóa item khỏi danh sách
-                btn.parentElement.remove();
-            });
-        });
-    });
     @* search *@
-     
+
+    @* @{
+        ViewData["Title"] = "SettingProject";
+        Layout = "~/Views/Shared/MainLayout.cshtml";
+    }
+    @model ProjectAndUserGroupModel
+    <style>
+        /* Đảm bảo thẻ chứa có thuộc tính position tương ứng */
+        .container {
+            position: relative; /* hoặc relative nếu cần */
+        }
+
+        .sticky-btn {
+          float:right;
+            padding:10px;
+            margin:20px;
+        }
+        /* Thay đổi kích thước nút xóa nếu cần */
+        .delete-btn {
+            margin-left: auto;
+        }
+
+
+    </style>
+    <div class="container mt-5" style="margin-left: 230px; margin-top: 80px;margin-bottom:15px;padding:10px 0px" >
+        @if (TempData["SuccessFindUser"] != null)
+        {
+            <div class="alert alert-success mb-3 alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Success!</strong> @TempData["SuccessFindUser"]
+            </div>
+        }
+
+        @if (TempData["FailFindUser"] != null)
+        {
+            <div class="alert alert-danger mb-3 alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> @TempData["FailFindUser"]
+            </div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mb-3 alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Success!</strong> @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger mb-3 alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> @TempData["ErrorMessage"]
+            </div>
+        }
+    </div>
+    <div id="accordion" class="container mt-5" style="margin-left: 270px;">
+
+        <div class="card">
+            <div class="card-header d-grid">
+                <a class="collapsed btn btn-outline-info btn-block" data-bs-toggle="collapse" href="#collapseOne">
+                    <h5>Thông tin dự án</h5>
+                </a>
+
+            </div>
+            <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+                    <h2>Thông tin dự án @ViewBag.ProjectName</h2>
+
+
+                    <form method="post">
+                        <div class="mb-3">
+
+                            <input type="hidden" class="form-control" id="projectId" name="projectId" value="@Model.Project.ProjectId" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="from" class="form-label">Tên dự án</label>
+                            <input type="text" class="form-control" id="from" name="NameProject" value="@Model.Project.ProjectName" required />
+                        </div>
+
+                        <div id="mainTaskArea" class="mb-3">
+                            <label for="comment">Mô tả:</label>
+                            <textarea class="form-control" rows="5" id="Description" name="Description">@Model.Project.Description</textarea>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="DueDate" class="form-label">Ngày bắt đầu</label>
+                            <input type="date" class="form-control" id="StartDay" name="StartDay" value="@Model.Project.StartDate.ToString("yyyy-MM-dd")" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="DueDate" class="form-label">Ngày kết thúc</label>
+                            <input type="date" class="form-control" id="EndDay" name="EndDay" value="@Model.Project.EndDate?.ToString("yyyy-MM-dd")" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Priority" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="Status" name="Status" value="@Model.Project.Status" required>
+                                <option value="Chưa bắt đầu">Chưa bắt đầu</option>
+                                <option value="Đã bắt đầu">Đã bắt đầu</option>
+                                <option value="Kết thúc">Kết thúc</option>
+                            </select>
+                        </div>
+                        <button asp-action="UpdateSettingProject" asp-controller="ProjectManager" type="submit" class="btn btn-primary">Cập nhật</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-grid">
+                <a class="collapsed btn btn-outline-info btn-block" data-bs-toggle="collapse" href="#collapseTwo">
+                    <h5>Những người có thể tham gia dự án của bạn!</h5>
+                </a>
+            </div>
+            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                    <label for="Priority" class="form-label">Những người tham gia</label>
+
+                    <!-- List Group -->
+                    <div class="list-group">
+                        @foreach (var u in Model.ProjectUserModel)
+                        {
+                            <div class="list-group-item list-group-item-action d-flex align-items-center" data-email="@u.Email">
+                                <input type="checkbox" class="me-3" id="checkbox_@u.Email">
+                                <span class="flex-grow-1 email-item">@u.Email</span>
+                                <span class="flex-grow-2 item">@u.Role</span>
+                                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#roleModal_@u.Email">
+                                    Quyền
+                                </button>
+                                <button class="btn btn-danger btn-sm ms-3 delete-btn" data-id="@u.Email">Xóa</button>
+                            </div>
+                            <div class="modal fade" id="roleModal_@u.Email" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="roleModalLabel">Chọn quyền cho @u.Email</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form>
+                                         <input type="hidden" value="@u.UserId" name="userId" />
+                                            <input type="hidden" value="@u.ProjectId" name="projectId" />
+                                        <div class="modal-body">
+                                            <select class="form-select" id="Role" name="Role" required>
+                                                <option value="ReadOnly">Chỉ đọc</option>
+                                                <option value="Editable">Cho phép chỉnh sửa</option>
+                                                <option value="Manager">Quản lý</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                <button asp-action="SaveRole" asp-controller="ProjectManager" type="submit" class="btn btn-success">Lưu</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+                    <button data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" title="Những người có thể tham gia dự án của bạn!" data-id="@ViewBag.ProjectId" type="button" class="btn btn-info sticky-btn">Thêm thành viên</button>
+                </div>
+                </div>
+            </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                    Collapsible Group Item #3
+                </a>
+            </div>
+            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum..
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    </div>
+    <!-- Modal role-->
+
+    <!-- The Modal -->
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Thêm thành viên</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <!-- Modal body -->
+                <form>
+                    <input type="hidden" class="form-control" id="from" name="ProjectId" value="@ViewBag.ProjectId" />
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="from" class="form-label">Tìm kiếm bằng Email</label>
+                        <input  type="text" class="form-control" id="from" name="EmailUser" placeholder="Tìm kiếm" required />
+                        <ul id="user-list" class="list-group mt-2"></ul> <!-- Danh sách kết quả tìm kiếm -->
+                    </div>
+                </div>
+
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button data-id="@ViewBag.ProjectId" asp-action="SearchUsers" asp-controller="ProjectManager" type="submit" class="btn btn-info">Thêm</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Khởi tạo Toast
+            var toastElement = document.getElementById('toast1');
+            var toast = new bootstrap.Toast(toastElement);
+
+            // Thêm sự kiện cho các nút "Quyền"
+            document.querySelectorAll('.show-toast-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    // Lấy email của người dùng từ thuộc tính data-email
+                    var email = this.getAttribute('data-email');
+
+                    // Cập nhật thông tin nếu cần (ví dụ: email người dùng)
+                    document.getElementById('toast1').querySelector('.toast-body').setAttribute('data-email', email);
+
+                    // Hiển thị Toast
+                    toast.show();
+                });
+            });
+
+            // Thêm sự kiện cho nút xóa
+            document.querySelectorAll('.delete-btn').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Ngăn không cho sự kiện nhấp vào item được kích hoạt
+                    // Xóa item khỏi danh sách
+                    btn.parentElement.remove();
+                });
+            });
+        }); *@
+
+
 
 
 </script>

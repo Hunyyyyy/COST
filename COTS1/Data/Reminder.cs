@@ -27,10 +27,9 @@ public partial class Reminder
 
     public string? FullName { get; set; }
 
+    public int? TaskId { get; set; }
 
     public virtual Project Project { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
-    public int TaskId { get; internal set; }
-
 }
