@@ -13,6 +13,7 @@
     <title>Quản Lý Công Việc</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="~/dist/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
         .Container {
@@ -172,36 +173,36 @@
                             Tạo Nhiệm Vụ
                         </a> *@
                         <a asp-action="Index" asp-controller="ListTask" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-file-earmark-plus"></i></div>
                             Nhận Nhiệm Vụ
                         </a>
                         <div class="sb-sidenav-menu-heading">Gửi và Nhận Thông Báo Qua Email</div>
                         <a asp-action="SendNotification" asp-controller="Home" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-bell"></i></div>
                             Gửi Thông Báo
                         </a>
                         <a asp-action="ListRecivedTask" asp-controller="ListTask" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-list-ul"></i></div>
                             Danh sách nhiệm vụ đã nhận
                         </a>
                         <a asp-action="Mail" asp-controller="Home" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-envelope"></i></div>
                             Xem Mail<span style="margin-left:10px;" class="badge bg-danger">@ViewBag.SumEmail</span>
                         </a>
                         <div class="sb-sidenav-menu-heading">Quản Lý Dự Án</div>
                         <a asp-action="Index" asp-controller="ProjectManager" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-gear"></i></div>
                             Tạo và Quản Lý Dự Án
                         </a>
                         <a asp-action="TrackProgress" asp-controller="ListTask" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-eye"></i></div>
                             Theo Dõi Công Việc
                         </a>
                         
                         <div class="sb-sidenav-menu-heading"> Nhắc Nhở</div>
                       
                         <a asp-action="RemindTask" asp-controller="RemindTask" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-alarm"></i></div>
                             Nhắc Nhở
                         </a>
             </nav>
