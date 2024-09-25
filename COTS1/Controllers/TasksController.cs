@@ -25,7 +25,7 @@ namespace COTS1.Controllers
 
         public async Task<IActionResult> CreateTasks(int projectId)
         {
-            var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
+           /* var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
 
             if (string.IsNullOrEmpty(accessToken))
             {
@@ -33,9 +33,9 @@ namespace COTS1.Controllers
             }
 
             var googleUserInfo = new GoogleUserInfo(accessToken);
-            var email = await googleUserInfo.GetUserEmailAsync();
-
-            var project = await _dbContext.Projects
+            var email = await googleUserInfo.GetUserEmailAsync();*/
+           var email = HttpContext.Session.GetString("UserEmail");
+			var project = await _dbContext.Projects
                 .Where(p => p.ProjectId == projectId)
                 .Select(p => new Project
                 {
@@ -160,7 +160,7 @@ namespace COTS1.Controllers
 
                 await _dbContext.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "Nhiệm vụ đã được lưu thành công!";
+                TempData["CreateTasksuccess"] = "Nhiệm vụ đã được lưu thành công!";
                 return RedirectToAction("CreateTaskProject", "ProjectManager", new { projectId = ProjectId });
             }
 

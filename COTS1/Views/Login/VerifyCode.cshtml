@@ -34,10 +34,10 @@
 	</style>
 </head>
 <body>
-	@if (@ViewBag.message != null)
+	@if (@ViewBag.messageErro != null)
 	{
 		<div class="alert alert-danger">
-			<strong>Thông báo!</strong> @ViewBag.message
+			<strong>Thông báo!</strong> @ViewBag.messageErro
 		</div>
 	}
 	<div class="container p-5">
@@ -52,16 +52,16 @@
 						<form>
 							<div class="row pt-4 pb-2">
 								<div class="col-3">
-									<input class="otp-letter-input" type="text" maxlength="1" name="code1" required>
+									<input class="otp-letter-input" type="text" maxlength="1" name="code1" >
 								</div>
 								<div class="col-3">
-									<input class="otp-letter-input" type="text" maxlength="1" name="code2" required>
+									<input class="otp-letter-input" type="text" maxlength="1" name="code2" >
 								</div>
 								<div class="col-3">
-									<input class="otp-letter-input" type="text" maxlength="1" name="code3" required>
+									<input class="otp-letter-input" type="text" maxlength="1" name="code3" >
 								</div>
 								<div class="col-3">
-									<input class="otp-letter-input" type="text" maxlength="1" name="code4" required>
+									<input class="otp-letter-input" type="text" maxlength="1" name="code4" >
 								</div>
 							</div>
 							<p class="text-muted text-center">Didn't get the code? <a href="#" class="text-success">Click to resend.</a></p>

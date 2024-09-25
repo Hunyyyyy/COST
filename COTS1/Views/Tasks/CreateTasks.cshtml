@@ -46,12 +46,11 @@
     <h2 class="mb-4">Đã xảy ra lỗi.Vui lòng thử lại  </h2>
 }
 <div class="container mt-5" style="margin-left: 230px; margin-top: 70px; padding:50px 40px">
-
+    <!-- Thẻ cảnh báo sẽ ẩn ban đầu -->
+    <div id="warningAlert" class="alert alert-warning" style="display:none; margin-top: 10px;">
+        <strong>Warning!</strong> <span id="warningMessage">Sai Email hoặc mật khẩu.</span>
+    </div>
     <h2 class="mb-4">Tạo Nhiệm Vụ Mới cho @Model.ProjectName </h2>
-
-
-
-
     <form method="post" id="taskForm">
         <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
         <div class="mb-3">
@@ -68,7 +67,13 @@
         <div id="mainTaskArea" class="mb-3">
             <label for="taskInput" class="form-label">Thêm công việc</label>
             <input type="text" class="form-control" id="taskInput" placeholder="Nhập tên nhiệm vụ">
+            <div id="taskError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+                Vui lòng nhập tên nhiệm vụ.
+            </div>
             <input type="text" class="form-control mt-2" id="SuptaskInput" placeholder="Nhập công việc của nhiệm vụ">
+            <div id="suptaskError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+                Vui lòng nhập công việc của nhiệm vụ.
+            </div>
             <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú"></textarea>
             <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Thêm nhiệm vụ</button>
         </div>
@@ -81,7 +86,10 @@
 
         <div class="mb-3">
             <label for="DueDate" class="form-label">Ngày hết hạn</label>
-            <input type="date" class="form-control" id="DueDate" name="DueDate" required>
+            <input type="text" class="form-control" id="DueDate" name="DueDate" >
+            <div id="dueDateError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+                Vui lòng nhập ngày hết hạn.
+            </div>
         </div>
 
         <div class="mb-3">
@@ -102,6 +110,60 @@
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    // Xử lý sự kiện khi nhấn nút "Thêm nhiệm vụ"
+    document.getElementById('addTaskBtn').addEventListener('click', function () {
+        const taskInput = document.getElementById('taskInput').value.trim();
+        const suptaskInput = document.getElementById('SuptaskInput').value.trim();
+
+        let hasError = false;
+
+        // Kiểm tra nhiệm vụ
+        if (!taskInput) {
+            document.getElementById('taskError').style.display = 'block';
+            hasError = true;
+        } else {
+            document.getElementById('taskError').style.display = 'none';
+        }
+
+        // Kiểm tra công việc phụ
+        if (!suptaskInput) {
+            document.getElementById('suptaskError').style.display = 'block';
+            hasError = true;
+        } else {
+            document.getElementById('suptaskError').style.display = 'none';
+        }
+
+        // Nếu có lỗi thì không thực hiện thêm nhiệm vụ
+        if (hasError) {
+            return;
+        }
+
+        // Nếu không có lỗi, thực hiện logic thêm nhiệm vụ vào danh sách (có thể xử lý thêm)
+        alert('Nhiệm vụ và công việc phụ đã được thêm thành công!');
+    });
+
+    // Xử lý sự kiện khi nhấn nút "Tạo Nhiệm Vụ"
+    document.getElementById('taskForm').addEventListener('submit', function (event) {
+        const dueDate = document.getElementById('DueDate').value.trim();
+
+        let hasError = false;
+
+        // Kiểm tra ngày hết hạn
+        if (!dueDate) {
+            document.getElementById('dueDateError').style.display = 'block';
+            hasError = true;
+        } else {
+            document.getElementById('dueDateError').style.display = 'none';
+        }
+
+        // Nếu có lỗi thì ngăn form gửi đi
+        if (hasError) {
+            event.preventDefault();
+        }
+    });
+
+
+
     // Xử lý khi nhấn nút "Tạo Nhiệm Vụ"
     document.getElementById('taskForm').addEventListener('submit', function (event) {
         const description = document.getElementById('Description').value.trim();

@@ -1,6 +1,7 @@
 ﻿using COTS1.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
@@ -71,7 +72,8 @@ namespace COTS1.Controllers
                     "&state=" + HttpUtility.UrlEncode(state) +
                     "&login_hint=" + HttpUtility.UrlEncode(gmail); // Thêm email vào URL
 
-                return Redirect(authUrl);
+                //return Redirect(authUrl);
+                return RedirectToAction(authUrl);
             }
             else
             {
@@ -84,15 +86,40 @@ namespace COTS1.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         public async Task<IActionResult> RegisterSaveData(string userName, string gmail, string password, string passwordConfirm)
         {
-            if (password != passwordConfirm)
+            
+
+            // Kiểm tra các tham số có bị null hoặc rỗng không
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                TempData["Error"] = "Tên người dùng không được để trống.";
+                return RedirectToAction("Register");
+            }
+
+            if (string.IsNullOrWhiteSpace(gmail))
+            {
+                TempData["Error"] = "Email không được để trống.";
+                return RedirectToAction("Register");
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                TempData["Error"] = "Mật khẩu không được để trống.";
+                return RedirectToAction("Register");
+            }
+
+            if (string.IsNullOrWhiteSpace(passwordConfirm))
+            {
+                TempData["Error"] = "Xác nhận mật khẩu không được để trống.";
+                return RedirectToAction("Register");
+            }
+            if ( password != passwordConfirm)
             {
                 TempData["Error"] = "Mật khẩu xác nhận không khớp.";
                 return RedirectToAction("Register");
             }
-
             // Băm mật khẩu
 
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
@@ -168,6 +195,11 @@ namespace COTS1.Controllers
 
         public IActionResult CheckVerifyCode(int code1, int code2, int code3, int code4)
         {
+            if (code1 == null || code2 == null || code3 == null || code4 == null)
+            {
+                ViewBag.messageErro = "Vui lòng nhập đầy đủ mã xác nhận!";
+                return View("VerifyCode");
+            }
             string enteredCode = $"{code1}{code2}{code3}{code4}";
 
             // Lấy mã xác nhận đã lưu (từ Session hoặc CSDL)
