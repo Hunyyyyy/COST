@@ -11,8 +11,73 @@
         resize: none;
     }
 
-    .is-invalid {
-        border-color: red;
+    body {
+        background-color: #f8f9fa; /* Light background for better contrast */
+    }
+
+    .container {
+        width: 100%;
+        max-width: 800px; /* Limit max width for better readability */
+        margin: 0 auto; /* Center the container */
+        padding: 40px;
+        background-color: #ffffff; /* White background for the form */
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    h2 {
+        color: #343a40; /* Darker text for headings */
+        margin-bottom: 30px; /* More space below heading */
+    }
+
+    .form-label {
+        font-weight: bold; /* Bold labels for better emphasis */
+        color: #495057; /* Darker color for labels */
+    }
+
+    .form-control {
+        border-radius: 5px; /* Rounded edges for inputs */
+        border: 1px solid #ced4da; /* Subtle border color */
+        transition: border-color 0.3s; /* Smooth border color transition */
+    }
+
+        .form-control:focus {
+            border-color: #80bdff; /* Lighter blue on focus */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Soft glow on focus */
+        }
+
+    .btn {
+        border-radius: 5px; /* Rounded buttons */
+    }
+
+    .btn-info {
+        background-color: #17a2b8; /* Info button color */
+        border: none;
+    }
+
+        .btn-info:hover {
+            background-color: #138496; /* Darker hover effect */
+        }
+
+    .btn-danger {
+        background-color: #dc3545; /* Danger button color */
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Darker hover effect */
+        }
+
+    .btn-primary {
+        background-color: #007bff; /* Primary button color */
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker hover effect */
+        }
+    .container{
+        width: 82%;
     }
 </style>
 @if (@TempData["Message"] != null)
@@ -45,11 +110,10 @@
 {
     <h2 class="mb-4">Đã xảy ra lỗi.Vui lòng thử lại  </h2>
 }
-<div class="container mt-5" style="margin-left: 230px; margin-top: 70px; padding:50px 40px">
-    <!-- Thẻ cảnh báo sẽ ẩn ban đầu -->
-    <div id="warningAlert" class="alert alert-warning" style="display:none; margin-top: 10px;">
-        <strong>Warning!</strong> <span id="warningMessage">Sai Email hoặc mật khẩu.</span>
-    </div>
+
+<div class="container mt-5 container-expanded" id="chartContainer">
+
+
     <h2 class="mb-4">Tạo Nhiệm Vụ Mới cho @Model.ProjectName </h2>
     <form method="post" id="taskForm">
         <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
@@ -71,7 +135,7 @@
                 Vui lòng nhập tên nhiệm vụ.
             </div>
             <input type="text" class="form-control mt-2" id="SuptaskInput" placeholder="Nhập công việc của nhiệm vụ">
-            <div id="suptaskError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+            <div id="suptaskError" class="alert alert-danger" style="display:none; margin-top: 5px;" >
                 Vui lòng nhập công việc của nhiệm vụ.
             </div>
             <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú"></textarea>
@@ -86,7 +150,7 @@
 
         <div class="mb-3">
             <label for="DueDate" class="form-label">Ngày hết hạn</label>
-            <input type="text" class="form-control" id="DueDate" name="DueDate" >
+            <input type="date" class="form-control" id="DueDate" name="DueDate" min="" required>
             <div id="dueDateError" class="alert alert-danger" style="display:none; margin-top: 5px;">
                 Vui lòng nhập ngày hết hạn.
             </div>
@@ -110,6 +174,16 @@
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    // Set the minimum date to today
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const yyyy = today.getFullYear();
+        const minDate = yyyy + '-' + mm + '-' + dd;
+
+        document.getElementById("DueDate").setAttribute("min", minDate);
+    });
     // Xử lý sự kiện khi nhấn nút "Thêm nhiệm vụ"
     document.getElementById('addTaskBtn').addEventListener('click', function () {
         const taskInput = document.getElementById('taskInput').value.trim();

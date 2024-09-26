@@ -5,7 +5,72 @@
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
-<div class="container mt-4" style="margin-left: 230px; margin-top: 70px;">
+<style>
+    body {
+        background-color: #f8f9fa; 
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .container-expanded {
+        width: 80%; 
+        padding: 20px; 
+        background-color: white; 
+        border-radius: 10px; 
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+        
+    }
+
+    h2 {
+        font-weight: bold; 
+        margin-bottom: 30px; 
+        color: #343a40; 
+        text-align: center; 
+    }
+
+    .card {
+        border: none; 
+        border-radius: 10px; 
+        transition: transform 0.2s; 
+    }
+
+        .card:hover {
+            transform: scale(1.02); 
+        }
+
+    .card-title {
+        font-size: 1.25rem; 
+        color: #007bff; 
+    }
+
+    .btn {
+        min-width: 120px; 
+    }
+
+    .no-file {
+        color: #6c757d;
+    }
+
+    .status-approved {
+        background-color: #28a745; 
+        color: white; 
+    }
+
+    .card-body {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px; 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px; 
+    }
+    .status-rejected {
+        background-color: #dc3545; 
+        color: white; 
+    }
+</style>
+
+<div class="container container-expanded" id="chartContainer" style="margin-top: 70px;">
     <h2>Danh sách công việc đã nộp</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach (var item in Model)
@@ -13,12 +78,18 @@
             <div class="col mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Công việc con ID: @item.SubtaskId</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Nhiệm vụ ID: @item.TaskId</h6>
-                        <p class="card-text">Dự án ID: @item.ProjectId</p>
+                        <h5 class="card-title">Công việc: @item.Subtask</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Nhiệm vụ: @item.Task</h6>
+                        <p class="card-text">Dự án : @item.Project</p>
                         <p class="card-text">Người nộp: @item.UserName</p>
                         <p class="card-text">Ngày nộp: @item.SubmittedAt.ToString("dd/MM/yyyy HH:mm")</p>
-                        <p class="card-text">Trạng thái: @item.Status</p>
+                        <p class="card-text">
+                            Trạng thái: <span class="badge
+                            @(item.Status == "Đã phê duyệt" ? "status-approved" :
+                            item.Status == "Từ chối phê duyệt" ? "status-rejected" : "")">
+                                @item.Status
+                            </span>
+                        </p>
                         <p class="card-text">Ghi chú: @item.Notes</p>
                         <div class="d-flex justify-content-between align-items-center">
                             @if (!string.IsNullOrEmpty(item.FilePath))
@@ -27,30 +98,29 @@
                             }
                             else
                             {
-                                <span class="text-muted">Không có file</span>
+                                <span class="no-file">Không có file</span>
                             }
                             @if (@item.Status == "Đã phê duyệt")
                             {
-                                <button type="submit" class="btn btn-success" disabled>Đã Phê Duyệt</button>
+                                <button type="button" class="btn btn-success" disabled>Đã Phê Duyệt</button>
                             }
                             else if (@item.Status == "Từ chối phê duyệt")
                             {
-                                <button type="submit" class="btn btn-danger" disabled>Đã từ chối</button>
+                                <button type="button" class="btn btn-danger" disabled>Đã từ chối</button>
                             }
-
-                            else{
-                            <div class="btn-group" role="group">
-                                <form asp-action="SubmitSubtaskByManager" asp-controller="ListTask" method="post" class="d-inline">
-                                    <input type="hidden" name="subtaskId" value="@item.SubtaskId" />
-                                    <button type="submit" class="btn btn-success">Phê Duyệt</button>
-                                </form>
+                            else
+                            {
+                                <div class="btn-group" role="group">
+                                    <form asp-action="SubmitSubtaskByManager" asp-controller="ListTask" method="post" class="d-inline">
+                                        <input type="hidden" name="subtaskId" value="@item.SubtaskId" />
+                                        <button type="submit" class="btn btn-success">Phê Duyệt</button>
+                                    </form>
                                     <form asp-action="RejectSubtaskByManager" asp-controller="ListTask" method="post" class="d-inline ms-2">
-                                    <input type="hidden" name="subtaskId" value="@item.SubtaskId" />
+                                        <input type="hidden" name="subtaskId" value="@item.SubtaskId" />
                                         <button type="submit" class="btn btn-danger">Từ Chối</button>
-                                </form>
-                            </div>
+                                    </form>
+                                </div>
                             }
-                           
                         </div>
                     </div>
                 </div>
@@ -58,4 +128,3 @@
         }
     </div>
 </div>
-

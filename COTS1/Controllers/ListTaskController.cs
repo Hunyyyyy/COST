@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using System.Threading.Tasks;
 
 namespace COTS1.Controllers
 {
@@ -154,65 +155,87 @@ namespace COTS1.Controllers
             return NotFound("Nhiệm vụ không tồn tại.");
         }
 
-        public async Task<IActionResult> Subtasks(int taskID)
+        public async Task<IActionResult> Subtasks(int taskID, string? statusFilter, string? titleFilter)
         {
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
-            var assigneder = HttpContext.Session.GetString("UserFullName");
-            // Lấy danh sách công việc phụ
-            var subtasks = await db.Subtasks
-                .Where(st => st.TaskId == taskID)
-                .ToListAsync();
 
-            // Chuyển đổi công việc phụ thành ViewModel
+
+            var query = db.Subtasks.Where(st => st.TaskId == taskID);
+
+
+            if (!string.IsNullOrEmpty(statusFilter))
+            {
+                query = query.Where(st => st.Status == statusFilter);
+            }
+
+  
+            if (!string.IsNullOrEmpty(titleFilter))
+            {
+                query = query.Where(st => st.Description.Contains(titleFilter)); 
+            }
+
+
+            var subtasks = await query.ToListAsync();
+
+
             var subtaskViewModels = subtasks.Select(st => new SubtaskViewModel
             {
                 SubtaskId = st.SubtaskId,
                 Title = st.Title,
                 Description = st.Description,
                 Status = st.Status,
-                Assigneder = assigneder
+                Assigneder = st.Assigner
             }).ToList();
 
-            // Lấy danh sách công việc phụ đã được nhận
+            // Fetch assigned subtasks
             var assignedSubtasks = await db.AssignedSubtasks
-                .Where(s => s.TaskId == taskID && s.Status == "Đang thực hiện")
+                .Where(s => s.TaskId == taskID &&
+                            (s.Status == "Đang thực hiện" ||
+                             s.Status == "Đã nộp" ||
+                             s.Status == "Từ chối phê duyệt"))
                 .Select(s => s.SubtaskId)
-                .Where(id => id.HasValue) // Loại bỏ giá trị null
-                .Select(id => id.Value) // Lấy giá trị không null
+                .Where(id => id.HasValue)
+                .Select(id => id.Value)
                 .ToListAsync();
 
-            // Tạo ViewModel cho view
+            // Create the ViewModel
             var viewModel = new Assigned_And_Suptask_Model
             {
                 TaskId = taskID,
                 Subtasks = subtaskViewModels,
                 AssignedSubtaskIds = assignedSubtasks,
             };
+
+            // Fetch project ID and user role as before
             var projectId = await db.SaveTasks
-           .Where(p => p.TaskId == taskID)
-           .Select(p => p.ProjectId)
-              .FirstOrDefaultAsync();
+                .Where(p => p.TaskId == taskID)
+                .Select(p => p.ProjectId)
+                .FirstOrDefaultAsync();
 
             if (projectId == null)
             {
                 TempData["ErrorMessage"] = "Dự án không tồn tại.";
                 return RedirectToAction("Index", "ListTask");
             }
+
             var userRole = await db.ProjectUsers
                 .Where(r => r.ProjectId == projectId && r.UserId == currentUserId)
-                    .Select(r => r.Role)
-                        .FirstOrDefaultAsync();
+                .Select(r => r.Role)
+                .FirstOrDefaultAsync();
 
-            
             ViewBag.taskId = taskID;
             ViewBag.userRole = userRole;
+            ViewBag.TitleFilter = titleFilter; // Store the title filter in ViewBag for repopulating input
             return View(viewModel);
         }
+
+
 
         public async Task<IActionResult> AcceptSubtask(int subtaskId, int taskID)
         {
             // Lấy ID người dùng hiện tại từ Session
             var currentUserId = HttpContext.Session.GetInt32("UserIDEmail");
+            var assigneder = HttpContext.Session.GetString("UserFullName");
             if (currentUserId == null)
             {
                 TempData["ErrorMessage"] = "Bạn cần đăng nhập để nhận công việc.";
@@ -221,13 +244,16 @@ namespace COTS1.Controllers
 
             // Tìm công việc phụ theo subtaskId
             var subtask = await db.Subtasks.FindAsync(subtaskId);
-
+            var subtasks = await db.Subtasks
+                 .Where(s => s.SubtaskId == subtaskId )
+                    .FirstOrDefaultAsync();
             if (subtask == null)
             {
                 TempData["ErrorMessage"] = "Công việc phụ không tồn tại.";
                 return RedirectToAction("Index", "Home");
             }
-
+            subtasks.Assigner = assigneder;
+            db.Subtasks.Update(subtasks);
             var assignedSubtask = new AssignedSubtask
             {
                 SubtaskId = subtaskId,
@@ -326,9 +352,13 @@ namespace COTS1.Controllers
                 TempData["ErrorMessage"] = "Công việc không tồn tại hoặc bạn không có quyền xóa công việc này.";
                 return RedirectToAction("ListRecivedTask");
             }
-
+            var subtasks = await db.Subtasks
+              .Where(s => s.SubtaskId == subtaskId)
+              .FirstOrDefaultAsync();
+            subtasks.Status = "Chưa nhận";
             // Xóa công việc con được gán
             db.AssignedSubtasks.Remove(assignedSubtask);
+            db.Subtasks.Update(subtasks);
             await db.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Công việc đã được xóa thành công.";
@@ -486,6 +516,7 @@ namespace COTS1.Controllers
            
             db.SubmittedSubtasks.Add(submittedSubtask);
             var receivedTask = await db.AssignedSubtasks.FirstOrDefaultAsync(t => t.SubtaskId == subtaskId);
+           
 
             if (receivedTask != null)
             {
@@ -674,9 +705,9 @@ namespace COTS1.Controllers
                 .Select(ss => new SubmittedSubtaskViewModel
                 {
                     SubmissionId = ss.SubmissionId,
-                    SubtaskId = ss.SubtaskId,
-                    TaskId = ss.TaskId,
-                    ProjectId = ss.ProjectId,
+                    Subtask = db.Subtasks.Where(p=>p.SubtaskId==ss.SubtaskId).Select(p=>p.Description).FirstOrDefault(),
+                    Task = db.Subtasks.Where(p => p.SubtaskId == ss.SubtaskId).Select(p => p.Title).FirstOrDefault(),
+                    Project = db.Projects.Where(p => p.ProjectId == ss.ProjectId).Select(p => p.ProjectName).FirstOrDefault(),
                     UserId = ss.UserId,
                     UserName = db.Users.Where(u => u.UserId == ss.UserId).Select(u => u.FullName).FirstOrDefault(),
                     SubmittedAt = ss.SubmittedAt,
@@ -688,95 +719,6 @@ namespace COTS1.Controllers
 
             return View(submittedTasks);
         }
-
-        /*[HttpPost]*/
-        /* public async Task<IActionResult> SubmitSubtaskByManager(int subtaskId)
-         {
-             var userId = HttpContext.Session.GetInt32("UserIDEmail");
-
-             if (userId == null)
-             {
-                 return Unauthorized();
-             }
-             var email=db.Users.Where(p=>p.UserId==userId).Select(p=>p.Email).FirstOrDefault();
-             // Kiểm tra subtaskId có tồn tại hay không
-             var taskId = await db.Subtasks
-                 .Where(st => st.SubtaskId == subtaskId)
-                 .Select(st => st.TaskId)
-                 .FirstOrDefaultAsync();
-
-             if (taskId == 0)
-             {
-                 return BadRequest("Nhiệm vụ không tồn tại.");
-             }
-
-             // Lấy ProjectId từ TaskId
-             var projectId = await db.SaveTasks
-                 .Where(t => t.TaskId == taskId)
-                 .Select(t => t.ProjectId)
-                 .FirstOrDefaultAsync();
-
-             if (projectId == 0)
-             {
-                 return BadRequest("Dự án không tồn tại.");
-             }
-
-             // Tìm kiếm công việc con đã nộp trong SubmittedSubtasks
-             var submittedSubtask = await db.SubmittedSubtasks
-                 .Where(s => s.SubtaskId == subtaskId && s.TaskId == taskId)
-                 .FirstOrDefaultAsync();
-
-             if (submittedSubtask == null)
-             {
-                 return BadRequest("Công việc con chưa được nộp.");
-             }
-
-             // Cập nhật trạng thái thành "Đã phê duyệt"
-             submittedSubtask.Status = "Đã phê duyệt";
-             submittedSubtask.SubmittedAt = DateTime.Now;  // Cập nhật lại thời gian phê duyệt (tuỳ chọn)
-
-             db.SubmittedSubtasks.Update(submittedSubtask);
-             await db.SaveChangesAsync();
-
-             // Lấy thông tin người đã nộp công việc con (người dùng được phê duyệt)
-             var userEmail = await db.Users
-                 .Where(u => u.UserId == submittedSubtask.UserId)
-                 .Select(u => u.Email)
-                 .FirstOrDefaultAsync();
-
-             if (string.IsNullOrEmpty(userEmail))
-             {
-                 return BadRequest("Không tìm thấy email của người dùng.");
-             }
-
-             // Gửi email thông báo
-             var accessToken = HttpContext.Session.GetString("AccessToken");
-
-             if (string.IsNullOrEmpty(accessToken))
-             {
-                 return RedirectToAction("Login", "Login");
-             }
-
-             var sendNotificationMail = new SendNotificationMail(accessToken);
-             await SendNotificationMail.SendEmailAsync(
-                 sendNotificationMail._gmailService,
-                 email, // Thay bằng địa chỉ email của bạn hoặc hệ thống
-                 userEmail,
-                 "Công việc của bạn đã được phê duyệt",
-                 $"Công việc con ID: {subtaskId} trong dự án ID: {projectId} đã được phê duyệt."
-             );
-
-             // Cập nhật tiến trình cho công việc con
-             await UpdateSubtaskProgress(subtaskId, (int)userId);
-
-             // Cập nhật tiến trình của nhiệm vụ chứa công việc con
-             await UpdateTaskProgress((int)taskId);
-
-             // Cập nhật tiến trình của dự án chứa nhiệm vụ
-             await UpdateProjectProgress((int)projectId);
-
-             return RedirectToAction("SubmittedTasksByProject", new { projectId = projectId });
-         }*/
         [HttpPost]
         public async Task<IActionResult> SubmitSubtaskByManager(int subtaskId)
         {
@@ -813,16 +755,20 @@ namespace COTS1.Controllers
             var submittedSubtask = await db.SubmittedSubtasks
                 .Where(s => s.SubtaskId == subtaskId && s.TaskId == taskId)
                 .FirstOrDefaultAsync();
+            var subtasks = await db.Subtasks
+             .Where(s => s.SubtaskId == subtaskId && s.TaskId == taskId)
+             .FirstOrDefaultAsync();
 
             if (submittedSubtask == null)
             {
                 return BadRequest("Công việc con chưa được nộp.");
             }
-
+            subtasks.Status = "Đã phê duyệt";
             // Cập nhật trạng thái thành "Đã phê duyệt"
             submittedSubtask.Status = "Đã phê duyệt";
             submittedSubtask.SubmittedAt = DateTime.Now;  // Cập nhật lại thời gian phê duyệt (tuỳ chọn)
 
+            db.Subtasks.Update(subtasks);
             db.SubmittedSubtasks.Update(submittedSubtask);
             await db.SaveChangesAsync();
 
@@ -836,11 +782,11 @@ namespace COTS1.Controllers
             var task = await db.SaveTasks.FindAsync(taskId);
             if (task != null)
             {
-                var subtasks = await db.Subtasks
+                var subtask = await db.Subtasks
                     .Where(st => st.TaskId == taskId)
                     .ToListAsync();
 
-                var allSubtasksCompleted = !subtasks.Any() || subtasks.All(st =>
+                var allSubtasksCompleted = !subtask.Any() || subtask.All(st =>
                     db.SubtaskProgresses
                     .Where(sp => sp.SubtaskId == st.SubtaskId)
                     .Select(sp => sp.Progress)
@@ -916,17 +862,21 @@ namespace COTS1.Controllers
             var submittedSubtask = await db.SubmittedSubtasks
                 .Where(s => s.SubtaskId == subtaskId && s.TaskId == taskId)
                 .FirstOrDefaultAsync();
-
+            var subtasks = await db.Subtasks
+                .Where(s => s.SubtaskId == subtaskId && s.TaskId == taskId)
+                .FirstOrDefaultAsync();
             if (submittedSubtask == null)
             {
                 return BadRequest("Công việc con chưa được nộp.");
             }
-
+            //AssignedSubtasks
+            subtasks.Status = "Từ chối phê duyệt";
             // Cập nhật trạng thái thành "Từ chối phê duyệt"
             submittedSubtask.Status = "Từ chối phê duyệt";
             // submittedSubtask.RejectedAt = DateTime.Now; // Cập nhật thời gian từ chối (tuỳ chọn)
 
             db.SubmittedSubtasks.Update(submittedSubtask);
+            db.Subtasks.Update(subtasks);
             await db.SaveChangesAsync();
 
             // Lấy thông tin người đã nộp công việc con (người dùng bị từ chối)

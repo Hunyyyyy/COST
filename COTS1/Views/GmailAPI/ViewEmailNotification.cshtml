@@ -8,47 +8,99 @@
     #Recipients label.hidden {
         display: none;
     }
-</style>
 
-@* <h2>Sent Notifications</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Recipients</th>
-            <th>Sent Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var notification in Model)
-        {
-            <tr>
-                <td>@notification.Title</td>
-                <td>@notification.Recipients</td>
-                <td>@notification.SentDate</td>
-            </tr>
+    /* General container adjustments */
+    .Container {
+        height: auto;
+        max-width: 1200px;
+    }
+
+    .container-expanded {
+        margin-top: 60px;
+        width: 80%;
+    }
+
+    /* Form Card styling */
+    .form-section {
+        background: linear-gradient(135deg, #f9f9f9 0%, #e3f2fd 100%);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .form-section:hover {
+            box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
         }
-    </tbody>
-</table *@>
+
+        .form-section h2 {
+            font-weight: 700;
+            color: #1565c0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    /* Input and label adjustments */
+    .form-label {
+        font-weight: 500;
+        color: #1565c0;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #b3e5fc;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #64b5f6;
+            box-shadow: 0 0 8px rgba(100, 181, 246, 0.5);
+        }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #1565c0;
+        border: none;
+        font-size: 18px;
+        padding: 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0d47a1;
+            box-shadow: 0 4px 10px rgba(13, 71, 161, 0.3);
+        }
+
+    /* Modal header design */
+    .modal-header {
+        background-color: #1565c0;
+        color: white;
+        border-bottom: none;
+    }
+
+    .modal-footer {
+        border-top: none;
+    }
+</style>
 
 @if (@TempData["Message"] != null)
 {
-    <div class="modal" id="myModal">
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Thông báo!!</h4>
-                    @* <button type="button" class="btn-close" data-bs-dismiss="modal"></button> *@
+                    <h4 class="modal-title" id="modalLabel">Thông báo!!</h4>
                 </div>
 
-                <!-- Modal body -->
+                <!-- Modal Body -->
                 <div class="modal-body">
                     @TempData["Message"]
                 </div>
 
-                <!-- Modal footer -->
+                <!-- Modal Footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -58,34 +110,32 @@
     </div>
 }
 
-<div class="main" style="margin-left: 230px; margin-top: 60px;">
-    <h2>Send Email Notification</h2>
-    <div class="container mt-5">
-       <div class=""></div>
+<div class="Container container-expanded" id="chartContainer" style="margin-top: 70px;">
+    <div class="form-section">
+        <h2>Send Email Notification</h2>
         <form>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="from" class="form-label">From</label>
                 <input type="text" class="form-control" id="from" name="from" value="@ViewBag.UserEmail" readonly />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="to" class="form-label">To</label>
-                <input type="text" class="form-control" id="recipients" name="recipients" placeholder="Enter recipient email addresses separated by commas" required>
+                <input type="text" class="form-control" id="recipients" name="recipients" placeholder="Nhập địa chỉ email người nhận" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="subject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" required>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Nhập chủ đề" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Nhập tin nhắn của bạn ở đây" required></textarea>
             </div>
-            <div class="d-grid">
-                <button asp-action="EmailNotification" asp-controller="GmailAPI" type="submit" class="btn btn-primary">Send Email</button>
+            <div class="d-grid gap-2">
+                <button asp-action="EmailNotification" asp-controller="GmailAPI" type="submit" class="btn btn-primary btn-lg">Send Email</button>
             </div>
         </form>
     </div>
 </div>
-
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
@@ -96,4 +146,3 @@
         myModal.show();
     });
 </script>
-

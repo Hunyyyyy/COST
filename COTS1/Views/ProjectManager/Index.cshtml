@@ -1,15 +1,20 @@
-﻿@{
+﻿@using X.PagedList.Mvc.Core
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 
 }
-@model List<COTS1.Models.ProjectModel>
+@model X.PagedList.IPagedList<COTS1.Models.ProjectModel>
+
 
 <style>
     /* Ensure the dropdown is positioned correctly */
     .dropdown {
         position: absolute;
         display: none;
+    }
+    .container-expanded{
+        width: 82%;
     }
 </style>
 @if (TempData["SuccessMessage"] != null)
@@ -47,16 +52,9 @@
 
 }
 
-<div style="margin-left: 230px; margin-top: 60px;">
-<<<<<<< HEAD
-<<<<<<< HEAD
+<div class="container container-expanded" id="chartContainer" style=" margin-top: 60px;">
+   
 
-=======
-    
->>>>>>> 703f596acaadb5b2aac6f76d9b104b12d7fc423d
-=======
-
->>>>>>> dataTest
     <!-- Nút "Tạo dự án mới" được di chuyển lên trên bảng -->
     <button style="float:right;margin-right:20px;margin-bottom:20px" data-modal-target="large-modal" data-modal-toggle="large-modal" type="button" class="px-6 py-3.5 text-base font-medium text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         <svg class="w-4 h-4 text-white me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -64,7 +62,12 @@
         </svg>
         Tạo dự án mới
     </button>
-
+    <form method="get" asp-action="Index" asp-controller="ProjectManager" >
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" name="searchTerm" value="@ViewBag.CurrentFilter">
+            <button class="btn btn-success" type="submit">Tìm kiếm</button>
+        </div>
+    </form>
     <!-- Modal -->
     <div id="large-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-100 h-screen flex items-center justify-center">
         <div class="relative w-full max-w-4xl max-h-full">
@@ -75,7 +78,7 @@
                     <h3 class="text-xl font-medium text-gray-900 dark:text-white">
                         Tạo dự án mới
                     </h3>
-<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="large-modal">
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="large-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
@@ -99,6 +102,7 @@
             </div>
         </div>
     </div>
+ 
     <table class="table table-dark table-hover">
         <thead>
             <tr>
@@ -156,7 +160,24 @@
             }
         </tbody>
     </table>
-
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                 new PagedListRenderOptions
+        {
+            UlElementClasses = new[] { "pagination" }, // Lớp CSS phân trang của Bootstrap
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }, // Đảm bảo mỗi nút là link có thể click
+            PreviousElementClass = "page-item",
+            NextElementClass = "page-item",
+            ActiveLiElementClass = "active", // Đánh dấu trang hiện tại
+            LinkToPreviousPageFormat = "«", // Ký hiệu trang trước
+            LinkToNextPageFormat = "»", // Ký hiệu trang tiếp theo
+            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always
+        })
+    </div>
 </div>
 
 <!-- Modal Đổi Tên Dự Án -->

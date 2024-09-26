@@ -1,8 +1,6 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "CreateTaskProject";
     Layout = "~/Views/Shared/MainLayout.cshtml";
-    var isManager = ViewBag.IsManager as bool?;
 }
 @model List<COTS1.Models.SentTaskListModel>
 <style>
@@ -12,7 +10,7 @@
         right: 1rem; /* Khoảng cách từ bên phải */
         z-index: 1000; /* Đảm bảo nút nằm trên cùng */
         /* Bạn có thể thêm các kiểu dáng khác nếu muốn */
-      
+
     }
 
     .truncate {
@@ -24,23 +22,21 @@
     /* Đặt độ rộng tối đa cho bảng và các cột */
     /* Đảm bảo khung chứa bảng không vượt quá chiều rộng tối đa */
     .container {
-        max-width: 85%; /* Chiều rộng tối đa */
-        overflow-x: auto; /* Thêm thanh cuộn ngang nếu cần thiết */
-        margin-left: 230px; 
-        margin-top: 90px /* Chiều rộng của thanh điều hướng */
+        width: 100%; /* Chiều rộng tối đa */
+        margin-top: 100px; /* Chiều rộng của thanh điều hướng */
     }
     h2{
         margin:10px;
         font-weight:bold;
     }
+    .container-expanded{
+        width:82%;
+    }
     /* Đảm bảo bảng không vượt quá chiều rộng của khung chứa */
-   
+
 
 
 </style>
-
-
-
 
 <div class="container">
     @if (TempData["CreateTasksuccess"] != null)
@@ -49,6 +45,9 @@
             <strong>Thông báo!</strong> @TempData["CreateTasksuccess"]
         </div>
     }
+
+<div class="container container-expanded" id="chartContainer">
+
     <h2>Danh sách nhiệm vụ đã tạo</h2>
     <table class="table table-dark table-hover">
         <thead>
@@ -110,12 +109,11 @@
                     <td>Empty</td>
                 </tr>
             }
-            
+
         </tbody>
     </table>
 </div>
-@if (isManager.HasValue && isManager.Value)
-    {
+
 <button data-id="@ViewBag.ProjectId" id="project-settings-button" class="absolute top-16 right-4 px-6 py-3.5 text-base font-medium text-white inline-flex items-center bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
     <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" style="margin-right: 10px;">
         <path d="M9.243 1.23a1.75 1.75 0 011.514 0l1.528.647c.398.168.717.468.891.846l.525 1.154c.173.379.504.674.905.79l1.225.354a1.75 1.75 0 011.288 1.288l.354 1.225c.116.4.411.732.79.905l1.154.525c.378.174.678.493.846.891l.647 1.528a1.75 1.75 0 010 1.514l-.647 1.528a1.75 1.75 0 01-.846.891l-1.154.525a1.75 1.75 0 00-.79.905l-.354 1.225a1.75 1.75 0 01-1.288 1.288l-1.225.354a1.75 1.75 0 00-.905.79l-.525 1.154a1.75 1.75 0 01-.891.846l-1.528.647a1.75 1.75 0 01-1.514 0l-1.528-.647a1.75 1.75 0 01-.891-.846l-.525-1.154a1.75 1.75 0 00-.905-.79l-1.225-.354a1.75 1.75 0 01-1.288-1.288l-.354-1.225a1.75 1.75 0 00-.79-.905l-1.154-.525a1.75 1.75 0 01-.846-.891l-.647-1.528a1.75 1.75 0 010-1.514l.647-1.528a1.75 1.75 0 01.846-.891l1.154-.525c.379-.173.674-.504.79-.905l.354-1.225a1.75 1.75 0 011.288-1.288l1.225-.354a1.75 1.75 0 00.905-.79l.525-1.154a1.75 1.75 0 01.891-.846l1.528-.647zM10 7.25a2.75 2.75 0 100 5.5 2.75 2.75 0 000-5.5z" />
@@ -123,7 +121,6 @@
     <!-- Text cho nút nếu cần -->
       Cài đặt dự án
 </button>
-    }
 <!-- Nút "Tạo nhiệm vụ" -->
 <button data-id="@ViewBag.ProjectId" id="create-task-button" class="fixed bottom-4 right-4 px-6 py-3.5 text-base font-medium text-white inline-flex items-center bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
     <svg  class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" style="margin-right: 10px;">
@@ -154,4 +151,3 @@
 
 
 <script src="https://cdn.tailwindcss.com"></script>
-

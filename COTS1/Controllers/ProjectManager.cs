@@ -4,6 +4,8 @@ using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using X.PagedList;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace COTS1.Controllers
 {
@@ -18,12 +20,12 @@ namespace COTS1.Controllers
             _contextAccessor = contextAccessor;
         }
 
-        /*  public IActionResult Index()
+		/*  public IActionResult Index()
           {
               return View();
           }*/
-        [HttpGet]
-        public async Task<IActionResult> Index()
+		[HttpGet]
+        public async Task<IActionResult> Index(int? page, string searchTerm)
         {
             var managerID = HttpContext.Session.GetInt32("UserIDEmail");
 
@@ -32,26 +34,41 @@ namespace COTS1.Controllers
                 return Unauthorized();
             }
 
-            // Kiểm tra vai trò của người dùng
+            // Check if the user is a manager
             var isManager = await db.ProjectUsers
                 .AnyAsync(pu => pu.UserId == managerID && pu.Role == "Manager");
 
-            // Truyền thông tin vai trò vào ViewBag
             ViewBag.IsManager = isManager;
 
-            // Lấy danh sách dự án của người dùng
-            var listProject = await db.Projects
-       .Where(p => p.ManagerId == managerID.Value)
-       .Select(n => new ProjectModel
-       {
-           ProjectName = n.ProjectName,
-           ProjectId = n.ProjectId,
-           CreatedAt = n.CreatedAt,
-           Status = n.Status
-       }).ToListAsync();
+            int pageSize = 12;  // Number of items per page
+            int pageNumber = page ?? 1;  // Current page, default to page 1
+            ViewBag.CurrentFilter = searchTerm;  // Store the search term
 
-            return View(listProject);
+            // Get the list of projects for the manager
+            var query = db.Projects
+                .Where(p => p.ManagerId == managerID.Value)
+                .Select(n => new ProjectModel
+                {
+                    ProjectName = n.ProjectName,
+                    ProjectId = n.ProjectId,
+                    CreatedAt = n.CreatedAt,
+                    Status = n.Status
+                });
+
+            // Filter the list if there is a search term
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(p => p.ProjectName.Contains(searchTerm));
+            }
+
+            // Fetch the paginated list directly from the query
+            var pagedList = query.ToPagedList(pageNumber, pageSize);  // Pagination applied directly to the query
+
+            return View(pagedList);
         }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> CreateProject(string NameProject)

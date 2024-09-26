@@ -3,19 +3,77 @@
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 @model IEnumerable<ProjectModel>
+<style>
+    .container {
+        width: 100%;
+    }
 
-<div class="container mt-4" style="margin-left: 230px; margin-top: 70px;">
+    .container-expanded {
+        width: 82%;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: 'Arial', sans-serif; /* Update font for header */
+        color: #343a40; /* Dark color for header */
+    }
+
+    .project-card {
+        border: none; /* Remove border */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Card shadow */
+        margin-bottom: 20px; /* Space between cards */
+        transition: transform 0.2s; /* Smooth scaling effect */
+        width: 380px; /* Set a fixed width for the cards */
+        height: 320px; /* Set a fixed height for the cards */
+        margin: 15px; /* Add some margin around each card */
+    }
+
+        .project-card:hover {
+            transform: scale(1.02); /* Slightly increase size on hover */
+        }
+
+    .progress {
+        height: 20px; /* Height of the progress bar */
+        border-radius: 5px; /* Rounded corners */
+        overflow: hidden; /* Hide overflow */
+    }
+
+    .progress-bar {
+        background-color: #007bff; /* Primary color for progress */
+        border-radius: 5px; /* Rounded corners for progress bar */
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between; /* Space buttons evenly */
+    }
+
+    .btn-info {
+        background-color: #007bff; /* Custom button color */
+        border-color: #007bff; /* Border color matches background */
+        border-radius: 5px; /* Rounded corners for buttons */
+        transition: background-color 0.3s; /* Smooth color transition */
+    }
+
+        .btn-info:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+</style>
+
+<div class="container container-expanded" id="chartContainer" style="margin-top: 70px;">
     <h2>Danh sách dự án</h2>
     <div class="row">
         @foreach (var project in Model)
         {
-            <div class="">
-                <!-- Adjust column size for card width -->
+            <div class="col-md-4">
+                <!-- Adjusted to have three cards in a row -->
                 <div class="card project-card">
                     <div class="card-body">
                         <h5 class="card-title">@project.ProjectName</h5>
                         <p class="card-text"><strong>Ngày Bắt Đầu:</strong> @project.StartDate.ToShortDateString()</p>
-                        <p class="card-text"><strong>Ngày Kết Thúc:</strong> @project.EndDate?.ToShortDateString()</p>
+                        <p class="card-text"><strong>Ngày Kết Thúc:</strong> @project.EndDate?.ToShortDateString() ?? "Chưa có thông tin"</p>
                         <p class="card-text">
                             <strong>Tiến Trình:</strong>
                             <div class="progress">
@@ -34,7 +92,6 @@
                                     <button type="submit" class="btn btn-info">Duyệt công việc</button>
                                 </form>
                             }
-
                         </div>
                     </div>
                 </div>
@@ -42,4 +99,3 @@
         }
     </div>
 </div>
-

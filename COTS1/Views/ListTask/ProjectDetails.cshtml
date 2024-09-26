@@ -1,25 +1,102 @@
-﻿@{
+﻿﻿@{
     ViewData["Title"] = "Subtasks";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 @model ProjectDetailsViewModel
-<div class="container " style="margin-left: 230px; margin-top: 70px;">
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background color for contrast */
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .container-expanded {
+
+        width: 80%; /* Adjusted width for better layout */
+        padding: 20px; /* Padding for better spacing */
+        background-color: white; /* White background for cards */
+        border-radius: 10px; /* Rounded corners for the main container */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    h2 {
+        font-weight: bold; /* Bold project name */
+        margin-bottom: 30px; /* Increased spacing below the title */
+        color: #343a40; /* Dark color for the title */
+        text-align: center; /* Center title */
+    }
+
+    .card {
+        border: none; /* No border for a cleaner look */
+        border-radius: 10px; /* Rounded corners */
+        margin-bottom: 20px; /* Spacing between cards */
+        transition: transform 0.2s; /* Smooth scaling effect */
+    }
+
+        .card:hover {
+            transform: scale(1.02); /* Slight zoom effect on hover */
+        }
+
+    .card-header {
+        background-color: #007bff; /* Primary color for header */
+        color: white; /* White text for contrast */
+        border-radius: 10px 10px 0 0; /* Rounded top corners */
+        cursor: pointer; /* Cursor pointer for clickable header */
+        padding: 15px; /* Padding for better touch area */
+    }
+
+    .btn-outline-info {
+        color: white; /* Text color */
+        border-color: white; /* Border color */
+        width: 100%; /* Button takes full width */
+        background: transparent; /* Transparent background */
+        text-align: left; /* Align text to the left */
+    }
+
+        .btn-outline-info:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Slight hover effect */
+        }
+
+    .progress {
+        height: 20px; /* Fixed height for progress bars */
+    }
+
+    .list-group-item {
+        border: 1px solid #e0e0e0; /* Light border */
+        border-radius: 8px; /* Rounded corners for list items */
+        margin-bottom: 10px; /* Spacing between items */
+        padding: 15px; /* Padding for better spacing */
+    }
+
+        .list-group-item h6 {
+            font-weight: bold; /* Bold subtask titles */
+            color: #007bff; /* Color for subtask titles */
+        }
+
+    .no-tasks {
+        text-align: center; /* Center text for no tasks message */
+        color: #6c757d; /* Gray color for subtlety */
+        margin-top: 20px; /* Spacing above the message */
+    }
+</style>
+
+<div class="container container-expanded" id="chartContainer" style="margin-top: 70px;">
     <h2>@Model.ProjectName</h2>
     <div id="accordion">
 
-        <!-- Các Nhiệm Vụ -->
+        <!-- Tasks -->
         @if (Model.Tasks != null && Model.Tasks.Any())
         {
             @foreach (var task in Model.Tasks)
             {
-                <div class="card mb-4">
-                    <div class="card-header" id="headingTask_@task.TaskId">
+                <div class="card">
+                    <div class="card-header" id="headingTask_@task.TaskId" data-bs-toggle="collapse" data-bs-target="#collapseTask_@task.TaskId" aria-expanded="false" aria-controls="collapseTask_@task.TaskId">
                         <h5 class="mb-0">
-                            <div class="card-header d-grid">
-                                <button class="btn btn-outline-info btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTask_@task.TaskId" aria-expanded="false" aria-controls="collapseTask_@task.TaskId">
-                                <h4 >@task.Title</h4>
+                            <button class="btn btn-outline-info btn-block" type="button" aria-expanded="false" aria-controls="collapseTask_@task.TaskId">
+                                <h4 class="m-0">@task.Title</h4>
                             </button>
-                            </div>
                         </h5>
                     </div>
 
@@ -54,7 +131,7 @@
                             }
                             else
                             {
-                                <p>Không có công việc con cho nhiệm vụ này.</p>
+                                <p class="no-tasks">Không có công việc con cho nhiệm vụ này.</p>
                             }
                         </div>
                     </div>
@@ -63,8 +140,7 @@
         }
         else
         {
-            <p>Không có nhiệm vụ nào cho dự án này.</p>
+            <p class="no-tasks">Không có nhiệm vụ nào cho dự án này.</p>
         }
     </div>
 </div>
-  

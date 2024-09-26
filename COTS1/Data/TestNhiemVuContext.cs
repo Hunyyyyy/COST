@@ -390,6 +390,9 @@ public partial class TestNhiemVuContext : DbContext
         {
             entity.HasKey(e => e.SubtaskId).HasName("PK__Subtasks__E087179660F43EA6");
 
+            entity.Property(e => e.Assigner)
+                .HasMaxLength(255)
+                .IsUnicode(false);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");

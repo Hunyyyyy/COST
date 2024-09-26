@@ -3,13 +3,143 @@
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 <style>
-    .card-footer {
-        text-align: right; /* Căn chỉnh nút "Nhận việc" sang bên phải */
+    <style>
+    /* General container adjustments */
+    .container {
+        width: 100%;
     }
+    .container-expanded {
+        width: 82%;
+    }
+
+    /* Card styling */
+    .card {
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        background-color: #fff;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: black;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .card-footer {
+        border-top: 1px solid #e0e0e0;
+        background-color: #f9f9f9;
+        padding-top: 15px;
+    }
+
+    /* Buttons */
+    .btn-outline-info {
+        color: #17a2b8;
+        border-color: #17a2b8;
+        margin-right: 10px;
+    }
+
+    .btn-outline-info:hover {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .btn-outline-success {
+        color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-outline-danger {
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    /* Modal styling */
+    .modal-content {
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        background-color: #f8f9fa;
+        border-bottom: none;
+    }
+
+    .modal-title {
+        font-size: 1.25rem;
+        color: #343a40;
+    }
+
+    .modal-body {
+        padding: 30px;
+    }
+
+    .modal-footer {
+        padding: 15px 30px;
+        border-top: none;
+    }
+
+    /* Form controls */
+    .form-control {
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #ced4da;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        border-color: #80bdff;
+    }
+
+    /* Spacing and margin adjustments */
+    .g-4 > * {
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .text-muted {
+        color: #6c757d !important;
+    }
+
+    /* Ensure consistent padding */
+    body {
+        padding: 0 15px;
+    }
+</style>
+
+    
 </style>
 @model RecivedTask_And_SubmittedSubtask_Model
 
-<div class="container" style="margin-left: 230px; margin-top: 70px;">
+<div class="container container-expanded" id="chartContainer" style="margin-top: 70px;">
     <div class="container">
         <h2>Công việc đã nhận</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -35,26 +165,27 @@
 
                                     <div class="card-footer text-end">
                                         <!-- Hiển thị nút Cập nhật -->
-                                        @if (status.Status == "Đang chờ phê duyệt" || status.Status == "Từ chối phê duyệt")
+                                        @if (status.Status == "Đang chờ phê duyệt")
                                         {
                                             <button type="button" class="btn btn-outline-success"
                                                     data-bs-toggle="modal" data-bs-target="#updateTaskModal"
                                                     onclick="openUpdateTaskModal('@task.Title', '@task.SubtaskId', '@task.TaskId', '@ViewBag.currentUserName', '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")')">
                                                 Cập nhật
                                             </button>
-                                        }
-
-                                        <!-- Nút Hủy nộp -->
-                                        @if (status.Status == "Từ chối phê duyệt" || status.Status == "Đã phê duyệt")
-                                        {
                                             <form class="mb-0 d-inline" method="post" asp-action="DeleteSubmittedSubtask" asp-controller="ListTask">
                                                 <input type="hidden" name="subtaskId" value="@task.SubtaskId" />
                                                 <button type="submit" class="btn btn-outline-danger">Hủy nộp</button>
                                             </form>
                                         }
 
+                                        <!-- Nút Hủy nộp -->
+                                        @if (status.Status == "Từ chối phê duyệt" || status.Status == "Đã phê duyệt")
+                                        {
+                                            
+                                        }
+
                                         <!-- Hiển thị trạng thái hiện tại -->
-                                        <button type="button" class="btn btn-outline-success" disabled>
+                                        <button type="button" class="btn btn-outline-danger" disabled>
                                             @status.Status
                                         </button>
                                     </div>

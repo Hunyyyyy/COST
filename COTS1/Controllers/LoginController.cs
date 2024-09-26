@@ -72,8 +72,8 @@ namespace COTS1.Controllers
                     "&state=" + HttpUtility.UrlEncode(state) +
                     "&login_hint=" + HttpUtility.UrlEncode(gmail); // Thêm email vào URL
 
-                //return Redirect(authUrl);
-                return RedirectToAction(authUrl);
+                return Redirect(authUrl);
+                //return RedirectToAction(authUrl);
             }
             else
             {
