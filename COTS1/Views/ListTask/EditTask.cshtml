@@ -2,110 +2,83 @@
     ViewData["Title"] = "Tạo Nhiệm Vụ";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
-@model SaveTasksModel
+@model COTS1.Models.SaveTasksModel
 <style>
-    body {
-        background-color: #ffffff; /* White background for the page */
-        color: #343a40; /* Dark text for readability */
-    }
-
-    .container {
-        width: 100%;
-        margin-top: 70px; /* Top margin for spacing */
-        padding: 50px 40px; /* Padding for content */
-        border-radius: 10px; /* Rounded corners */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
-        background-color: #fefefe; /* Slightly off-white background */
-    }
-    .container-expanded{
-        width: 82%;
-    }
-
-    h2 {
-        font-weight: bold;
-        color: #343a40; /* Dark color for headings */
-        margin-bottom: 30px; /* Space below heading */
-    }
-
     textarea {
         width: 100%;
         height: 200px;
         margin-top: 10px;
         resize: none;
-        border: 1px solid #ced4da; /* Light gray border */
-        border-radius: 5px; /* Rounded corners */
-        padding: 10px; /* Inner padding for textarea */
-        font-family: inherit; /* Inherit font style */
     }
 
-    .is-invalid {
-        border-color: red; /* Red border for invalid fields */
+    body {
+        background-color: #f8f9fa; /* Light background for better contrast */
     }
 
-    .btn {
-        border-radius: 5px; /* Rounded button corners */
-        transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    .container {
+        width: 100%;
+        max-width: 800px; /* Limit max width for better readability */
+        margin: 0 auto; /* Center the container */
+        padding: 40px;
+        background-color: #ffffff; /* White background for the form */
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        border-radius: 10px; /* Rounded corners */
     }
 
-    .btn-primary {
-        background-color: #007bff; /* Bootstrap primary color */
-        color: white; /* White text */
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3; /* Darker blue on hover */
-        transform: scale(1.05); /* Slightly enlarge on hover */
-    }
-
-    .btn-success {
-        background-color: #28a745; /* Green color */
-        color: white; /* White text */
-    }
-
-    .btn-success:hover {
-        background-color: #218838; /* Darker green on hover */
-        transform: scale(1.05); /* Slightly enlarge on hover */
-    }
-
-    .btn-info {
-        background-color: #17a2b8; /* Info color */
-        color: white; /* White text */
-    }
-
-    .btn-info:hover {
-        background-color: #138496; /* Darker info color on hover */
-        transform: scale(1.05); /* Slightly enlarge on hover */
-    }
-
-    .btn-danger {
-        background-color: #dc3545; /* Danger color */
-        color: white; /* White text */
-    }
-
-    .btn-danger:hover {
-        background-color: #c82333; /* Darker danger color on hover */
-        transform: scale(1.05); /* Slightly enlarge on hover */
+    h2 {
+        color: #343a40; /* Darker text for headings */
+        margin-bottom: 30px; /* More space below heading */
     }
 
     .form-label {
-        font-weight: bold; /* Bold labels */
+        font-weight: bold; /* Bold labels for better emphasis */
+        color: #495057; /* Darker color for labels */
     }
 
-    .mb-3 {
-        margin-bottom: 20px; /* Bottom margin for spacing */
+    .form-control {
+        border-radius: 5px; /* Rounded edges for inputs */
+        border: 1px solid #ced4da; /* Subtle border color */
+        transition: border-color 0.3s; /* Smooth border color transition */
     }
 
-    .modal-header {
-        background-color: #343a40; /* Dark header */
-        color: white; /* White text */
+        .form-control:focus {
+            border-color: #80bdff; /* Lighter blue on focus */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Soft glow on focus */
+        }
+
+    .btn {
+        border-radius: 5px; /* Rounded buttons */
     }
 
-    .modal-footer {
-        background-color: #f8f9fa; /* Light footer */
+    .btn-info {
+        background-color: #17a2b8; /* Info button color */
+        border: none;
     }
 
-    .modal-title {
-        color: gold; /* Gold color for modal title */
+        .btn-info:hover {
+            background-color: #138496; /* Darker hover effect */
+        }
+
+    .btn-danger {
+        background-color: #dc3545; /* Danger button color */
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Darker hover effect */
+        }
+
+    .btn-primary {
+        background-color: #007bff; /* Primary button color */
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker hover effect */
+        }
+
+    .container {
+        width: 82%;
     }
 </style>
 @if (@TempData["Message"] != null)
@@ -117,6 +90,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Thông báo!!</h4>
+                    @* <button type="button" class="btn-close" data-bs-dismiss="modal"></button> *@
                 </div>
 
                 <!-- Modal body -->
@@ -133,139 +107,69 @@
         </div>
     </div>
 }
+@if (Model == null)
+{
+    <h2 class="mb-4">Đã xảy ra lỗi.Vui lòng thử lại  </h2>
+}
+<div class="container mt-5 container-expanded" id="chartContainer">
 
-<div class="container mt-5 container-expanded" id="chartContainer" style="margin-top: 70px; padding:50px 40px">
-    <h2 class="mb-4">Chỉnh sửa Nhiệm Vụ</h2>
 
-    <form method="post" asp-action="EditTask">
-        <input type="hidden" name="TaskId" value="@Model.TaskId" />
+    <h2 class="mb-4">Cập nhật Nhiệm Vụ cho @ViewBag.ProjectName </h2>
+    <form method="post" id="taskForm">
+        <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
+
         <div class="mb-3">
-            <label for="from" class="form-label">From</label>
-            <input type="text" class="form-control" id="from" name="from" value="@ViewBag.UserEmail" readonly required />
+            <label for="Title" class="form-label">Tên dự án</label>
+            <input type="text" class="form-control" id="Title" name="Title" value="@ViewBag.ProjectName" readonly>
         </div>
-
-        <div class="mb-3">
-            <label for="Title" class="form-label">Tên nhiệm vụ</label>
-            <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required>
-        </div>
-
-        <!-- Nút Thêm nhiệm vụ chính -->
-        <button type="button" class="btn btn-success" id="addMainTaskBtn">Thêm nhiệm vụ</button>
 
         <!-- Khu vực Thêm công việc chính -->
-        <div id="mainTaskArea" class="mb-3" style="display:none;">
+        <div id="mainTaskArea" class="mb-3">
             <label for="taskInput" class="form-label">Thêm công việc</label>
-            <input type="text" class="form-control" id="taskInput" placeholder="Nhập công việc">
-            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Add Công Việc Chính</button>
-        </div>
-
-        <!-- Khu vực công việc phụ và ghi chú -->
-        <div id="subTaskArea" class="mb-3" style="display:none;">
-            
-            <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú">@Model.Note</textarea>
+            <input type="text" class="form-control" id="taskInput" value="@Model.Title" readonly>
+            <div id="taskError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+                Vui lòng nhập tên nhiệm vụ.
+            </div>
+            <input type="text" class="form-control mt-2" id="SuptaskInput" placeholder="Nhập công việc của nhiệm vụ">
+            <div id="suptaskError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+                Vui lòng nhập công việc của nhiệm vụ.
+            </div>
+            <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú"></textarea>
+            <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Thêm nhiệm vụ</button>
         </div>
 
         <div class="mb-3">
             <label for="Description" class="form-label">Danh sách công việc</label>
-            <textarea id="Description" class="editable-textarea" name="Description" readonly>@Model.Description</textarea>
+            <textarea id="Description" class="editable-textarea" name="Description" readonly required></textarea>
             <button type="button" class="btn btn-danger" id="editTaskBtn">Chỉnh sửa công việc</button>
         </div>
 
         <div class="mb-3">
             <label for="DueDate" class="form-label">Ngày hết hạn</label>
-            <input type="date" class="form-control" id="DueDate" name="DueDate" value="@Model.DueDate.ToString("yyyy-MM-dd")" required>
+            <input type="date" class="form-control" id="DueDate" name="DueDate" min="" required>
+            <div id="dueDateError" class="alert alert-danger" style="display:none; margin-top: 5px;">
+                Vui lòng nhập ngày hết hạn.
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="Priority" class="form-label">Mức độ ưu tiên</label>
-            <select class="form-select" id="Priority" name="Priority" required>
-                <option value="Thấp" >Thấp</option>
-                <option value="Trung Bình" >Trung Bình</option>
-                <option value="Cao" >Cao</option>
+            <select class="form-select" id="Priority" name="Priority" required >
+                <option value="Thấp">Thấp</option>
+                <option value="Trung Bình">Trung Bình</option>
+                <option value="Cao">Cao</option>
             </select>
         </div>
 
-        <!-- Nút Lưu thay đổi -->
-        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        <!-- Nút Create tasks để lưu tất cả -->
+        <button asp-action="SaveEditTask" asp-controller="ListTask" type="submit" class="btn btn-primary">Tạo Nhiệm Vụ</button>
     </form>
+
+
+
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-            keyboard: false
-        });
-        myModal.show();
-    });
-    @*  cong viec *@
-
-
-        let taskCounter = 1;  // Đếm số công việc
-    let isSubTaskVisible = false; // Trạng thái hiển thị công việc phụ
-
-    // Hiển thị khu vực thêm công việc chính khi nhấn nút "Thêm nhiệm vụ"
-    document.getElementById('addMainTaskBtn').addEventListener('click', function () {
-        document.getElementById('mainTaskArea').style.display = 'block';
-    });
-
-    // Xử lý khi nhấn nút "Add Công Việc Chính"
-    document.getElementById('addTaskBtn').addEventListener('click', function () {
-        const taskInput = document.getElementById('taskInput').value.trim();
-
-        if (!taskInput) {
-            alert('Vui lòng nhập công việc chính.');
-            return;
-        }
-
-        // Thêm công việc chính vào danh sách
-        const newTask = `Công việc ${taskCounter}: ${taskInput}\n`;
-        const description = document.getElementById('Description');
-        description.value += newTask;
-
-        // Hiển thị khu vực thêm công việc phụ và ghi chú
-        document.getElementById('subTaskArea').style.display = 'block';
-
-        // Tăng số công việc và xóa input
-        taskCounter++;
-        document.getElementById('taskInput').value = '';
-    });
-
-    // Xử lý khi nhấn nút "Add Công Việc Phụ"
-    document.getElementById('addSubTaskBtn').addEventListener('click', function () {
-        const suptaskInput = document.getElementById('SuptaskInput').value.trim();
-
-        if (!suptaskInput) {
-            alert('Vui lòng nhập công việc phụ.');
-            return;
-        }
-
-        // Thêm công việc phụ vào danh sách với dấu "+"
-        const newSubTask = `+ ${suptaskInput}\n`;
-        const description = document.getElementById('Description');
-        description.value += newSubTask;
-
-        // Xóa input sau khi thêm
-        document.getElementById('SuptaskInput').value = '';
-    });
-
-    // Xử lý khi nhấn nút "Add Ghi Chú"
-    document.getElementById('addNoteBtn').addEventListener('click', function () {
-        const note = document.getElementById('Note').value.trim();
-
-        if (!note) {
-            alert('Vui lòng nhập ghi chú.');
-            return;
-        }
-
-        // Thêm ghi chú vào danh sách
-        const newNote = `Ghi chú: ${note}\n`;
-        const description = document.getElementById('Description');
-        description.value += newNote;
-
-        // Xóa textarea ghi chú sau khi thêm
-        document.getElementById('Note').value = '';
-
-    });
     let isEditing = false;
 
     document.getElementById('editTaskBtn').addEventListener('click', function () {
@@ -283,4 +187,118 @@
             this.innerText = 'Lưu công việc'; // Đổi tên nút thành Lưu công việc
         }
     });
+    // Set the minimum date to today
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const yyyy = today.getFullYear();
+        const minDate = yyyy + '-' + mm + '-' + dd;
+
+        document.getElementById("DueDate").setAttribute("min", minDate);
+    });
+    // Xử lý sự kiện khi nhấn nút "Thêm nhiệm vụ"
+    document.getElementById('addTaskBtn').addEventListener('click', function () {
+        const taskInput = document.getElementById('taskInput').value.trim();
+        const suptaskInput = document.getElementById('SuptaskInput').value.trim();
+
+        let hasError = false;
+
+        // Kiểm tra nhiệm vụ
+        if (!taskInput) {
+            document.getElementById('taskError').style.display = 'block';
+            hasError = true;
+        } else {
+            document.getElementById('taskError').style.display = 'none';
+        }
+
+        // Kiểm tra công việc phụ
+        if (!suptaskInput) {
+            document.getElementById('suptaskError').style.display = 'block';
+            hasError = true;
+        } else {
+            document.getElementById('suptaskError').style.display = 'none';
+        }
+
+        // Nếu có lỗi thì không thực hiện thêm nhiệm vụ
+        if (hasError) {
+            return;
+        }
+
+        // Nếu không có lỗi, thực hiện logic thêm nhiệm vụ vào danh sách (có thể xử lý thêm)
+        alert('Nhiệm vụ và công việc phụ đã được thêm thành công!');
+    });
+
+    // Xử lý sự kiện khi nhấn nút "Tạo Nhiệm Vụ"
+    document.getElementById('taskForm').addEventListener('submit', function (event) {
+        const dueDate = document.getElementById('DueDate').value.trim();
+
+        let hasError = false;
+
+        // Kiểm tra ngày hết hạn
+        if (!dueDate) {
+            document.getElementById('dueDateError').style.display = 'block';
+            hasError = true;
+        } else {
+            document.getElementById('dueDateError').style.display = 'none';
+        }
+
+        // Nếu có lỗi thì ngăn form gửi đi
+        if (hasError) {
+            event.preventDefault();
+        }
+    });
+
+
+
+    // Xử lý khi nhấn nút "Tạo Nhiệm Vụ"
+    document.getElementById('taskForm').addEventListener('submit', function (event) {
+        const description = document.getElementById('Description').value.trim();
+
+        if (!description) {
+            alert('Vui lòng thêm ít nhất một nhiệm vụ vào danh sách.');
+            event.preventDefault(); // Ngăn chặn gửi form
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    });
+
+    let taskCounter = 1;  // Đếm số công việc
+
+    // Xử lý khi nhấn nút "Thêm nhiệm vụ"
+    document.getElementById('addTaskBtn').addEventListener('click', function () {
+        const taskInput = document.getElementById('taskInput').value.trim();
+        const suptaskInput = document.getElementById('SuptaskInput').value.trim();
+
+        if (!taskInput && !suptaskInput) {
+            alert('Vui lòng nhập tên nhiệm vụ hoặc công việc của nhiệm vụ.');
+            return;
+        }
+
+        // Thêm công việc chính vào danh sách nếu có
+        const description = document.getElementById('Description');
+
+        if (taskInput) {
+            const newTask = `Công việc ${taskCounter}: ${taskInput}\n`;
+            description.value += newTask;
+            taskCounter++;
+        }
+
+        // Thêm công việc phụ nếu có
+        if (suptaskInput) {
+            const newSubTask = `+ ${suptaskInput}\n`;
+            description.value += newSubTask;
+        }
+
+        // Xóa input sau khi thêm
+        document.getElementById('taskInput').value = '';
+        document.getElementById('SuptaskInput').value = '';
+    });
+
+
 </script>

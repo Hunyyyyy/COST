@@ -25,15 +25,7 @@ public partial class Project
 
     public virtual User? Manager { get; set; }
 
-    public virtual ICollection<ProjectMember> ProjectMembers { get; set; } = new List<ProjectMember>();
-
-    public virtual ICollection<ProjectNotification> ProjectNotifications { get; set; } = new List<ProjectNotification>();
-
-    public virtual ICollection<ProjectProgress> ProjectProgresses { get; set; } = new List<ProjectProgress>();
-
-    public virtual ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();
-
-    public virtual ProjectUser? ProjectUser { get; set; }
+    public virtual ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
 
     public virtual ICollection<Reminder> Reminders { get; set; } = new List<Reminder>();
 

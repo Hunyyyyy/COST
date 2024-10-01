@@ -27,5 +27,5 @@ public partial class SaveTasks
 
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 
-    public virtual ICollection<TaskNotification> TaskNotifications { get; set; } = new List<TaskNotification>();
+
 }

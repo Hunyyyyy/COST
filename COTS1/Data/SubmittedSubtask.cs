@@ -23,6 +23,8 @@ public partial class SubmittedSubtask
 
     public string? FilePath { get; set; }
 
+    public string? ApprovedBy { get; set; }
+
     public virtual Project Project { get; set; } = null!;
 
     public virtual Subtask Subtask { get; set; } = null!;

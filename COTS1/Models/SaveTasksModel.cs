@@ -24,6 +24,6 @@ namespace COTS1.Models
         public DateTime? CreatedAt { get; set; }
         public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 
-        public virtual ICollection<TaskNotification> TaskNotifications { get; set; } = new List<TaskNotification>();
+      
     }
 }

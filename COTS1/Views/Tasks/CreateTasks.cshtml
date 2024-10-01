@@ -174,6 +174,23 @@
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    let isEditing = false;
+
+    document.getElementById('editTaskBtn').addEventListener('click', function () {
+        const Description = document.getElementById('Description');
+
+        if (isEditing) {
+            // Nếu đang trong chế độ chỉnh sửa thì khóa lại textarea
+            Description.setAttribute('readonly', true);
+            isEditing = false;
+            this.innerText = 'Chỉnh sửa công việc'; // Thay đổi lại tên nút
+        } else {
+            // Nếu không trong chế độ chỉnh sửa thì cho phép chỉnh sửa
+            Description.removeAttribute('readonly');
+            isEditing = true;
+            this.innerText = 'Lưu công việc'; // Đổi tên nút thành Lưu công việc
+        }
+    });
     // Set the minimum date to today
     document.addEventListener("DOMContentLoaded", function () {
         const today = new Date();
@@ -287,21 +304,5 @@
         document.getElementById('SuptaskInput').value = '';
     });
 
-    let isEditing = false;
-
-    document.getElementById('editTaskBtn').addEventListener('click', function () {
-        const Description = document.getElementById('Description');
-
-        if (isEditing) {
-            // Nếu đang trong chế độ chỉnh sửa thì khóa lại textarea
-            Description.setAttribute('readonly', true);
-            isEditing = false;
-            this.innerText = 'Chỉnh sửa công việc'; // Thay đổi lại tên nút
-        } else {
-            // Nếu không trong chế độ chỉnh sửa thì cho phép chỉnh sửa
-            Description.removeAttribute('readonly');
-            isEditing = true;
-            this.innerText = 'Lưu công việc'; // Đổi tên nút thành Lưu công việc
-        }
-    });
+    
 </script>

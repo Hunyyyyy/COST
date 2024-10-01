@@ -17,19 +17,7 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<AssignedSubtask> AssignedSubtasks { get; set; }
 
-    public virtual DbSet<Group> Groups { get; set; }
-
-    public virtual DbSet<GroupMember> GroupMembers { get; set; }
-
     public virtual DbSet<Project> Projects { get; set; }
-
-    public virtual DbSet<ProjectMember> ProjectMembers { get; set; }
-
-    public virtual DbSet<ProjectNotification> ProjectNotifications { get; set; }
-
-    public virtual DbSet<ProjectProgress> ProjectProgresses { get; set; }
-
-    public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
 
     public virtual DbSet<ProjectUser> ProjectUsers { get; set; }
 
@@ -49,13 +37,7 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<SubtaskProgress> SubtaskProgresses { get; set; }
 
-    public virtual DbSet<TaskNotification> TaskNotifications { get; set; }
-
-    public virtual DbSet<TaskProgress> TaskProgresses { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserLogin> UserLogins { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -89,34 +71,6 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK__AssignedS__Subta__6A30C649");
         });
 
-        modelBuilder.Entity<Group>(entity =>
-        {
-            entity.HasKey(e => e.GroupId).HasName("PK__Groups__149AF36AF2BE4767");
-
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.GroupName).HasMaxLength(100);
-
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.Groups)
-                .HasForeignKey(d => d.CreatedBy)
-                .HasConstraintName("FK__Groups__CreatedB__6E01572D");
-        });
-
-        modelBuilder.Entity<GroupMember>(entity =>
-        {
-            entity.HasKey(e => e.GroupMemberId).HasName("PK__GroupMem__34481292BF07BC27");
-
-            entity.HasOne(d => d.Group).WithMany(p => p.GroupMembers)
-                .HasForeignKey(d => d.GroupId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__GroupMemb__Group__6C190EBB");
-
-            entity.HasOne(d => d.User).WithMany(p => p.GroupMembers)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__GroupMemb__UserI__6D0D32F4");
-        });
-
         modelBuilder.Entity<Project>(entity =>
         {
             entity.HasKey(e => e.ProjectId).HasName("PK__Projects__761ABEF049B5AC1C");
@@ -137,81 +91,16 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK__Projects__Manage__73BA3083");
         });
 
-        modelBuilder.Entity<ProjectMember>(entity =>
-        {
-            entity.HasKey(e => e.ProjectMemberId).HasName("PK__ProjectM__E4E9981C4490FA2F");
-
-            entity.HasOne(d => d.Project).WithMany(p => p.ProjectMembers)
-                .HasForeignKey(d => d.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ProjectMe__Proje__6EF57B66");
-
-            entity.HasOne(d => d.User).WithMany(p => p.ProjectMembers)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__ProjectMe__UserI__6FE99F9F");
-        });
-
-        modelBuilder.Entity<ProjectNotification>(entity =>
-        {
-            entity.HasKey(e => e.NotificationId).HasName("PK__ProjectN__20CF2E128A6CB36D");
-
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.IsRead).HasDefaultValue(false);
-
-            entity.HasOne(d => d.Project).WithMany(p => p.ProjectNotifications)
-                .HasForeignKey(d => d.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ProjectNo__Proje__70DDC3D8");
-
-            entity.HasOne(d => d.User).WithMany(p => p.ProjectNotifications)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__ProjectNo__UserI__71D1E811");
-        });
-
-        modelBuilder.Entity<ProjectProgress>(entity =>
-        {
-            entity.HasKey(e => e.ProjectProgressId).HasName("PK__ProjectP__9766AC670F139F37");
-
-            entity.ToTable("ProjectProgress");
-
-            entity.Property(e => e.LastUpdatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
-
-            entity.HasOne(d => d.Project).WithMany(p => p.ProjectProgresses)
-                .HasForeignKey(d => d.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ProjectPr__Proje__72C60C4A");
-        });
-
-        modelBuilder.Entity<ProjectTask>(entity =>
-        {
-            entity.HasKey(e => e.ProjectTaskId).HasName("PK__ProjectT__71C01D044B0CA000");
-
-            entity.HasOne(d => d.Project).WithMany(p => p.ProjectTasks)
-                .HasForeignKey(d => d.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ProjectTa__Proje__74AE54BC");
-
-            entity.HasOne(d => d.Task).WithMany(p => p.ProjectTasks)
-                .HasForeignKey(d => d.TaskId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__ProjectTa__TaskI__75A278F5");
-        });
-
         modelBuilder.Entity<ProjectUser>(entity =>
         {
             entity.HasKey(e => e.ProjectUserId).HasName("PK__ProjectU__4F7A4900F0A1B6B4");
 
-            entity.HasIndex(e => e.ProjectId, "IX_ProjectUsers_ProjectId").IsUnique();
+            entity.HasIndex(e => new { e.ProjectId, e.UserId }, "UC_ProjectUsers").IsUnique();
 
             entity.Property(e => e.Role).HasMaxLength(50);
 
-            entity.HasOne(d => d.Project).WithOne(p => p.ProjectUser)
-                .HasForeignKey<ProjectUser>(d => d.ProjectId)
+            entity.HasOne(d => d.Project).WithMany(p => p.ProjectUsers)
+                .HasForeignKey(d => d.ProjectId)
                 .HasConstraintName("FK_ProjectUsers_Projects");
 
             entity.HasOne(d => d.User).WithMany(p => p.ProjectUsers)
@@ -325,6 +214,7 @@ public partial class TestNhiemVuContext : DbContext
         {
             entity.HasKey(e => e.SubmissionId).HasName("PK__Submitte__449EE125EF3AF077");
 
+            entity.Property(e => e.ApprovedBy).HasMaxLength(50);
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasDefaultValue("Đang xem xét");
@@ -390,9 +280,7 @@ public partial class TestNhiemVuContext : DbContext
         {
             entity.HasKey(e => e.SubtaskId).HasName("PK__Subtasks__E087179660F43EA6");
 
-            entity.Property(e => e.Assigner)
-                .HasMaxLength(255)
-                .IsUnicode(false);
+            entity.Property(e => e.Assigner).HasMaxLength(255);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
@@ -437,42 +325,6 @@ public partial class TestNhiemVuContext : DbContext
                 .HasConstraintName("FK__SubtaskPr__Subta__09A971A2");
         });
 
-        modelBuilder.Entity<TaskNotification>(entity =>
-        {
-            entity.HasKey(e => e.NotificationId).HasName("PK__TaskNoti__20CF2E12F6FF64B7");
-
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.IsRead).HasDefaultValue(false);
-
-            entity.HasOne(d => d.Task).WithMany(p => p.TaskNotifications)
-                .HasForeignKey(d => d.TaskId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__TaskNotif__TaskI__0F624AF8");
-
-            entity.HasOne(d => d.User).WithMany(p => p.TaskNotifications)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__TaskNotif__UserI__0E6E26BF");
-        });
-
-        modelBuilder.Entity<TaskProgress>(entity =>
-        {
-            entity.HasKey(e => e.TaskProgressId).HasName("PK__TaskProg__C944EC697C0B485B");
-
-            entity.ToTable("TaskProgress");
-
-            entity.Property(e => e.LastUpdatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
-
-            entity.HasOne(d => d.Task).WithMany(p => p.TaskProgresses)
-                .HasForeignKey(d => d.TaskId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__TaskProgr__TaskI__10566F31");
-        });
-
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CE30A286B");
@@ -485,24 +337,6 @@ public partial class TestNhiemVuContext : DbContext
             entity.Property(e => e.PasswordHash).HasMaxLength(256);
             entity.Property(e => e.PasswordSalt).HasMaxLength(256);
             entity.Property(e => e.Role).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<UserLogin>(entity =>
-        {
-            entity.HasKey(e => e.UserId).HasName("PK__UserLogi__1788CC4C6A71BF2E");
-
-            entity.ToTable("UserLogin");
-
-            entity.Property(e => e.UserId).ValueGeneratedNever();
-            entity.Property(e => e.FailedLoginAttempts).HasDefaultValue(0);
-            entity.Property(e => e.LastLoginDate).HasColumnType("datetime");
-            entity.Property(e => e.PasswordHash).HasMaxLength(256);
-            entity.Property(e => e.PasswordSalt).HasMaxLength(256);
-
-            entity.HasOne(d => d.User).WithOne(p => p.UserLogin)
-                .HasForeignKey<UserLogin>(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__UserLogin__UserI__114A936A");
         });
 
         OnModelCreatingPartial(modelBuilder);

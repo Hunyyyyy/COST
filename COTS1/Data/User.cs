@@ -21,14 +21,6 @@ public partial class User
 
     public virtual ICollection<AssignedSubtask> AssignedSubtasks { get; set; } = new List<AssignedSubtask>();
 
-    public virtual ICollection<GroupMember> GroupMembers { get; set; } = new List<GroupMember>();
-
-    public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
-
-    public virtual ICollection<ProjectMember> ProjectMembers { get; set; } = new List<ProjectMember>();
-
-    public virtual ICollection<ProjectNotification> ProjectNotifications { get; set; } = new List<ProjectNotification>();
-
     public virtual ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
 
     public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
@@ -52,8 +44,4 @@ public partial class User
     public virtual ICollection<SubtaskProgress> SubtaskProgresses { get; set; } = new List<SubtaskProgress>();
 
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
-
-    public virtual ICollection<TaskNotification> TaskNotifications { get; set; } = new List<TaskNotification>();
-
-    public virtual UserLogin? UserLogin { get; set; }
 }
