@@ -139,65 +139,56 @@
 <body class="sb-nav-fixed">
     @RenderBody()
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Sidebar Toggle-->
-       <button class="btnMenu btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!" style="margin-right: 5px;">
+        <!-- Sidebar Toggle -->
+        <button class="btnMenu btn-link btn-sm order-1 order-lg-0 me-4" id="sidebarToggle" href="#!">
             <i class="fas fa-bars"></i>
         </button>
-        <!-- Navbar Brand-->
+
+        <!-- Navbar Brand -->
         <a class="navbar-brand ps-3" asp-action="Index" asp-controller="Home">Quản Lý Công Việc</a>
 
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 30px;">
-                    <i class="fas fa-user fa-fw fa-lg"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a asp-action="Login" asp-controller="Login" class="dropdown-item">Logout</a></li>
-                    <li><a asp-action="Login" asp-controller="Login" class="dropdown-item">Login</a></li>
-                </ul>
-            </li>
-        </ul>
+        <!-- Navbar Items -->
+        <div class="d-flex ms-auto">
+            <!-- Sử dụng ms-auto để đẩy sang bên phải -->
+            <a asp-action="Logout" asp-controller="Login" name="logout" class="btn btn-outline-info" style="margin-right:12px;">Logout</a>
+        </div>
     </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu-heading">   Quản Lý Dự Án</div>
+                    <a asp-action="Index" asp-controller="ProjectManager" class="nav-link">
+                        <div class="sb-nav-link-icon"><i class="bi bi-gear"></i></div>
+                        Tạo và Quản Lý Dự Án
+                    </a>
+                    <a asp-action="TrackProgress" asp-controller="ListTask" class="nav-link">
+                        <div class="sb-nav-link-icon"><i class="bi bi-eye"></i></div>
+                        Theo Dõi Công Việc
+                    </a>
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Tạo Và Quản Lý Nhiệm Vụ</div>
-                       @*  <a asp-action="CreateTasks" asp-controller="Tasks" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Tạo Nhiệm Vụ
-                        </a> *@
+                        <div class="sb-sidenav-menu-heading">Quản Lý Nhiệm Vụ</div>
                         <a asp-action="Index" asp-controller="ListTask" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="bi bi-file-earmark-plus"></i></div>
                             Nhận Nhiệm Vụ
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Gửi và Nhận Thông Báo Qua Email</div>
-                        <a asp-action="SendNotification" asp-controller="Home" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="bi bi-bell"></i></div>
-                            Gửi Thông Báo
                         </a>
                         <a asp-action="ListRecivedTask" asp-controller="ListTask" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="bi bi-list-ul"></i></div>
                             Danh sách nhiệm vụ đã nhận
                         </a>
+
+                        <div class="sb-sidenav-menu-heading">Gửi và Nhận Thông Báo Qua Email</div>
+                        <a asp-action="SendNotification" asp-controller="Home" class="nav-link">
+                            <div class="sb-nav-link-icon"><i class="bi bi-bell"></i></div>
+                            Gửi Thông Báo
+                        </a>
+                        
                         <a asp-action="Mail" asp-controller="Home" class="nav-link">
                             <div class="sb-nav-link-icon"><i class="bi bi-envelope"></i></div>
                             Xem Mail<span style="margin-left:10px;" class="badge bg-danger">@ViewBag.SumEmail</span>
                         </a>
-                        <div class="sb-sidenav-menu-heading">Quản Lý Dự Án</div>
-                        <a asp-action="Index" asp-controller="ProjectManager" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="bi bi-gear"></i></div>
-                            Tạo và Quản Lý Dự Án
-                        </a>
-                        <a asp-action="TrackProgress" asp-controller="ListTask" class="nav-link">
-                            <div class="sb-nav-link-icon"><i class="bi bi-eye"></i></div>
-                            Theo Dõi Công Việc
-                        </a>
+                       
                         
                         <div class="sb-sidenav-menu-heading"> Nhắc Nhở</div>
                       

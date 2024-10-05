@@ -58,13 +58,36 @@ namespace COTS1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId)
+        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId, IFormFile fileUpload)
         {
             var manager = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == from);
 
             // Nếu Note là null, gán giá trị mặc định
             string CheckNote = string.IsNullOrEmpty(Note) ? "Không có ghi chú" : Note;
+            // Kiểm tra và lưu tệp đính kèm nếu có
+            string filePath = null;
+            if (fileUpload != null && fileUpload.Length > 0)
+            {
+                // Đường dẫn thư mục để lưu file
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
 
+                // Tạo đường dẫn cho file
+                var uniqueFileName = $"{Guid.NewGuid()}_{fileUpload.FileName}";
+                filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Lưu file vào thư mục
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await fileUpload.CopyToAsync(fileStream);
+                }
+
+                // Lưu đường dẫn file để sử dụng trong cơ sở dữ liệu
+                filePath = $"/uploads/{uniqueFileName}";
+            }
             if (ModelState.IsValid)
             {
                 // Thêm nhiệm vụ chính vào bảng SentTasksLists
@@ -96,7 +119,8 @@ namespace COTS1.Controllers
                     Status = "Đang chờ",
                     AssignedTo = null,
                     CreatedBy = manager?.UserId,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    FilePath = filePath
                 };
 
                 _dbContext.SaveTasks.Add(saveTask);

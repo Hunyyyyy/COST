@@ -115,7 +115,7 @@
 
 
     <h2 class="mb-4">Tạo Nhiệm Vụ Mới cho @Model.ProjectName </h2>
-    <form method="post" id="taskForm">
+    <form method="post" id="taskForm" enctype="multipart/form-data">
         <input type="hidden" name="ProjectId" value="@ViewBag.ProjectId" />
         <div class="mb-3">
             <label for="from" class="form-label">From</label>
@@ -141,7 +141,10 @@
             <textarea id="Note" name="Note" class="editable-textarea" placeholder="Ghi chú"></textarea>
             <button type="button" class="btn btn-info" style="margin-top:20px;" id="addTaskBtn">Thêm nhiệm vụ</button>
         </div>
-
+        <div class="mb-3">
+            <label for="fileUpload" class="form-label">Chọn file hoặc hình ảnh</label>
+            <input type="file" class="form-control" id="fileUpload" name="fileUpload" />
+        </div>
         <div class="mb-3">
             <label for="Description" class="form-label">Danh sách công việc</label>
             <textarea id="Description" class="editable-textarea" name="Description" readonly required></textarea>

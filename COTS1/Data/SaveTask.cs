@@ -29,6 +29,8 @@ public partial class SaveTask
 
     public string? Note { get; set; }
 
+    public string? FilePath { get; set; }
+
     public virtual User? AssignedToNavigation { get; set; }
 
     public virtual User? CreatedByNavigation { get; set; }
@@ -36,8 +38,6 @@ public partial class SaveTask
     public virtual Project? Project { get; set; }
 
     public virtual ICollection<SubmittedSubtask> SubmittedSubtasks { get; set; } = new List<SubmittedSubtask>();
-
-    public virtual ICollection<SubmittedSubtasksByManager> SubmittedSubtasksByManagers { get; set; } = new List<SubmittedSubtasksByManager>();
 
     public virtual ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 }

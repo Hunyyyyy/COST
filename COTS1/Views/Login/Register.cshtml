@@ -46,7 +46,7 @@
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
                 <input type="email" name="gmail" id="gmail" placeholder="example@gmail.com" style="padding:15px 10px" >
-               
+                <span id="emailFeedback" style="color: red;"></span>
 
             </div>
             <div class="form-field d-flex align-items-center">
@@ -55,9 +55,7 @@
                        minlength="7" maxlength="30"
                        pattern=".{7,30}"
                        title="Mật khẩu phải có từ 7 đến 30 ký tự"
-                       >
-                
-
+                       >          
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
@@ -69,8 +67,33 @@
 
         </form>       
     </div>
-  
 
+    @section Scripts {
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#gmail').on('blur', function () {
+                    var email = $(this).val();
+                    if (email) {
+                        $.ajax({
+                            url: '@Url.Action("CheckEmailExists", "Login")', // Đường dẫn đến action kiểm tra email
+                            type: 'POST',
+                            data: { email: email },
+                            success: function (response) {
+                                if (response) {
+                                    $('#emailFeedback').text('Email này đã tồn tại.').css('color', 'red');
+                                } else {
+                                    $('#emailFeedback').text('Email này có thể sử dụng.').css('color', 'green');
+                                }
+                            }
+                        });
+                    } else {
+                        $('#emailFeedback').text('');
+                    }
+                });
+            });
+        </script>
+    }
 
  @*    <script>
         document.getElementById('registerForm').addEventListener('submit', function (event) {

@@ -31,8 +31,6 @@ public partial class TestNhiemVuContext : DbContext
 
     public virtual DbSet<SubmittedSubtask> SubmittedSubtasks { get; set; }
 
-    public virtual DbSet<SubmittedSubtasksByManager> SubmittedSubtasksByManagers { get; set; }
-
     public virtual DbSet<Subtask> Subtasks { get; set; }
 
     public virtual DbSet<SubtaskProgress> SubtaskProgresses { get; set; }
@@ -140,6 +138,7 @@ public partial class TestNhiemVuContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.DueDate).HasColumnType("datetime");
+            entity.Property(e => e.FilePath).IsUnicode(false);
             entity.Property(e => e.Priority).HasMaxLength(50);
             entity.Property(e => e.Progress).HasDefaultValue(0);
             entity.Property(e => e.Status)
@@ -241,39 +240,6 @@ public partial class TestNhiemVuContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Submitted__UserI__03F0984C");
-        });
-
-        modelBuilder.Entity<SubmittedSubtasksByManager>(entity =>
-        {
-            entity.HasKey(e => e.SubmissionId).HasName("PK__Submitte__449EE12501B7841A");
-
-            entity.ToTable("SubmittedSubtasksByManager");
-
-            entity.Property(e => e.Status)
-                .HasMaxLength(50)
-                .HasDefaultValue("Đ? duy?t");
-            entity.Property(e => e.SubmittedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-
-            entity.HasOne(d => d.Project).WithMany(p => p.SubmittedSubtasksByManagers)
-                .HasForeignKey(d => d.ProjectId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Submitted__Proje__07C12930");
-
-            entity.HasOne(d => d.Subtask).WithMany(p => p.SubmittedSubtasksByManagers)
-                .HasForeignKey(d => d.SubtaskId)
-                .HasConstraintName("FK__Submitted__Subta__05D8E0BE");
-
-            entity.HasOne(d => d.Task).WithMany(p => p.SubmittedSubtasksByManagers)
-                .HasForeignKey(d => d.TaskId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Submitted__TaskI__06CD04F7");
-
-            entity.HasOne(d => d.User).WithMany(p => p.SubmittedSubtasksByManagers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Submitted__UserI__08B54D69");
         });
 
         modelBuilder.Entity<Subtask>(entity =>

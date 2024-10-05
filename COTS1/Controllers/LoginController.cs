@@ -26,6 +26,15 @@ namespace COTS1.Controllers
         {
             return View();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("UserEmail");
+            HttpContext.Session.Remove("UserIDEmail");
+            HttpContext.Session.Remove("UserRole");
+            HttpContext.Session.Remove("UserFullName");
+            HttpContext.Session.Remove("AccessToken");
+            return RedirectToAction("Login");
+        }
 
         public async Task<IActionResult> LoginFunctionAsync(string gmail, string password)
         {
@@ -121,7 +130,15 @@ namespace COTS1.Controllers
                 return RedirectToAction("Register");
             }
             // Băm mật khẩu
-
+            // Kiểm tra xem email đã tồn tại chưa
+            using (var context = new TestNhiemVuContext())
+            {
+                if (context.Users.Any(u => u.Email == gmail))
+                {
+                    TempData["Error"] = "Email này đã tồn tại.";
+                    return RedirectToAction("Register");
+                }
+            }
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
             // Tạo đối tượng người dùng
@@ -144,6 +161,15 @@ namespace COTS1.Controllers
             }
 
             // Gửi mã xác thực qua email
+        }
+        [HttpPost]
+        public JsonResult CheckEmailExists(string email)
+        {
+            using (var context = new TestNhiemVuContext())
+            {
+                bool emailExists = context.Users.Any(u => u.Email == email);
+                return Json(emailExists);
+            }
         }
 
         public async Task<IActionResult> SendVerificationEmail(string gmail)

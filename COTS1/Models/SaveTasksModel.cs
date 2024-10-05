@@ -8,7 +8,7 @@ namespace COTS1.Models
 
         public string Title { get; set; } = null!;
         public string? Note { get; set; } = null!;
-
+        public string? FilePath { get; set; }
         public string? Description { get; set; }
 
         public DateTime DueDate { get; set; }

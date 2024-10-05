@@ -89,6 +89,7 @@
                 <th>Ngày hết hạn</th>
                 <th>Ưu tiên</th>
                 <th>Trạng thái</th>
+                <th>File</th>
                 <th>Chỉnh sửa</th>
             </tr>
         </thead>
@@ -102,6 +103,13 @@
                     <td>@task.DueDate.ToShortDateString()</td>
                     <td>@task.Priority</td>
                     <td>@task.Status</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(task.FilePath))
+                        {
+                            <a href="@Url.Content(task.FilePath)" class="btn btn-primary" target="_blank">Xem File</a>
+                        }
+                    </td>
+                   
                     @if (ViewBag.IsManager == true)
                     {
                         <td>
