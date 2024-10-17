@@ -25,16 +25,8 @@ namespace COTS1.Controllers
 
         public async Task<IActionResult> CreateTasks(int projectId)
         {
-           /* var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
-
-            if (string.IsNullOrEmpty(accessToken))
-            {
-                return RedirectToAction("Mail", "Home");
-            }
-
-            var googleUserInfo = new GoogleUserInfo(accessToken);
-            var email = await googleUserInfo.GetUserEmailAsync();*/
-           var email = HttpContext.Session.GetString("UserEmail");
+         
+            var email = HttpContext.Session.GetString("UserEmail");
 			var project = await _dbContext.Projects
                 .Where(p => p.ProjectId == projectId)
                 .Select(p => new Project
@@ -58,13 +50,14 @@ namespace COTS1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId, IFormFile fileUpload)
+        public async Task<IActionResult> SaveTask(string Title, string Description, DateTime DueDate, string Priority, string? Note, string from, int ProjectId, IFormFile? fileUpload) // Cho phép fileUpload là null
         {
             var manager = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == from);
 
             // Nếu Note là null, gán giá trị mặc định
             string CheckNote = string.IsNullOrEmpty(Note) ? "Không có ghi chú" : Note;
-            // Kiểm tra và lưu tệp đính kèm nếu có
+
+            // Kiểm tra và lưu tệp đính kèm nếu có (fileUpload không bắt buộc)
             string filePath = null;
             if (fileUpload != null && fileUpload.Length > 0)
             {
@@ -85,9 +78,10 @@ namespace COTS1.Controllers
                     await fileUpload.CopyToAsync(fileStream);
                 }
 
-                // Lưu đường dẫn file để sử dụng trong cơ sở dữ liệu
+                // Đường dẫn file để sử dụng nếu cần, không bắt buộc lưu vào cơ sở dữ liệu
                 filePath = $"/uploads/{uniqueFileName}";
             }
+
             if (ModelState.IsValid)
             {
                 // Thêm nhiệm vụ chính vào bảng SentTasksLists
@@ -106,7 +100,6 @@ namespace COTS1.Controllers
 
                 _dbContext.SentTasksLists.Add(task);
                 await _dbContext.SaveChangesAsync();
-                
 
                 // Thêm nhiệm vụ chính vào bảng SaveTasks
                 var saveTask = new SaveTask
@@ -120,11 +113,10 @@ namespace COTS1.Controllers
                     AssignedTo = null,
                     CreatedBy = manager?.UserId,
                     CreatedAt = DateTime.Now,
-                    FilePath = filePath
+                    FilePath = filePath // Có thể null nếu không có file
                 };
 
                 _dbContext.SaveTasks.Add(saveTask);
-
                 await _dbContext.SaveChangesAsync();
 
                 var taskId = saveTask.TaskId;
@@ -142,7 +134,7 @@ namespace COTS1.Controllers
                     DateTime dueDate = getday.DueDate;
                     DateTime create = (DateTime)getday.CreatedAt;
 
-                    // Tính toán số giây còn lại giữa DueDate và CreatedAt
+                    // Tính toán số ngày còn lại giữa DueDate và CreatedAt
                     TimeSpan timeSpanRemaining = dueDate - create;
                     int reminderDate = (int)timeSpanRemaining.Days;
 
@@ -152,7 +144,7 @@ namespace COTS1.Controllers
                         Title = Title,
                         Description = Description,
                         DueDate = DueDate,
-                        TempReminderDate = reminderDate, // Lưu trữ số giây đã tính toán
+                        TempReminderDate = reminderDate, // Lưu trữ số ngày đã tính toán
                         ProjectId = ProjectId,
                         AssignedTo = null,
                         CreatedBy = manager?.UserId,
@@ -163,7 +155,6 @@ namespace COTS1.Controllers
                     await _dbContext.SaveChangesAsync();
                 }
 
-
                 // Tách các công việc phụ từ mô tả nhiệm vụ chính
                 var subtasks = SplitTasks(saveTask.Description);
 
@@ -172,7 +163,7 @@ namespace COTS1.Controllers
                 {
                     _dbContext.Subtasks.Add(new Subtask
                     {
-                        TaskId = taskId, // Sử dụng TaskId vừa lấy
+                        TaskId = taskId,
                         ProjectId = ProjectId,
                         Title = subtask.Title,
                         Description = subtask.Description,
@@ -188,8 +179,9 @@ namespace COTS1.Controllers
                 return RedirectToAction("CreateTaskProject", "ProjectManager", new { projectId = ProjectId });
             }
 
-            return View("CreateTasks", "Tasks");
+            return RedirectToAction("CreateTasks", "Tasks", new { projectId = ProjectId });
         }
+
 
         public List<SubtaskViewModel> SplitTasks(string taskDescription)
         {
