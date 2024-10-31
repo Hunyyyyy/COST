@@ -3,6 +3,8 @@ using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using X.PagedList;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -69,10 +71,29 @@ namespace COTS1.Controllers
 
 
 
+        [HttpPost]
+        public JsonResult CheckNameProject(string name)
+        {
+            if (name.IsNullOrEmpty())
+            {
+                return Json(new { isValid = false, message = "Tên dự án không được để trống." });
+            }
+            else if (name.Length < 3)
+            {
+                return Json(new { isValid = false, message = "Tên dự án phải có ít nhất 3 ký tự." });
+            }
+            else if (char.IsPunctuation(name[0]) || char.IsSymbol(name[0]))
+            {
+                return Json(new { isValid = false, message = "Tên dự án không được bắt đầu bằng ký tự đặc biệt." });
+            }
 
+            // Nếu tất cả các kiểm tra đều hợp lệ
+            return Json(new { isValid = true });
+        }
         [HttpPost]
         public async Task<IActionResult> CreateProject(string NameProject)
         {
+           
             var managerID = HttpContext.Session.GetInt32("UserIDEmail");
 
             if (managerID == null)

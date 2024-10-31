@@ -48,9 +48,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-@{
 
-}
+
 
 <div class="container container-expanded" id="chartContainer" style=" margin-top: 60px;">
    
@@ -89,20 +88,24 @@
                 <form method="post">
                     <div class="p-4 md:p-5 space-y-4">
                         <div class="mb-6">
+                            
+                                <span id="nameFeedback" style="color: red;"></span>
+                            
+                           
                             <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên dự án</label>
                             <input id="nameproject" name="NameProject" placeholder="Nhập tên dự án" type="text" id="large-input" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button asp-action="CreateProject" asp-controller="ProjectManager" data-modal-hide="large-modal" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tạo</button>
+                        <button id="btn_Create" asp-action="CreateProject" asp-controller="ProjectManager" data-modal-hide="large-modal" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tạo</button>
                         <button data-modal-hide="large-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Hủy</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
- 
+
     <table class="table table-dark table-hover">
         <thead>
             <tr>
@@ -255,5 +258,44 @@
     });
 
 </script>
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
 
+        // Sử dụng hàm debounce cho sự kiện input
+        $('#nameproject').on('input', debounce(function () {
+            var name = $(this).val();
+            $('#nameFeedback').text('');
+
+            if (name) {
+                $.ajax({
+                    url: '@Url.Action("CheckNameProject", "ProjectManager")',
+                    type: 'POST',
+                    data: { name: name },
+                    success: function (response) {
+                        if (response.isValid) {
+                            $('#nameFeedback').text('Tên dự án hợp lệ.').css('color', 'green');
+                        } else {
+                            $('#nameFeedback').text(response.message).css('color', 'red');
+                        }
+                    },
+                    error: function () {
+                        $('#nameFeedback').text('Đã xảy ra lỗi khi kiểm tra tên dự án.').css('color', 'red');
+                    }
+                });
+            } else {
+                $('#nameFeedback').text('');
+            }
+        }, 200)); // Thay đổi số 300 để điều chỉnh thời gian trì hoãn
+
+    </script>
+}
 <script src="https://cdn.tailwindcss.com"></script>
