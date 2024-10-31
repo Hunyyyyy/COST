@@ -58,7 +58,7 @@ namespace COTS1.Controllers
                     Priority = t.Priority,
                     Status = t.Status,
                     Title = t.Title,
-                    FilePath=t.FilePath
+                    //FilePath=t.FilePath
                 })
                 .ToListAsync();
 

@@ -3,7 +3,10 @@ using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
+=======
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+>>>>>>> main
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using X.PagedList;
@@ -100,7 +103,15 @@ namespace COTS1.Controllers
             {
                 return Unauthorized();
             }
-
+            if (string.IsNullOrWhiteSpace(NameProject) ||
+                    NameProject.Length <= 3 ||
+                    NameProject.Length >= 50)
+            {
+                //ModelState.AddModelError("NameProject", "Tên dự án không hợp lệ. Tên không được để trống, phải bắt đầu bằng chữ cái, có độ dài từ 4 đến 49 ký tự.");
+                //return BadRequest(new { success = false, message = "Kiểm tra thất bại: Tên dự án không hợp lệ." }); ;
+                TempData["ErrorMessage"] = "Tạo không thành công!";
+                return RedirectToAction("Index");
+            }
             if (NameProject != null && ModelState.IsValid)
             {
                 // Lưu dự án mới

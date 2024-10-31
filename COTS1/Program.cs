@@ -10,7 +10,7 @@ builder.Services.AddDbContext<TestNhiemVuContext>(options =>
 {
 
 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-R74JRM89\\HUY;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=ADMIN-PC\\SERVER_ANH;Initial Catalog=TestNhiemVu;Integrated Security=True;Trust Server Certificate=True"));
 
    // options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=LAPTOP-R74JRM89\\HUY;Initial Catalog=TestNhiemVu;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
 

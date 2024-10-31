@@ -5,6 +5,7 @@ using COTS1.Models.EmailModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
@@ -393,7 +394,18 @@ namespace COTS1.Controllers
             ViewBag.UserEmail = email;
             return View();
         }
+        [HttpPost]
+        public JsonResult CheckSentEmail(string name)
+        {
+            if (name.IsNullOrEmpty())
+            {
+                return Json(new { isValid = false, message = "Tên dự án không được để trống." });
+            }
+            
 
+            // Nếu tất cả các kiểm tra đều hợp lệ
+            return Json(new { isValid = true });
+        }
         public async Task<IActionResult> EmailNotification(string recipients, string subject, string message, string from, string type)
         {
             var accessToken = _contextAccessor.HttpContext.Session.GetString("AccessToken");
@@ -581,5 +593,6 @@ namespace COTS1.Controllers
 
             return subtasks;
         }
+
     }
 }

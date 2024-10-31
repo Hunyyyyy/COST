@@ -109,29 +109,35 @@
         </div>
     </div>
 }
-
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+}
 <div class="Container container-expanded" id="chartContainer" style="margin-top: 70px;">
     <div class="form-section">
         <h2>Send Email Notification</h2>
-        <form>
+        <form id="emailForm">
             <div class="mb-4">
                 <label for="from" class="form-label">From</label>
                 <input type="text" class="form-control" id="from" name="from" value="@ViewBag.UserEmail" readonly />
             </div>
             <div class="mb-4">
                 <label for="to" class="form-label">To</label>
-                <input type="text" class="form-control" id="recipients" name="recipients" placeholder="Nhập địa chỉ email người nhận" required>
+                <input type="text" class="form-control" id="recipients" name="recipients" placeholder="Nhập địa chỉ email người nhận">
+                <div id="recipientFeedback" class="text-danger"></div> <!-- Khu vực hiển thị thông báo -->
             </div>
             <div class="mb-4">
                 <label for="subject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Nhập chủ đề" required>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Nhập chủ đề">
+                <div id="subjectFeedback" class="text-danger"></div>
             </div>
             <div class="mb-4">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Nhập tin nhắn của bạn ở đây" required></textarea>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Nhập tin nhắn của bạn ở đây"></textarea>
+                <div id="messageFeedback" class="text-danger"></div>
             </div>
             <div class="d-grid gap-2">
-                <button asp-action="EmailNotification" asp-controller="GmailAPI" type="submit" class="btn btn-primary btn-lg">Send Email</button>
+                <button type="submit" class="btn btn-primary btn-lg">Send Email</button>
             </div>
         </form>
     </div>
@@ -144,5 +150,95 @@
             keyboard: false
         });
         myModal.show();
+    });
+    
+    @section Scripts {
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
+
+        $(document).ready(function () {
+            $('#recipients').on('input', debounce(function () {
+                var name = $(this).val();
+                $('#feedback').text(''); // Xóa thông báo trước đó
+
+                if (name) {
+                    $.ajax({
+                        url: '@Url.Action("CheckSentEmail", "GmailAPI")', // Đảm bảo đường dẫn chính xác
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8', // Thêm contentType
+                        data: JSON.stringify({ name: name }), // Chuyển đổi thành JSON
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.isValid) {
+                                $('#feedback').text('Tên dự án hợp lệ.').css('color', 'green');
+                            } else {
+                                $('#feedback').text('Lỗi: ' + response.message).css('color', 'red');
+                            }
+                        },
+                        error: function () {
+                            $('#feedback').text('Có lỗi xảy ra khi kiểm tra tên dự án.').css('color', 'red');
+                        }
+                    });
+                } else {
+                    $('#feedback').text(''); // Xóa thông báo nếu không có tên dự án
+                }
+            }, 200)); // Thay đổi số 200 để điều chỉnh thời gian trì hoãn
+        });
+    </script>
+    }
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    document.getElementById('emailForm').addEventListener('submit', function(event) {
+        // Ngăn gửi biểu mẫu
+        event.preventDefault();
+
+        // Lấy giá trị các trường
+        const recipients = document.getElementById('recipients').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        // Xóa thông báo lỗi cũ
+        document.getElementById('recipientFeedback').innerText = '';
+        document.getElementById('subjectFeedback').innerText = '';
+        document.getElementById('messageFeedback').innerText = '';
+
+        let isValid = true;
+
+        // Kiểm tra các trường
+        if (!recipients) {
+            document.getElementById('recipientFeedback').innerText = 'Vui lòng nhập địa chỉ email người nhận.';
+            isValid = false;
+        }else {
+            // Kiểm tra định dạng email đơn giản
+            const atSymbolIndex = recipients.indexOf(' ');
+            const dotSymbolIndex = recipients.lastIndexOf('.');
+
+            if (atSymbolIndex === -1 || dotSymbolIndex === -1 || atSymbolIndex > dotSymbolIndex) {
+                document.getElementById('recipientFeedback').innerText = 'Địa chỉ email không hợp lệ.';
+                isValid = false;
+            }
+        }
+        if (!subject) {
+            document.getElementById('subjectFeedback').innerText = 'Vui lòng nhập chủ đề.';
+            isValid = false;
+        }
+        if (!message) {
+            document.getElementById('messageFeedback').innerText = 'Vui lòng nhập tin nhắn.';
+            isValid = false;
+        }
+
+        // Nếu tất cả đều hợp lệ, gửi biểu mẫu
+        if (isValid) {
+            this.submit();
+        }
     });
 </script>

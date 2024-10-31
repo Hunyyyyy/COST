@@ -29,8 +29,6 @@ public partial class SaveTask
 
     public string? Note { get; set; }
 
-    public string? FilePath { get; set; }
-
     public virtual User? AssignedToNavigation { get; set; }
 
     public virtual User? CreatedByNavigation { get; set; }

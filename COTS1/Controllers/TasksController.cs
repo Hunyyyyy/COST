@@ -113,7 +113,7 @@ namespace COTS1.Controllers
                     AssignedTo = null,
                     CreatedBy = manager?.UserId,
                     CreatedAt = DateTime.Now,
-                    FilePath = filePath // Có thể null nếu không có file
+                    //FilePath = filePath // Có thể null nếu không có file
                 };
 
                 _dbContext.SaveTasks.Add(saveTask);
