@@ -3,6 +3,7 @@ using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using X.PagedList;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -69,7 +70,25 @@ namespace COTS1.Controllers
 
 
 
+        [HttpPost]
+        public JsonResult CheckNameProject(string name)
+        {
+            if (name.IsNullOrEmpty())
+            {
+                return Json(new { isValid = false, message = "Tên dự án không được để trống." });
+            }
+            else if (name.Length < 3)
+            {
+                return Json(new { isValid = false, message = "Tên dự án phải có ít nhất 3 ký tự." });
+            }
+            else if (char.IsPunctuation(name[0]) || char.IsSymbol(name[0]))
+            {
+                return Json(new { isValid = false, message = "Tên dự án không được bắt đầu bằng ký tự đặc biệt." });
+            }
 
+            // Nếu tất cả các kiểm tra đều hợp lệ
+            return Json(new { isValid = true });
+        }
         [HttpPost]
         public async Task<IActionResult> CreateProject(string NameProject)
         {
@@ -79,7 +98,15 @@ namespace COTS1.Controllers
             {
                 return Unauthorized();
             }
-
+            if (string.IsNullOrWhiteSpace(NameProject) ||
+                    NameProject.Length <= 3 ||
+                    NameProject.Length >= 50)
+            {
+                //ModelState.AddModelError("NameProject", "Tên dự án không hợp lệ. Tên không được để trống, phải bắt đầu bằng chữ cái, có độ dài từ 4 đến 49 ký tự.");
+                //return BadRequest(new { success = false, message = "Kiểm tra thất bại: Tên dự án không hợp lệ." }); ;
+                TempData["ErrorMessage"] = "Tạo không thành công!";
+                return RedirectToAction("Index");
+            }
             if (NameProject != null && ModelState.IsValid)
             {
                 // Lưu dự án mới

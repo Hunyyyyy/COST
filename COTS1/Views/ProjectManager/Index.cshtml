@@ -48,6 +48,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["ErrorMessage"]
+    </div>
+}
 @{
 
 }
@@ -89,6 +95,7 @@
                 <form method="post">
                     <div class="p-4 md:p-5 space-y-4">
                         <div class="mb-6">
+                            <span id="nameFeedback" ></span>
                             <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên dự án</label>
                             <input id="nameproject" name="NameProject" placeholder="Nhập tên dự án" type="text" id="large-input" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
@@ -255,5 +262,44 @@
     });
 
 </script>
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
 
+        // Sử dụng hàm debounce cho sự kiện input
+        $('#nameproject').on('input', debounce(function () {
+            var name = $(this).val();
+            $('#nameFeedback').text('');
+
+            if (name) {
+                $.ajax({
+                    url: '@Url.Action("CheckNameProject", "ProjectManager")',
+                    type: 'POST',
+                    data: { name: name },
+                    success: function (response) {
+                        if (response.isValid) {
+                            $('#nameFeedback').text('Tên dự án hợp lệ.').css('color', 'green');
+                        } else {
+                            $('#nameFeedback').text(response.message).css('color', 'red');
+                        }
+                    },
+                    error: function () {
+                        $('#nameFeedback').text('Đã xảy ra lỗi khi kiểm tra tên dự án.').css('color', 'red');
+                    }
+                });
+            } else {
+                $('#nameFeedback').text('');
+            }
+        }, 200)); // Thay đổi số 300 để điều chỉnh thời gian trì hoãn
+
+    </script>
+}
 <script src="https://cdn.tailwindcss.com"></script>

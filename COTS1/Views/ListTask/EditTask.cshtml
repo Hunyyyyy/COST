@@ -146,7 +146,7 @@
 
         <div class="mb-3">
             <label for="DueDate" class="form-label">Ngày hết hạn</label>
-            <input type="date" class="form-control" id="DueDate" name="DueDate" min="" required>
+            <input type="date" class="form-control" id="DueDate" name="DueDate">
             <div id="dueDateError" class="alert alert-danger" style="display:none; margin-top: 5px;">
                 Vui lòng nhập ngày hết hạn.
             </div>
@@ -250,6 +250,33 @@
     });
 
 
+        document.addEventListener('DOMContentLoaded', function () {
+        // Xử lý sự kiện khi nhấn nút "Tạo Nhiệm Vụ"
+        document.getElementById('taskForm').addEventListener('submit', function (event) {
+            const dueDate = document.getElementById('DueDate').value.trim();
+            const description = document.getElementById('Description').value.trim();
+            let hasError = false;
+
+            // Kiểm tra ngày hết hạn
+            if (!dueDate) {
+                document.getElementById('dueDateError').style.display = 'block';
+                hasError = true;
+            } else {
+                document.getElementById('dueDateError').style.display = 'none';
+            }
+
+            // Kiểm tra mô tả công việc (nếu cần)
+            if (!description) {
+                alert('Vui lòng thêm ít nhất một nhiệm vụ vào danh sách.');
+                hasError = true; // Cũng đánh dấu có lỗi
+            }
+
+            // Nếu có lỗi thì ngăn form gửi đi
+            if (hasError) {
+                event.preventDefault(); // Ngăn chặn gửi form
+            }
+        });
+    });
 
     // Xử lý khi nhấn nút "Tạo Nhiệm Vụ"
     document.getElementById('taskForm').addEventListener('submit', function (event) {

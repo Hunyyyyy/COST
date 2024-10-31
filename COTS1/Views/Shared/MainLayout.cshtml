@@ -137,7 +137,9 @@
 </head>
 
 <body class="sb-nav-fixed">
+    
     @RenderBody()
+    @RenderSection("Scripts", required: false)
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Sidebar Toggle -->
         <button class="btnMenu btn-link btn-sm order-1 order-lg-0 me-4" id="sidebarToggle" href="#!">
