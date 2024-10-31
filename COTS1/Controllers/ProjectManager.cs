@@ -3,6 +3,10 @@ using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
+=======
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+>>>>>>> main
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using X.PagedList;
@@ -92,6 +96,7 @@ namespace COTS1.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProject(string NameProject)
         {
+           
             var managerID = HttpContext.Session.GetInt32("UserIDEmail");
 
             if (managerID == null)
