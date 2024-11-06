@@ -110,6 +110,12 @@
             <input type="text" class="form-control" placeholder="Tên công việc" name="titleFilter" value="@ViewBag.TitleFilter">
             <button class="btn btn-success" type="submit">Tìm kiếm</button>
         </div>
+        @if (TempData["NotFound"] != null)
+        {
+            <div class="alert alert-danger text-center">
+                @TempData["NotFound"]
+            </div>
+        }
     </form>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">

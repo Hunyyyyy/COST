@@ -140,6 +140,21 @@
 @model RecivedTask_And_SubmittedSubtask_Model
 
 <div class="container container-expanded" id="chartContainer" style="margin-top: 70px;">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
     <div class="container">
         <h2>Công việc đã nhận</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">

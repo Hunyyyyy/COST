@@ -1,6 +1,7 @@
 ﻿using COTS1.Class;
 using COTS1.Data;
 using COTS1.Models;
+using MailKit.Search;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
@@ -175,12 +176,20 @@ namespace COTS1.Controllers
             if (!string.IsNullOrEmpty(statusFilter))
             {
                 query = query.Where(st => st.Status == statusFilter);
+                if (!query.Any()) // Kiểm tra số lượng phần tử trong query
+                {
+                    TempData["NotFound"] = $"Không tìm thấy kết quả: {statusFilter}";
+                }
             }
 
   
             if (!string.IsNullOrEmpty(titleFilter))
             {
-                query = query.Where(st => st.Description.Contains(titleFilter)); 
+                query = query.Where(st => st.Description.Contains(titleFilter));
+                if (!query.Any()) // Kiểm tra số lượng phần tử trong query
+                {
+                    TempData["NotFound"] = $"Không tìm thấy kết quả cho từ khóa: {titleFilter}";
+                }
             }
 
 
@@ -370,7 +379,7 @@ namespace COTS1.Controllers
             db.Subtasks.Update(subtasks);
             await db.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Công việc đã được xóa thành công.";
+            TempData["SuccessMessage"] = "Công việc đã được hủy thành công.";
             return RedirectToAction("ListRecivedTask");
         }
 
