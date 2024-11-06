@@ -35,7 +35,7 @@ namespace COTS1.Controllers
             HttpContext.Session.Remove("AccessToken");
             return RedirectToAction("Login");
         }
-
+        [HttpPost]
         public async Task<IActionResult> LoginFunctionAsync(string gmail, string password)
         {
             if (string.IsNullOrEmpty(gmail))

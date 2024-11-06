@@ -3,12 +3,10 @@ using COTS1.Data;
 using COTS1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
-=======
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
->>>>>>> main
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using System.Text.RegularExpressions;
 using X.PagedList;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -32,6 +30,7 @@ namespace COTS1.Controllers
 		[HttpGet]
         public async Task<IActionResult> Index(int? page, string searchTerm)
         {
+
             var managerID = HttpContext.Session.GetInt32("UserIDEmail");
 
             if (managerID == null)
@@ -47,6 +46,7 @@ namespace COTS1.Controllers
 
             int pageSize = 12;  // Number of items per page
             int pageNumber = page ?? 1;  // Current page, default to page 1
+
             ViewBag.CurrentFilter = searchTerm;  // Store the search term
 
             // Get the list of projects for the manager
@@ -59,11 +59,15 @@ namespace COTS1.Controllers
                     CreatedAt = n.CreatedAt,
                     Status = n.Status
                 });
-
+            int count = 0;
             // Filter the list if there is a search term
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 query = query.Where(p => p.ProjectName.Contains(searchTerm));
+                if (!query.Any()) // Kiểm tra số lượng phần tử trong query
+                {
+                    TempData["NotFound"] = $"Không tìm thấy kết quả cho từ khóa: {searchTerm}";
+                }
             }
 
             // Fetch the paginated list directly from the query
@@ -217,6 +221,21 @@ namespace COTS1.Controllers
             if (string.IsNullOrEmpty(newProjectName))
             {
                 TempData["ErrorMessage"] = "Tên dự án mới không được để trống.";
+                return RedirectToAction("Index");
+            }
+            if (newProjectName.Length <= 2)
+            {
+                TempData["ErrorMessage"] = "Tên dự án mới phải có độ dài lớn hơn 2 ký tự.";
+                return RedirectToAction("Index");
+            }
+            if (newProjectName.Length >=50)
+            {
+                TempData["ErrorMessage"] = "Tên dự án mới không được có độ dài lớn hơn 50 ký tự.";
+                return RedirectToAction("Index");
+            }
+            if (Regex.IsMatch(newProjectName, @"^[^a-zA-Z0-9]"))
+            {
+                TempData["ErrorMessage"] = "Tên dự án mới không được bắt đầu bằng ký tự đặc biệt.";
                 return RedirectToAction("Index");
             }
 
